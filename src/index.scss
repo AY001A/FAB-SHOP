@@ -1,0 +1,23 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+
+@import "./styles/_variables";
+@import "./styles/_typography";
+@import "./styles/breakpoint";
+
+html,
+body {
+  font-size: 0.9rem;
+  line-height: 1.3rem;
+
+  @media (min-width: $sm-breakpoint) {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+label {
+  font-size: 0.9rem;
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap";
