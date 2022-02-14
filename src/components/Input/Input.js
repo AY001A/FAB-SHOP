@@ -1,8 +1,16 @@
 import React from "react";
-import FormGroup from "react-bootstrap/FormGroup";
 
-const Input = () => {
-  return <input />;
+const Input = ({ type, name, id, onChangeHandler, value }, ...props) => {
+  return (
+    <input
+      type={type}
+      name={name}
+      id={id}
+      onChange={onChangeHandler}
+      value={value}
+      {...props}
+    />
+  );
 };
 
 export default Input;

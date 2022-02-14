@@ -1,0 +1,18 @@
+.wrapper {
+  //   min-height: 100vh;
+  //   background-color: pink;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+main {
+  //   background-color: rgb(68, 19, 19);
+  // min-height: 50vh;
+  height: 100vh;
+  padding: 0 32px;
+}
+
+footer {
+  padding: 0 32px;
+}

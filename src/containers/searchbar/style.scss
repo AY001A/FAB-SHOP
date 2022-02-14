@@ -1,0 +1,20 @@
+.searchbar {
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  min-height: 56px;
+  margin-right: 8px;
+  border-radius: 8px !important;
+
+  input {
+    width: 90%;
+    background-color: #f8f8f8;
+    border: none;
+    outline: none;
+  }
+}
+
+.search-btn {
+  width: 140px;
+}
