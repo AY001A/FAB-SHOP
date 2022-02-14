@@ -20,7 +20,7 @@ const LoginPage = () => {
             aria-describedby="emailHelp"
           />
         </div>
-        <div classNameName="form-group mb-3">
+        <div className="form-group mb-1">
           <label for="exampleInputPassword1">Password</label>
           <input
             type="password"
@@ -32,7 +32,7 @@ const LoginPage = () => {
           className="form-check-label mb-4 mt-1 text-end small"
           for="exampleCheck1"
         >
-          Forget password?
+          <Link to={"/forget-password"}>Forget password?</Link>
         </p>
         <button type="submit" className="btn btn-primary btn-md">
           Login
