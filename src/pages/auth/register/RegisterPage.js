@@ -1,40 +1,61 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Form from "react-bootstrap/Form";
+import { useDispatch, useSelector } from "react-redux";
+import { register, login } from "../../../services/slices/authSlice";
 
 const registrationSchema = Yup.object().shape({
-  firstName: Yup.string().required("First name field must not be empty"),
-  lastName: Yup.string().required("Last name field must not be empty"),
-  email: Yup.string()
-    .email("Please provide a valid email")
+  FirstName: Yup.string().required("First name field must not be empty"),
+  LastName: Yup.string().required("Last name field must not be empty"),
+  EmailAddress: Yup.string()
+    .email("Please provide a valid email address")
     .required("Email field must not be empty."),
-  password: Yup.string()
+  Password: Yup.string()
     .required("Password field must not be empty")
     .min(5, "Password must not be less than 5 characters"),
-  phone: Yup.number().required("Phone number must be included"),
-  terms: Yup.bool().oneOf(
+  PhoneNumber: Yup.number().required("Phone number must be included"),
+  AcceptTerms: Yup.bool().oneOf(
     [true],
     "Accept our terms and conditions to continue"
   ),
 });
 
 const RegisterPage = () => {
+  const { isAuthenticated, status, error, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      phone: "",
-      terms: false,
+      FirstName: "",
+      LastName: "",
+      EmailAddress: "",
+      LastLogin: !Date.now ? +new Date() : Date.now(),
+      AccountType: "CUSTOMER",
+      Password: "",
+      PhoneNumber: "",
+      AcceptTerms: false,
     },
 
     validationSchema: registrationSchema,
 
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => {
+      dispatch(register(values));
+    },
   });
+
+  if (!error && status === "successful") {
+    const cred = {
+      username: formik.values.EmailAddress,
+      password: formik.values.Password,
+    };
+    dispatch(login(cred));
+  }
+  if (isAuthenticated && !error) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <div className="container">
@@ -59,52 +80,54 @@ const RegisterPage = () => {
           <Form.Control
             type="text"
             className="form-control"
-            id="firstName"
-            name="firstName"
+            id="FirstName"
+            name="FirstName"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            isInvalid={formik.touched.firstName && formik.errors.firstName}
-            value={formik.values.firstName}
+            isInvalid={formik.touched.FirstName && formik.errors.FirstName}
+            value={formik.values.FirstName}
           />
-          {formik.touched.firstName && formik.errors.firstName ? (
-            <div className="invalid-feedback">{formik.errors.firstName}</div>
+          {formik.touched.FirstName && formik.errors.FirstName ? (
+            <div className="invalid-feedback">{formik.errors.FirstName}</div>
           ) : null}
         </div>
 
         <div className="form-group mb-3">
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="LastName">Last Name</label>
           <Form.Control
             type="text"
             className="form-control"
-            id="lastName"
-            name="lastName"
+            id="LastName"
+            name="LastName"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            isInvalid={formik.touched.lastName && formik.errors.lastName}
-            value={formik.values.lastName}
+            isInvalid={formik.touched.LastName && formik.errors.LastName}
+            value={formik.values.LastName}
           />
-          {formik.touched.lastName && formik.errors.lastName ? (
-            <div className="invalid-feedback">{formik.errors.lastName}</div>
+          {formik.touched.LastName && formik.errors.LastName ? (
+            <div className="invalid-feedback">{formik.errors.LastName}</div>
           ) : null}
         </div>
 
         <div className="form-group mb-3">
-          <label htmlFor="email" className="mb-1">
+          <label htmlFor="EmailAddress" className="mb-1">
             Email
           </label>
           <Form.Control
             type="email"
             className="form-control"
-            id="email"
-            name="email"
-            aria-describedby="email"
+            id="EmailAddress"
+            name="EmailAddress"
+            aria-describedby="EmailAddress"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            isInvalid={formik.touched.email && formik.errors.email}
-            value={formik.values.email}
+            isInvalid={
+              formik.touched.EmailAddress && formik.errors.EmailAddress
+            }
+            value={formik.values.EmailAddress}
           />
-          {formik.touched.email && formik.errors.email ? (
-            <div className="invalid-feedback">{formik.errors.email}</div>
+          {formik.touched.EmailAddress && formik.errors.EmailAddress ? (
+            <div className="invalid-feedback">{formik.errors.EmailAddress}</div>
           ) : null}
         </div>
 
@@ -114,14 +137,14 @@ const RegisterPage = () => {
             type="password"
             className="form-control"
             id="password"
-            name="password"
+            name="Password"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            isInvalid={formik.touched.password && formik.errors.password}
-            value={formik.values.password}
+            isInvalid={formik.touched.Password && formik.errors.Password}
+            value={formik.values.Password}
           />
-          {formik.touched.password && formik.errors.password ? (
-            <div className="invalid-feedback">{formik.errors.password}</div>
+          {formik.touched.Password && formik.errors.Password ? (
+            <div className="invalid-feedback">{formik.errors.Password}</div>
           ) : null}
         </div>
 
@@ -131,14 +154,14 @@ const RegisterPage = () => {
             type="tel"
             className="form-control"
             id="phone"
-            name="phone"
+            name="PhoneNumber"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            isInvalid={formik.touched.phone && formik.errors.phone}
-            value={formik.values.phone}
+            isInvalid={formik.touched.PhoneNumber && formik.errors.PhoneNumber}
+            value={formik.values.PhoneNumber}
           />
-          {formik.touched.phone && formik.errors.phone ? (
-            <div className="invalid-feedback">{formik.errors.phone}</div>
+          {formik.touched.PhoneNumber && formik.errors.PhoneNumber ? (
+            <div className="invalid-feedback">{formik.errors.PhoneNumber}</div>
           ) : null}
         </div>
 
@@ -146,18 +169,23 @@ const RegisterPage = () => {
           <Form.Check.Input
             type="checkbox"
             id="checkbox"
-            name="terms"
+            name="AcceptTerms"
             onChange={formik.handleChange}
-            isInvalid={formik.touched.terms && formik.errors.terms}
-            value={formik.values.terms}
+            isInvalid={formik.touched.AcceptTerms && formik.errors.AcceptTerms}
+            value={formik.values.AcceptTerms}
           />
           <label className="form-check-label" htmlFor="checkbox">
             Accept our terms and conditions and privacy policy.
           </label>
         </div>
 
-        <button type="submit" className="btn btn-primary btn-md mt-3">
-          Register
+        <button
+          type="submit"
+          className="btn btn-primary btn-md mt-3"
+          disabled={isLoading}
+        >
+          {/* {console.log(formik.isSubmitting)} */}
+          {isLoading ? "Please wait..." : "Register"}
         </button>
       </Form>
 
