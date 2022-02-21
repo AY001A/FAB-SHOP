@@ -8,23 +8,11 @@ const register = async (userDetails) => {
 
 const login = async (userDetails) => {
   const response = await http.post(`/account/login`, userDetails);
-
-  if (response.data) {
-    const { fabAccessToken, fabAccountDetails } = response.data.data;
-
-    const fabData = {
-      token: fabAccessToken,
-      profile: {
-        firstName: fabAccountDetails.FirstName,
-      },
-    };
-    localStorage.setItem("fabUserAccess", JSON.stringify(fabData));
-  }
   return response;
 };
 
 const logout = () => {
-  localStorage.removeItem("fabUserAccess");
+  localStorage.clear();
 };
 
 const authService = {

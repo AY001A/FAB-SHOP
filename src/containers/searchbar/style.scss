@@ -1,20 +1,50 @@
-.searchbar {
-  background-color: #f8f8f8;
+.searchbar-input {
+  // background-color: #f8f8f8;
   display: flex;
-  align-items: center;
+  height: 40px;
   flex-grow: 1;
-  min-height: 56px;
-  margin-right: 8px;
-  border-radius: 8px !important;
-
   input {
-    width: 90%;
+    width: 100%;
     background-color: #f8f8f8;
     border: none;
     outline: none;
+  }
+
+  @media (min-width: 576px) {
+    align-items: center;
+    min-height: 56px;
+    margin-right: 8px;
+    border-radius: 8px !important;
+    input {
+      width: 90%;
+      background-color: #f8f8f8;
+      border: none;
+      outline: none;
+    }
   }
 }
 
 .search-btn {
   width: 140px;
+  // display: none;
+  // @media (min-width: 576px) {
+  //   display: block;
+  // }
+}
+
+.searbarInputGroup {
+  // width: 70%;
+  background-color: white;
+  height: auto;
+  .search-btn {
+    visibility: hidden;
+    display: none;
+  }
+
+  @media (min-width: 576px) {
+    .search-btn {
+      visibility: visible;
+      display: block;
+    }
+  }
 }

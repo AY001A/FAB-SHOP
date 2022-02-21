@@ -1,11 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../../api/auth";
 
-const user = JSON.parse(localStorage.getItem("fabUserAccess"));
-
 const initialState = {
   isAuthenticated: false,
-  profile: user ? user : null,
+  user: null,
   error: false,
   errorMessage: "",
   isLoading: false,
@@ -53,7 +51,7 @@ export const authSlice = createSlice({
       state.error = false;
       state.isAuthenticated = false;
       state.isLoading = false;
-      state.profile = null;
+      state.user = null;
       state.errorMessage = "";
     },
   },
@@ -72,7 +70,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.error = true;
         state.errorMessage = action.payload;
-        state.profile = null;
+        state.user = null;
       })
       .addCase(login.pending, (state) => {
         state.status = "pending";
@@ -82,7 +80,10 @@ export const authSlice = createSlice({
         state.status = "successful";
         state.isLoading = false;
         state.isAuthenticated = true;
-        state.profile = action.payload;
+        state.user = action.payload;
+        state.error = false;
+        state.errorMessage = "";
+        localStorage.setItem("fabUser", JSON.stringify(state));
       })
       .addCase(login.rejected, (state, action) => {
         state.status = "failed";
@@ -90,10 +91,13 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.error = true;
         state.errorMessage = action.payload;
-        state.profile = null;
+        state.user = null;
+      })
+      .addCase(logout.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.profile = null;
+        state.user = null;
         state.isAuthenticated = false;
         state.isLoading = false;
       });

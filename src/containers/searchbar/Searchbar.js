@@ -4,8 +4,11 @@ import { useFormik } from "formik";
 import { FiSearch } from "react-icons/fi";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
+import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
 
 const Searchbar = () => {
+  const isMobile = useIsMobileScreen();
+
   const formik = useFormik({
     initialValues: {
       searchTerm: "",
@@ -18,9 +21,9 @@ const Searchbar = () => {
   return (
     <InputGroup
       onSubmit={formik.handleSubmit}
-      className="justify-content-between"
+      className="justify-content-between searbarInputGroup"
     >
-      <div className="searchbar border">
+      <div className="searchbar-input border">
         <FiSearch size={24} style={{ margin: "8px" }} />
         <input
           type="text"
@@ -32,6 +35,7 @@ const Searchbar = () => {
           placeholder="Search for products..."
         />
       </div>
+
       <button type="submit" className="btn btn-primary rounded-3 search-btn">
         Search
       </button>

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
-// import { login } from "../../../api/auth";
 import * as Yup from "yup";
 import Form from "react-bootstrap/Form";
-import { login, logout, reset } from "../../../services/slices/authSlice";
+import { login } from "../../../services/slices/authSlice";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 
 const loginSchema = Yup.object().shape({
   username: Yup.string()
@@ -17,7 +15,6 @@ const loginSchema = Yup.object().shape({
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   const { profile, isLoading, error, errorMessage, isAuthenticated } =
     useSelector((state) => state.auth);
@@ -47,12 +44,13 @@ const LoginPage = () => {
       <p className="text-muted">
         Kindly input your details to login into your fabgarage account.
       </p>
-      <Form
-        noValidate
-        validate="true"
-        // autoComplete="off"
-        onSubmit={formik.handleSubmit}
-      >
+
+      {error && (
+        <div class="alert alert-danger h-25" role="alert">
+          {errorMessage}
+        </div>
+      )}
+      <Form noValidate validate="true" onSubmit={formik.handleSubmit}>
         <div className="form-group mb-3">
           <label htmlFor="email">Email address</label>
           <Form.Control
