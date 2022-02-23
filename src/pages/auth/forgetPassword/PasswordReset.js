@@ -9,6 +9,7 @@ import {
   reset,
 } from "../../../services/slices/authSlice";
 import PasswordResetSuccess from "../../../pages/auth/forgetPassword/PasswordResetSuccess";
+import "./style.scss";
 
 const passwordSchema = Yup.object().shape({
   password: Yup.string()

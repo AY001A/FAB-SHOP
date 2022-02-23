@@ -11,7 +11,7 @@ const PasswordResetSuccess = () => {
           Thank you, your password reset was successful.
         </p>
 
-        <div className="w-100  d-flex justify-content-center mt-5 mb-2">
+        <div className="w-100  d-flex justify-content-center mt-5 mb-5">
           <img src={SuccessIcon} alt="reset email success" />
         </div>
 

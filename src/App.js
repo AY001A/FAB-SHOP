@@ -7,7 +7,7 @@ const LoginPage = lazy(() => import("./pages/auth/login/LoginPage"));
 const RegisterPage = lazy(() => import("./pages/auth/register/RegisterPage"));
 const NotFound = lazy(() => import("./pages/notFound/NotFound"));
 const PasswordReset = lazy(() =>
-  import("./pages/auth/passwordReset/PasswordReset")
+  import("./pages/auth/forgetPassword/PasswordReset")
 );
 const AuthLayout = lazy(() =>
   import("./containers/layout/AuthLayout/AuthLayout")
@@ -21,7 +21,7 @@ const ForgetPasswordSuccess = lazy(() =>
 
 function App() {
   return (
-    <Suspense fallback={<div>loading</div>}>
+    <Suspense fallback={<div>loading...</div>}>
       <Routes>
         <Route element={<AppLayout />}>
           <Route index element={<HomePage />} />
