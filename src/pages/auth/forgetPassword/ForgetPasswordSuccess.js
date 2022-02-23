@@ -3,6 +3,7 @@ import "./style.scss";
 import Envelope from "../../../assets/icons/envelope.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { reset } from "../../../services/slices/authSlice";
+import "./style.scss";
 
 const ForgetPasswordSuccess = () => {
   const dispatch = useDispatch();
