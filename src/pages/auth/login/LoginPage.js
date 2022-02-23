@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Form from "react-bootstrap/Form";
-import { login } from "../../../services/slices/authSlice";
+import { login, reset } from "../../../services/slices/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 const loginSchema = Yup.object().shape({
@@ -16,8 +16,13 @@ const loginSchema = Yup.object().shape({
 const LoginPage = () => {
   const dispatch = useDispatch();
 
-  const { profile, isLoading, error, errorMessage, isAuthenticated } =
-    useSelector((state) => state.auth);
+  const { isLoading, error, errorMessage, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    dispatch(reset());
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -46,7 +51,7 @@ const LoginPage = () => {
       </p>
 
       {error && (
-        <div class="alert alert-danger h-25" role="alert">
+        <div className="alert alert-danger h-25" role="alert">
           {errorMessage}
         </div>
       )}

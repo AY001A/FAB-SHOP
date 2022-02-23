@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import { useFormik } from "formik";
 import { Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  processPasswordReset,
+  reset,
+} from "../../../services/slices/authSlice";
+import PasswordResetSuccess from "../../../pages/auth/forgetPassword/PasswordResetSuccess";
 
 const passwordSchema = Yup.object().shape({
   password: Yup.string()
@@ -12,8 +24,18 @@ const passwordSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Confirm password"),
 });
-const CreateNewPassword = () => {
-  const navigate = useNavigate();
+const PasswordReset = () => {
+  const dispatch = useDispatch();
+  const { isLoading, isSuccessful, resetCompleted, error, errorMessage } =
+    useSelector((state) => state.auth);
+
+  const [searchParams] = useSearchParams();
+  const ownerId = searchParams.get("ownerId");
+  const emCid = searchParams.get("emCid");
+
+  useEffect(() => {
+    dispatch(reset());
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -23,13 +45,21 @@ const CreateNewPassword = () => {
     validationSchema: passwordSchema,
 
     onSubmit: (values, { setSubmitting }) => {
-      setTimeout(() => {
-        console.log(JSON.stringify(values, null, 2));
-        setSubmitting(false);
-        navigate("/success");
-      }, 3000);
+      const password = {
+        newPassword: values.password,
+      };
+      const cred = {
+        password,
+        ownerId,
+        emCid,
+      };
+
+      dispatch(processPasswordReset(cred));
     },
   });
+  if (resetCompleted) {
+    return <PasswordResetSuccess />;
+  }
 
   return (
     <div className="fpassword-wrapper">
@@ -39,6 +69,12 @@ const CreateNewPassword = () => {
           Please enter a new password for your Fabgarage account
         </p>
 
+        {error &&
+          errorMessage.map((err) => (
+            <div className="alert alert-danger h-25" role="alert">
+              {err}
+            </div>
+          ))}
         <Form
           autoComplete="off"
           noValidate
@@ -86,20 +122,8 @@ const CreateNewPassword = () => {
               </div>
             ) : null}
           </div>
-
-          <button
-            type="submit"
-            className="btn btn-primary btn-md w-100 bold"
-            disabled={
-              !formik.values.password ||
-              !formik.values.confirmPassword ||
-              formik.errors.confirmPassword ||
-              formik.isSubmitting
-            }
-          >
-            <strong>
-              {formik.isSubmitting ? "Submitting..." : "Reset Password"}
-            </strong>
+          <button type="submit" className="btn btn-primary btn-md w-100 bold">
+            <strong>{isLoading ? "Submitting..." : "Reset Password"}</strong>
           </button>
         </Form>
       </div>
@@ -107,4 +131,4 @@ const CreateNewPassword = () => {
   );
 };
 
-export default CreateNewPassword;
+export default PasswordReset;

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { register, login } from "../../../services/slices/authSlice";
+import { register, login, reset } from "../../../services/slices/authSlice";
 
 const registrationSchema = Yup.object().shape({
   FirstName: Yup.string().required("First name field must not be empty"),
@@ -23,10 +23,18 @@ const registrationSchema = Yup.object().shape({
 });
 
 const RegisterPage = () => {
-  const { isAuthenticated, status, error, isLoading } = useSelector(
-    (state) => state.auth
-  );
+  const { isAuthenticated, status, error, errorMessage, isLoading } =
+    useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  let errorMsg;
+
+  useEffect(() => {
+    if (error) {
+      dispatch(reset());
+    }
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       FirstName: "",
@@ -66,6 +74,12 @@ const RegisterPage = () => {
         Register with us today to access lots of fabricated product of your
         choice.{" "}
       </p>
+      {errorMsg &&
+        errorMessage.map((err) => (
+          <div className="alert alert-danger h-25" role="alert">
+            {err}
+          </div>
+        ))}
 
       <Form
         noValidate

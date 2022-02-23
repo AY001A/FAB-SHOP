@@ -1,10 +1,17 @@
 import React from "react";
 import "./style.scss";
 import Envelope from "../../../assets/icons/envelope.svg";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { reset } from "../../../services/slices/authSlice";
 
 const ForgetPasswordSuccess = () => {
+  const dispatch = useDispatch();
+  const { isSuccessful } = useSelector((state) => state.auth);
+
+  if (isSuccessful) {
+    dispatch(reset());
+  }
+
   return (
     <div className="fpassword-wrapper">
       <div className="fpassword-wrapper-container mt-5">

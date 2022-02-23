@@ -1,8 +1,9 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { Form } from "react-bootstrap";
-
+import { useDispatch, useSelector } from "react-redux";
+import { reset, resetPassword } from "../../../services/slices/authSlice";
 import * as Yup from "yup";
 import "./style.scss";
 
@@ -13,7 +14,14 @@ const ForgetPasswordSchema = Yup.object().shape({
 });
 
 const ForgetPassword = () => {
-  const navigate = useNavigate();
+  const { isLoading, isSuccessful, error } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useLayoutEffect(() => {
+    if (error) {
+      dispatch(reset());
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -22,12 +30,13 @@ const ForgetPassword = () => {
     validationSchema: ForgetPasswordSchema,
 
     onSubmit: (values, { setSubmitting }) => {
-      setTimeout(() => {
-        setSubmitting(false);
-        navigate("/forget-password/success");
-      }, 5000);
+      dispatch(resetPassword(values));
     },
   });
+
+  if (isSuccessful) {
+    return <Navigate to={"success"} />;
+  }
 
   return (
     <div className="fpassword-wrapper">
@@ -66,18 +75,8 @@ const ForgetPassword = () => {
             ) : null}
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary btn-md w-100 bold"
-            disabled={
-              !formik.values.emailAddress ||
-              formik.errors.emailAddress ||
-              formik.isSubmitting
-            }
-          >
-            <strong>
-              {formik.isSubmitting ? "Submitting..." : "Reset Password"}
-            </strong>
+          <button type="submit" className="btn btn-primary btn-md w-100 bold">
+            <strong>{isLoading ? "Submitting..." : "Reset Password"}</strong>
           </button>
         </Form>
         <p className="text-center mt-4">
