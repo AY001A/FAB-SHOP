@@ -40,7 +40,7 @@ const ForgetPassword = () => {
 
   return (
     <div className="fpassword-wrapper">
-      <div className="fpassword-wrapper-container mt-5">
+      <div className="fpassword-wrapper-container mt-5 ">
         <h2>Reset password</h2>
         <p className="mb-4">
           Please enter the e-mail address associated with your Fabgarage

@@ -1,15 +1,18 @@
 .fpassword-wrapper {
-  width: 100%;
   min-height: 50%;
   display: grid;
   place-items: center;
 }
 
 .fpassword-wrapper-container {
-  width: 45%;
+  width: 100%;
 
   h2 {
     text-align: center;
     padding-bottom: 8px;
+  }
+
+  @media (min-width: 576px) {
+    width: 45%;
   }
 }
