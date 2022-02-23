@@ -22,7 +22,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     dispatch(reset());
-  }, []);
+  }, [dispatch]);
 
   const formik = useFormik({
     initialValues: {

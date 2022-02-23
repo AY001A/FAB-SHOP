@@ -1,12 +1,6 @@
 import React, { useEffect } from "react";
 import * as Yup from "yup";
-import {
-  Link,
-  Navigate,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useFormik } from "formik";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,8 +20,9 @@ const passwordSchema = Yup.object().shape({
 });
 const PasswordReset = () => {
   const dispatch = useDispatch();
-  const { isLoading, isSuccessful, resetCompleted, error, errorMessage } =
-    useSelector((state) => state.auth);
+  const { isLoading, resetCompleted, error, errorMessage } = useSelector(
+    (state) => state.auth
+  );
 
   const [searchParams] = useSearchParams();
   const ownerId = searchParams.get("ownerId");
@@ -35,7 +30,7 @@ const PasswordReset = () => {
 
   useEffect(() => {
     dispatch(reset());
-  }, []);
+  }, [dispatch]);
 
   const formik = useFormik({
     initialValues: {

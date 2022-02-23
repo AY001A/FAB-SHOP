@@ -33,7 +33,7 @@ const RegisterPage = () => {
     if (error) {
       dispatch(reset());
     }
-  }, []);
+  }, [error, dispatch]);
 
   const formik = useFormik({
     initialValues: {

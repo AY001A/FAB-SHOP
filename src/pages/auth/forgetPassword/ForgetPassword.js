@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { Form } from "react-bootstrap";
@@ -17,11 +17,11 @@ const ForgetPassword = () => {
   const { isLoading, isSuccessful, error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (error) {
       dispatch(reset());
     }
-  }, []);
+  }, [error, dispatch]);
 
   const formik = useFormik({
     initialValues: {
