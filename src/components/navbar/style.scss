@@ -5,6 +5,16 @@ header {
   background-color: white;
 }
 
+.logo {
+  width: 70px;
+  height: 60px;
+
+  @media (min-width: $sm-breakpoint) {
+    width: 85px;
+    height: 80px;
+  }
+}
+
 .top-banner {
   display: none;
 
@@ -29,6 +39,9 @@ header {
   }
 }
 
+.mobile-searchnav {
+  padding-right: 8px;
+}
 .top-banner-contact {
   display: flex;
   align-items: center;
@@ -167,13 +180,27 @@ li {
 }
 
 .mobile-nav {
+  h5 {
+    opacity: 0.5;
+    font-weight: 700;
+  }
   a {
     color: rgb(27, 27, 27);
-    opacity: 0.5;
-    font-size: 1rem;
-    font-weight: bold;
+    opacity: 0.8;
+    font-size: 1.1rem;
+    // font-weight: bold;
+    // margin-bottom: 4px;
 
     text-decoration: none;
-    padding-bottom: 12px;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // border: 1px solid black;
+
+    &:focus,
+    :active {
+      color: $primary;
+    }
   }
 }

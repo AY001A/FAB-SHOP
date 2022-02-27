@@ -2,17 +2,19 @@ import "./style.scss";
 import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Logo from "../../assets/icons/logo.png";
+import Logo from "../../assets/icons/cucumislogo.svg";
+import CartLogo from "../../assets/icons/carticon.svg";
 import Searchbar from "../../containers/searchbar/Searchbar";
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaAngleRight, FaArrowDown } from "react-icons/fa";
 import { FiShoppingCart, FiUser } from "react-icons/fi";
 import { IconContext } from "react-icons/lib";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../services/slices/authSlice";
 import { Offcanvas } from "react-bootstrap";
+import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
 
 const Header = () => {
+  const isMobile = useIsMobileScreen();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
   const cachedUser = localStorage.getItem("fabUser");
@@ -52,49 +54,10 @@ const Header = () => {
 
         {/* Navbar */}
         <Navbar expand="lg" className="bar row align-items-center shadow-sm">
-          <div className="brand col-8  col-sm-2">
-            {/* MOBILE SCREEN  */}
-            <Navbar.Toggle
-              aria-controls="navbar-sidebar"
-              className="navtoggle"
-            />
-            <Navbar.Offcanvas
-              id="navbar-sidebar"
-              aria-labelledby="offcanvasNavbarLabel"
-              placement="start"
-              className="w-75"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id="offcanvasNavbarLabel">
-                  {firstName ? `Hi, ${firstName}` : ""}
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-
-              <Offcanvas.Body>
-                <h5 className="text-primary">Products</h5>
-                <Nav className="justify-content-end flex-grow-1 pe-3 pb-3 mobile-nav">
-                  <Link to={"/"}>Shutter</Link>
-                  <Link to={"/"}>Metal/Iron</Link>
-                  <Link to={"/"}>Stainless steel</Link>
-                  <Link to={"/"}>Aluminium</Link>
-                  <Link to={"/"}>Shed</Link>
-                  <Link to={"/"}>Metal steel furniture</Link>
-                </Nav>
-                <Nav className="justify-content-end flex-grow-1 pe-3 pb-5 mobile-nav">
-                  <h5 className="text-primary">Services</h5>
-
-                  <Link to={"/"}>Home services</Link>
-                  <Link to={"/"}>Contract services</Link>
-                </Nav>
-                <Nav className="justify-content-end flex-grow-1 pe-3 pb-5 mobile-nav">
-                  <h5 className="text-primary">Account</h5>
-                  <Link to={"register"}>Register</Link>
-                  <Link to={"login"}>Login</Link>
-                </Nav>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-
-            <img src={Logo} alt="fabgarage brand" />
+          <div className="brand col-8  col-sm-2 align-items-center">
+            <Link to={"/"}>
+              <img src={Logo} alt="fabgarage brand" className="logo" />
+            </Link>
 
             <div className="category">
               <p>Shop by category</p>
@@ -164,9 +127,84 @@ const Header = () => {
             </Nav>
           </div>
         </Navbar>
-        <div className="d-sm-none">
-          <Searchbar />
-        </div>
+        <Navbar expand="lg" className="d-sm-none d-flex mobile-searchnav">
+          <Navbar.Toggle
+            aria-controls="navbar-sidebar"
+            className="navtoggle "
+          />
+          <Navbar.Offcanvas
+            id="navbar-sidebar"
+            aria-labelledby="offcanvasNavbarLabel"
+            placement="start"
+            className="w-75"
+          >
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title id="offcanvasNavbarLabel">
+                <img src={CartLogo} alt="cart logo" height={40} width={40} />
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+
+            <Offcanvas.Body>
+              <Nav className="justify-content-end flex-grow-1 pe-3 pb-4 mobile-nav">
+                <h5>Products</h5>
+                <Link to={"/"}>
+                  Shutter
+                  <FaAngleRight />
+                </Link>
+                <Link to={"/"}>
+                  Metal/Iron <FaAngleRight />
+                </Link>
+                <Link to={"/"}>
+                  Stainless steel <FaAngleRight />
+                </Link>
+                <Link to={"/"}>
+                  Aluminium <FaAngleRight />
+                </Link>
+                <Link to={"/"}>
+                  Shed <FaAngleRight />
+                </Link>
+                <Link to={"/"}>
+                  Metal steel furniture <FaAngleRight />
+                </Link>
+              </Nav>
+              <Nav className="justify-content-end flex-grow-1 pe-3 pb-4 mobile-nav">
+                <h5>Services</h5>
+
+                <Link to={"/"}>
+                  Home services <FaAngleRight />
+                </Link>
+                <Link to={"/"}>
+                  Contract services <FaAngleRight />
+                </Link>
+              </Nav>
+              <Nav className="justify-content-end flex-grow-1 pe-3 pb-5 mobile-nav">
+                {!user.isAuthenticated ? (
+                  <>
+                    <Link to={"login"}>
+                      <button className="btn btn-primary w-100">
+                        <strong>Sign in</strong>
+                      </button>
+                    </Link>
+                    <Link to={"register"}>
+                      <button className="btn btn-outline-primary text-black w-100">
+                        <strong>Create Account</strong>
+                      </button>
+                    </Link>
+                  </>
+                ) : (
+                  <Link to={"logout"} className="pt-5">
+                    <button className="btn btn-outline-primary text-black w-100">
+                      <strong>logout</strong>
+                    </button>
+                  </Link>
+                )}
+              </Nav>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
+          <div className="col">
+            <Searchbar />
+          </div>
+        </Navbar>
       </header>
     </>
   );

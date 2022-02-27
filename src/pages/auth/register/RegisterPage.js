@@ -66,7 +66,7 @@ const RegisterPage = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container pb-5">
       <h3>
         <strong>REGISTER</strong>
       </h3>

@@ -12,7 +12,7 @@ const useIsMobileScreen = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    handleResize();
   });
 
   return isMobile;
