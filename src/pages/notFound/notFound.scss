@@ -1,9 +1,18 @@
-.class {
-  @media only screen and (max-width: 600px) {
-    $media_queries: (
-      "mobile": "only screen and (max-width: 667px)",
-      "tablet":
-        "only screen and (min-width: 668px) and (max-width: $size__site_content_width)",
-    );
-  }
+.notFound {
+  display: grid;
+  place-items: center;
 }
+.notFound {
+  /* Mobile screens would use these styles   */
+
+ background-color : rgb(252, 247, 248);
+ width: 100%;
+
+ @media ( min-width: 576px ){
+   /* Screens with width 576px and above will have these styles, tablets, laptops, desktops */
+
+ background-color: rgb(253, 253, 253);
+ width: 50%;
+}
+
+}   
