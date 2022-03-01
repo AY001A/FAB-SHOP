@@ -1,7 +1,46 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import Form from "react-bootstrap/Form";
+import { login, reset } from "../../../services/slices/authSlice";
+import { useSelector, useDispatch } from "react-redux";
+
+const loginSchema = Yup.object().shape({
+  username: Yup.string()
+    .email("Please provide a valid email")
+    .required("Email field must not be empty"),
+  password: Yup.string().required("Password field must not be empty"),
+});
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+
+  const { isLoading, error, errorMessage, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    dispatch(reset());
+  }, [dispatch]);
+
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+
+    validationSchema: loginSchema,
+
+    onSubmit: async (values, { setSubmitting }) => {
+      dispatch(login(values));
+    },
+  });
+
+  if (isAuthenticated && !error) {
+    return <Navigate to={"/"} />;
+  }
+
   return (
     <div className="container">
       <h3>
@@ -10,34 +49,57 @@ const LoginPage = () => {
       <p className="text-muted">
         Kindly input your details to login into your fabgarage account.
       </p>
-      <form autoComplete="off">
+
+      {error && (
+        <div className="alert alert-danger h-25" role="alert">
+          {errorMessage}
+        </div>
+      )}
+      <Form noValidate validate="true" onSubmit={formik.handleSubmit}>
         <div className="form-group mb-3">
-          <label for="email">Email address</label>
-          <input
+          <label htmlFor="email">Email address</label>
+          <Form.Control
             type="email"
             className="form-control"
             id="email"
             aria-describedby="emailHelp"
+            name="username"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.username}
+            isInvalid={formik.touched.username && formik.errors.username}
           />
+          {formik.touched.username && formik.errors.username ? (
+            <div className="invalid-feedback">{formik.errors.username}</div>
+          ) : null}
         </div>
-        <div classNameName="form-group mb-3">
-          <label for="exampleInputPassword1">Password</label>
-          <input
+        <div className="form-group mb-1">
+          <label htmlFor="password">Password</label>
+          <Form.Control
             type="password"
             className="form-control"
-            id="exampleInputPassword1"
+            id="password"
+            name="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+            isInvalid={formik.touched.password && formik.errors.password}
           />
+          {formik.touched.password && formik.errors.password ? (
+            <div className="invalid-feedback">{formik.errors.password}</div>
+          ) : null}
         </div>
-        <p
-          className="form-check-label mb-4 mt-1 text-end small"
-          for="exampleCheck1"
-        >
-          Forget password?
+        <p className=" mb-4 mt-1 text-end small">
+          <Link to={"/forget-password"}>Forget password?</Link>
         </p>
-        <button type="submit" className="btn btn-primary btn-md">
-          Login
+        <button
+          type="submit"
+          className="btn btn-primary btn-md"
+          disabled={isLoading}
+        >
+          {isLoading ? "Please wait..." : "Login"}
         </button>
-      </form>
+      </Form>
 
       <p className="small mt-4 text-center">
         {`Dont have an Account yet?

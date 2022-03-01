@@ -1,17 +1,18 @@
 import React from "react";
+import "./style.scss";
 import { Outlet } from "react-router-dom";
 import Footer from "../../../components/footer/Footer";
-import Navbar from "../../../components/navbar/Navbar";
+import Header from "../../../components/navbar/Header";
 
 const AppLayout = () => {
   return (
-    <>
-      <Navbar />
+    <div className="wrapper">
+      <Header />
       <main>
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

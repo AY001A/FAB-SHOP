@@ -1,0 +1,57 @@
+.searchbar-input {
+  // background-color: #f8f8f8;
+  display: flex;
+  height: 40px;
+  flex-grow: 1;
+  input {
+    width: 100%;
+    background-color: #f8f8f8;
+    border: none;
+    outline: none;
+  }
+
+  @media (min-width: 576px) {
+    align-items: center;
+    min-height: 56px;
+    margin-right: 8px;
+    border-radius: 8px !important;
+    input {
+      width: 90%;
+      background-color: #f8f8f8;
+      border: none;
+      outline: none;
+    }
+  }
+}
+
+.search-btn {
+  width: 140px;
+  // display: none;
+  // @media (min-width: 576px) {
+  //   display: block;
+  // }
+}
+
+.searbarInputGroup {
+  // width: 70%;
+  background-color: white;
+  margin-right: 16px;
+  border-radius: 8px;
+  height: auto;
+  border-top-left-radius: 8px;
+
+  input {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding-left: 8px;
+  }
+  .search-btn {
+    width: 70px;
+  }
+
+  @media (min-width: 576px) {
+    .search-btn {
+      width: auto;
+    }
+  }
+}
