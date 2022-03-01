@@ -69,7 +69,7 @@ const Header = () => {
             <Searchbar />
           </div>
           <IconContext.Provider value={{ size: "24px" }}>
-            <div className="col-4 col-sm-3  nav-icons">
+            <div className="col-4 col-sm-3 nav-icons">
               <FiUser />
               <FiShoppingCart />
             </div>

@@ -10,7 +10,7 @@ import "./style.scss";
 const ForgetPasswordSchema = Yup.object().shape({
   emailAddress: Yup.string()
     .email("Please provide a valid email")
-    .required("Email field must not be empty."),
+    .required("Email address is required"),
 });
 
 const ForgetPassword = () => {
@@ -66,17 +66,24 @@ const ForgetPassword = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               values={formik.values.emailAddress}
-              isInvalid={formik.isSubmitting && formik.errors.emailAddress}
+              // isInvalid={formik.isSubmitting && formik.errors.emailAddress}
             />
-            {formik.isSubmitting && formik.errors.emailAddress ? (
+            {formik.touched.emailAddress && formik.errors.emailAddress ? (
               <div className="invalid-feedback">
                 {formik.errors.emailAddress}
               </div>
             ) : null}
           </div>
 
-          <button type="submit" className="btn btn-primary btn-md w-100 bold">
-            <strong>{isLoading ? "Submitting..." : "Reset Password"}</strong>
+          <button
+            type="submit"
+            className="btn btn-primary btn-md w-100 bold"
+            disabled={isLoading || formik.errors.emailAddress}
+          >
+            <strong>
+              {/* {formik.isSubmitting ? "Submitting..." : "Reset Password"} */}
+              Reset
+            </strong>
           </button>
         </Form>
         <p className="text-center mt-4">

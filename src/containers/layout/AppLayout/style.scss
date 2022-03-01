@@ -9,8 +9,13 @@
 main {
   //   background-color: rgb(68, 19, 19);
   // min-height: 50vh;
-  height: 100vh;
-  padding: 0 32px;
+  // width: 100vw;
+  min-height: 100vh;
+  padding: 0 16px;
+
+  @media (min-width: 576px) {
+    padding: 0 32px;
+  }
 }
 
 // .footer {

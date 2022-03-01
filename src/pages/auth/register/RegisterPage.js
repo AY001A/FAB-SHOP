@@ -31,8 +31,6 @@ const RegisterPage = () => {
     useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  let errorMsg;
-
   useEffect(() => {
     if (error) {
       dispatch(reset());
