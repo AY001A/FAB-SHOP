@@ -37,7 +37,7 @@ const RegisterPage = () => {
     if (error) {
       dispatch(reset());
     }
-  }, [error, dispatch]);
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -78,7 +78,8 @@ const RegisterPage = () => {
         Register with us today to access lots of fabricated product of your
         choice.{" "}
       </p>
-      {errorMsg &&
+
+      {error &&
         errorMessage.map((err) => (
           <div className="alert alert-danger h-25" role="alert">
             {err}
