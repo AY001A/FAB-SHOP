@@ -7,8 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { register, login, reset } from "../../../services/slices/authSlice";
 
 const registrationSchema = Yup.object().shape({
-  FirstName: Yup.string().required("First name field must not be empty"),
-  LastName: Yup.string().required("Last name field must not be empty"),
+  FirstName: Yup.string()
+    .required("First name field must not be empty")
+    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+  LastName: Yup.string()
+    .required("Last name field must not be empty")
+    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
   EmailAddress: Yup.string()
     .email("Please provide a valid email address")
     .required("Email field must not be empty."),
