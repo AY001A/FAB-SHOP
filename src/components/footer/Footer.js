@@ -21,62 +21,62 @@ const Footer = () => {
             </p>
 
             <div className="socialMedia">
-              <Link to={"#"}>
+              <Link to={"/"}>
                 <img src={Facebook} alt="fabgarage brand" className="socialMediaIcons" />
               </Link>
 
-              <Link to={"#"}>
+              <Link to={"/"}>
                 <img src={Instagram} alt="fabgarage brand" className="socialMediaIcons" />
               </Link>
 
-              <Link to={"#"}>
+              <Link to={"/"}>
                 <img src={LinkedIn} alt="fabgarage brand" className="socialMediaIcons" />
               </Link>
 
-              <Link to={"#"}>
+              <Link to={"/"}>
                 <img src={Whatsapp} alt="fabgarage brand" className="socialMediaIcons" />
               </Link>
             </div>
 
           </div>
-          <div class="col-lg offset-lg-1 mb-3 links col-sm-12">
-            <h5 class='footerLinkHeader mb-3'>Products</h5>
-            <ul class="list-unstyled">
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Shutter</Link></li>
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Metal/Iron</Link></li>
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Stainless steel</Link></li>
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Aluminium</Link></li>
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Shed</Link></li>
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Metal steel furniture</Link></li>
+          <div className="col-lg offset-lg-1 mb-3 links col-sm-12">
+            <h5 className='footerLinkHeader mb-3'>Products</h5>
+            <ul className="list-unstyled">
+              <li className="mb-2"><Link to={'/'}  className='footerLinks'>Shutter</Link></li>
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>Metal/Iron</Link></li>
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>Stainless steel</Link></li>
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>Aluminium</Link></li>
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>Shed</Link></li>
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>Metal steel furniture</Link></li>
             </ul>
           </div>
-          <div class="col-lg mb-3">
-            <h5 class='footerLinkHeader mb-3'>Sercives</h5>
-            <ul class="list-unstyled">
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Home service</Link></li>
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Contract service</Link></li>
+          <div className="col-lg mb-3">
+            <h5 className='footerLinkHeader mb-3'>Sercives</h5>
+            <ul className="list-unstyled">
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>Home service</Link></li>
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>Contract service</Link></li>
             </ul>
           </div>
-          <div class="col-lg mb-3">
-            <h5 class='footerLinkHeader mb-3'>Quick links</h5>
-            <ul class="list-unstyled">
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Terms & Conditions</Link></li>
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Policy</Link></li>
+          <div className="col-lg mb-3">
+            <h5 className='footerLinkHeader mb-3'>Quick links</h5>
+            <ul className="list-unstyled">
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>Terms & Conditions</Link></li>
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>Policy</Link></li>
             </ul>
           </div>
-          <div class="col-lg mb-3">
-            <h5 class='footerLinkHeader mb-3'>Support</h5>
-            <ul class="list-unstyled">
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Help center</Link></li>
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>FAQ</Link></li>
+          <div className="col-lg mb-3">
+            <h5 className='footerLinkHeader mb-3'>Support</h5>
+            <ul className="list-unstyled">
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>Help center</Link></li>
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>FAQ</Link></li>
               
             </ul>
           </div>
-          <div class="col-lg mb-3">
-            <h5 class='footerLinkHeader mb-3'>Contact us</h5>
-            <ul class="list-unstyled">
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>(+234) 819 567 6703</Link></li>
-              <li class="mb-2"><Link to={'#'} href="/" className='footerLinks'>Fabgarage@gmail.com</Link></li>
+          <div className="col-lg mb-3">
+            <h5 className='footerLinkHeader mb-3'>Contact us</h5>
+            <ul className="list-unstyled">
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>(+234) 819 567 6703</Link></li>
+              <li className="mb-2"><Link to={'/'} className='footerLinks'>Fabgarage@gmail.com</Link></li>
 
             </ul>
           </div>
