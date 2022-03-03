@@ -1,0 +1,65 @@
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  position: absolute;
+  width: 701px;
+  height: 516px;
+  left: 369px;
+  top: 97px;
+
+  .btn {
+    height: 56px;
+    width: 401px;
+    left: 0px;
+    top: 0px;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .fof {
+    font-family: Agency FB;
+    font-size: 220px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 144px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .page {
+    font-family: Agency FB;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 57px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .txt {
+    font-family: Public Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+
+  @media (min-width: 576px) {
+    width: 45%;
+  }
+
+  @media (min-width: 600px) {
+    notFound {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (min-width: 800px) {
+    notFound {
+      font-size: 1.5rem;
+      line-height: 1.5;
+    }
+  }
+}
