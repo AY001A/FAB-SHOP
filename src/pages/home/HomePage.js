@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.scss";
 
 const HomePage = () => {
@@ -25,21 +26,46 @@ const HomePage = () => {
             elegance to the door, but also provide security.
           </p>
 
-          <div className="row info_cards">
-            <div className="col shadow-sm rounded border info_card">
+          <div className=" info_cards  ">
+            <div className="info_card">
               <h2>24/7 Services</h2>
-              <p>We are available for you always</p>
+              <p>We are available 24/7</p>
             </div>
 
-            <div className="col info_card">
+            <div className=" info_card ">
               <h2>High Quality</h2>
               <p>We deliver high quality services</p>
             </div>
-            <div className="col info_card">
+            <div className=" info_card ">
               <h2>Maintainance</h2>
               <p>We can maintain your fabricates</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="top-deals-section">
+        <div className="section-banner">
+          <p>Top Deals</p> <Link to={"/"}>see more</Link>
+        </div>
+        <div className="top-deals-products">
+          <p>No product available</p>
+        </div>
+      </section>
+      <section className="top-services-section">
+        <div className="section-banner">
+          <p>Top Services</p> <Link to={"/"}>see more</Link>
+        </div>
+        <div className="top-services">
+          <p>No product available</p>
+        </div>
+      </section>
+      <section className="top-products-section">
+        <div className="section-banner">
+          <p>Top Products</p> <Link to={"/"}>see more</Link>
+        </div>
+        <div className="top-products">
+          <p>No product available</p>
         </div>
       </section>
     </>
