@@ -11,6 +11,8 @@ body {
   line-height: 1.3rem;
 
   @media (min-width: $sm-breakpoint) {
+    max-width: 1440px;
+    min-width: 760px;
     font-size: 1rem;
     line-height: 1.5rem;
   }

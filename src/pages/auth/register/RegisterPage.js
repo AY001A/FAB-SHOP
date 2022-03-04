@@ -7,8 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { register, login, reset } from "../../../services/slices/authSlice";
 
 const registrationSchema = Yup.object().shape({
-  FirstName: Yup.string().required("First name field must not be empty"),
-  LastName: Yup.string().required("Last name field must not be empty"),
+  FirstName: Yup.string()
+    .required("First name field must not be empty")
+    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+  LastName: Yup.string()
+    .required("Last name field must not be empty")
+    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
   EmailAddress: Yup.string()
     .email("Please provide a valid email address")
     .required("Email field must not be empty."),
@@ -27,13 +31,11 @@ const RegisterPage = () => {
     useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  let errorMsg;
-
   useEffect(() => {
     if (error) {
       dispatch(reset());
     }
-  }, [error, dispatch]);
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -74,7 +76,8 @@ const RegisterPage = () => {
         Register with us today to access lots of fabricated product of your
         choice.{" "}
       </p>
-      {errorMsg &&
+
+      {error &&
         errorMessage.map((err) => (
           <div className="alert alert-danger h-25" role="alert">
             {err}
