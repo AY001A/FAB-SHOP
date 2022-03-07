@@ -12,11 +12,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../services/slices/authSlice";
 import { Offcanvas } from "react-bootstrap";
 import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
+import { useState } from "react";
 
 const Header = () => {
-  const isMobile = useIsMobileScreen();
+  const [showSidebar, setShowSidebar] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
+
+  const handleClose = () => setShowSidebar(false);
+  const handleShow = () => setShowSidebar(true);
   const cachedUser = localStorage.getItem("fabUser");
   let firstName;
 
@@ -97,15 +101,16 @@ const Header = () => {
                 </div>
               </Nav.Item>
             </Link>
-            <Link to="/Services">
+            <Link to="/services">
               <Nav.Item as="li" className="nav-dropdown-menu ">
-                Services <FaAngleDown size={14} />
+                Services
+                {/* <FaAngleDown size={14} />
                 <div className="nav-dropdown-menu-content border shadow-sm ">
                   <ul>
                     <li>Home services</li>
                     <li>Contract services</li>
                   </ul>
-                </div>
+                </div> */}
               </Nav.Item>
             </Link>
           </Nav>
@@ -131,12 +136,15 @@ const Header = () => {
           <Navbar.Toggle
             aria-controls="navbar-sidebar"
             className="navtoggle "
+            onClick={handleShow}
           />
           <Navbar.Offcanvas
             id="navbar-sidebar"
             aria-labelledby="offcanvasNavbarLabel"
             placement="start"
             className="w-75"
+            show={showSidebar}
+            onHide={handleClose}
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel">
@@ -170,10 +178,10 @@ const Header = () => {
               <Nav className="justify-content-end flex-grow-1 pe-3 pb-4 mobile-nav">
                 <h5>Services</h5>
 
-                <Link to={"/"}>
+                <Link to={"services"} onClick={handleClose}>
                   Home services <FaAngleRight />
                 </Link>
-                <Link to={"/"}>
+                <Link to={"services"} onClick={handleClose}>
                   Contract services <FaAngleRight />
                 </Link>
               </Nav>
