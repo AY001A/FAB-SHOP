@@ -8,6 +8,8 @@ import NotFound from "./pages/notFound/NotFound";
 import PasswordReset from "./pages/auth/forgetPassword/PasswordReset";
 import AuthLayout from "./containers/layout/AuthLayout/AuthLayout";
 import ForgetPassword from "./pages/auth/forgetPassword/ForgetPassword";
+import ServicesHomePage from "./pages/services/ServicesHomePage";
+import ServicePage from "./pages/services/ServicePage";
 
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
 // const LoginPage = lazy(() => import("./pages/auth/login/LoginPage"));
@@ -34,16 +36,21 @@ function App() {
           path="forget-password/success"
           element={<ForgetPasswordSuccess />}
         />
+        <Route path="services" element={<ServicesHomePage />} />
+        <Route path="services/:service" element={<ServicePage />} />
+
+        {/* todo make work */}
         <Route path="resetpassword/" element={<PasswordReset />}>
           {/* <Route path=":ownerId" element={<PasswordReset />} /> */}
         </Route>
 
         <Route path="*" element={<NotFound />} />
       </Route>
-      <Route element={<AuthLayout />}>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-      </Route>
+      <Route path="/login" element={<AuthLayout Children={<LoginPage />} />} />
+      <Route
+        path="/register"
+        element={<AuthLayout Children={<RegisterPage />} />}
+      />
     </Routes>
     // </Suspense>
   );
