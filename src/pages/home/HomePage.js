@@ -26,7 +26,7 @@ const HomePage = () => {
             elegance to the door, but also provide security.
           </p>
 
-          <div className=" info_cards  ">
+          <div className=" info_cards">
             <div className="info_card">
               <h2>24/7 Services</h2>
               <p>We are available 24/7</p>

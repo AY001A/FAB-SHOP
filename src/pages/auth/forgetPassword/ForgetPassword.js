@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +19,7 @@ const ForgetPassword = () => {
 
   useEffect(() => {
     if (error) {
-      dispatch(reset());
+      dispatch(() => reset());
     }
   }, [error, dispatch]);
 
@@ -35,7 +35,7 @@ const ForgetPassword = () => {
   });
 
   if (isSuccessful) {
-    return <Navigate to={"success"} />;
+    return <Navigate replace={true} to={"success"} />;
   }
 
   return (
