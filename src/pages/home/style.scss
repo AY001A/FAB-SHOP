@@ -146,3 +146,54 @@
     }
   }
 }
+
+.box,
+.boxTwo {
+  width: 426px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    &::before {
+      background-color: rgba(0, 0, 0, 0.349);
+      content: "";
+      width: 426px;
+      height: 380px;
+      margin: 0 -12px;
+    }
+  }
+}
+
+.productCategory {
+  margin-bottom: 30px;
+
+  // @media (min-width: 576px) {
+  //     display: none;
+  // }
+}
+
+.box:nth-child(1) {
+  background: url("../../assets/images/productcategory/aluminium.svg");
+}
+
+.box:nth-child(2) {
+  background: url("../../assets/images/productcategory/stainless.svg");
+}
+
+.box:nth-child(3) {
+  background: url("../../assets/images/productcategory/shutter.svg");
+}
+
+.boxTwo:nth-child(1) {
+  background: url("../../assets/images/productcategory/meta.svg");
+}
+
+.boxTwo:nth-child(2) {
+  background: url("../../assets/images/productcategory/sheds.svg");
+}
+
+.boxTwo:nth-child(3) {
+  background: url("../../assets/images/productcategory/furnitures.svg");
+}

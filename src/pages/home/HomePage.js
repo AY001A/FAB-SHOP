@@ -52,6 +52,27 @@ const HomePage = () => {
           <p>No product available</p>
         </div>
       </section>
+
+      <section className="top-deals-section d-none d-sm-block">
+        <div className="section-banner">
+          <p>Product Category</p>
+        </div>
+        <div className="top-deals-products ">
+          <div className="productCategory bg-light">
+            <div className="row p-0 rowball">
+              <div className="box col-4 text-center"></div>
+              <div className="box col-4 text-center"></div>
+              <div className="box col-4 text-center"></div>
+            </div>
+            <div className="row rowball">
+              <div className="boxTwo col-4 text-center"></div>
+              <div className="boxTwo col-4 text-center"></div>
+              <div className="boxTwo col-4 text-center"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="top-services-section">
         <div className="section-banner">
           <p>Top Services</p> <Link to={"/"}>see more</Link>
