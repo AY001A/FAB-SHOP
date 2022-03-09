@@ -149,11 +149,12 @@
 
 .box,
 .boxTwo {
-  width: 426px;
+  width: 33%;
   height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-size: contain;
 
   &:hover {
     &::before {
@@ -168,6 +169,7 @@
 
 .productCategory {
   margin-bottom: 30px;
+  min-width: 1000px;
 
   // @media (min-width: 576px) {
   //     display: none;
@@ -196,4 +198,9 @@
 
 .boxTwo:nth-child(3) {
   background: url("../../assets/images/productcategory/furnitures.svg");
+}
+
+.top-deals-products {
+  display: grid;
+  place-items: center;
 }

@@ -5,6 +5,9 @@ import Wielder from "../../assets/images/welder.jpg";
 import { useFormik } from "formik";
 import Form from "react-bootstrap/Form";
 import * as Yup from "yup";
+import ServiceIcon from "../../assets/icons/how-it-works/service.svg";
+import CallIcon from "../../assets/icons/how-it-works/phone-call.svg";
+import RateIcon from "../../assets/icons/how-it-works/rate-review.svg";
 import "./servicePage.scss";
 
 const serviceSchema = Yup.object().shape({
@@ -48,30 +51,36 @@ const ServicePage = () => {
   return (
     <div className="service-wrapper">
       <section className="header-section mt-4">
-        <div className="header-section-image row">
-          <div className="col-sm-7">
+        <div className="header-section-image row g-sm-5">
+          <div className="col-sm-7 section-image-wrapper">
             <img
               src={Wielder}
               alt="welder"
-              className="rounded w-100  h-sm-75 mb-5"
+              className="rounded w-100  h-sm-75 mb-5 "
             />
 
             <div className="service-header-description">
-              <h3>Shutter Technician</h3>
-              <p>
-                Our technicians are highly trained to offer you the best service
-                possible, we fix all types of shutter errors no matter how
-                complex and difficult the problem is, our agents are always
-                readily available to handle all form of requests
-              </p>
+              <h3 className="fw-bold">{data?.name}</h3>
+              <p>{data?.description}</p>
               <div className="d-flex">
                 <h5 className="">Features:</h5>
                 <p className=""> Fixing, Repair, Maintainance</p>
               </div>
+
+              <div>
+                <h5 className="fw-bold">Additional information</h5>
+                <p>
+                  We offer high class services to all our clients, and we
+                  guarantee that our professionals are highly trained and will
+                  offer the best repair you can ever find in the market....Just
+                  know that all our agents are just one call away, when you make
+                  a booking with us.
+                </p>
+              </div>
             </div>
           </div>
-          <div className="service-form col-sm-5 d-none d-sm-block ">
-            <h3 className="text-center  pb-4">Book Service</h3>
+          <div className="service-form col-sm-5  ">
+            <h3 className="text-center  pb-2">Book Service</h3>
             <Form noValidate validate="true" onSubmit={formik.handleSubmit}>
               <div className="row">
                 <div className="form-group col-6">
@@ -200,6 +209,49 @@ const ServicePage = () => {
           </div>
         </div>
       </section>
+      <div className="howItWorks">
+        <h1>HOW IT WORKS</h1>
+        <div className="row">
+          <div className="col-lg-4">
+            <div className="card p-5">
+              <div className="howItWorksIcon">
+                <img src={ServiceIcon} alt="" className="howItWorksIcons" />
+              </div>
+              <h5 className="card-title mb-2 ">Select the service</h5>
+              <p className="card-text text-muted">
+                Tell us what service you want, shutter work, steel work
+                weldering work and others.
+              </p>
+            </div>
+          </div>
+
+          <div className="col-lg-4">
+            <div className="card p-5">
+              <div className="howItWorksIcon">
+                <img src={CallIcon} alt="" className="howItWorksIcons" />
+              </div>
+              <h5 className="card-title mb-2 ">Provide Contact </h5>
+              <p className="card-text text-muted">
+                Share your contact details including correct email and mobile
+                phone number.
+              </p>
+            </div>
+          </div>
+
+          <div className="col-lg-4">
+            <div className="card p-5">
+              <div className="howItWorksIcon">
+                <img src={RateIcon} alt="" className="howItWorksIcons" />
+              </div>
+              <h5 className="card-title mb-2 ">Get quote and hire</h5>
+              <p className="card-text text-muted">
+                Share your requirements and get the best price in the the
+                industry.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

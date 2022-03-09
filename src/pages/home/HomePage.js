@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import TopDealsCard from "../../components/cards/top-deals-card/TopDealsCard";
 import "./style.scss";
 
 const HomePage = () => {
@@ -48,8 +49,13 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Deals</p> <Link to={"/"}>see more</Link>
         </div>
-        <div className="top-deals-products">
-          <p>No product available</p>
+        <div className="top-deals-products ">
+          <div className="row">
+            <TopDealsCard />
+            <TopDealsCard />
+            <TopDealsCard />
+            <TopDealsCard />
+          </div>
         </div>
       </section>
 
@@ -57,8 +63,8 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Product Category</p>
         </div>
-        <div className="top-deals-products ">
-          <div className="productCategory bg-light">
+        <div className="category w-100 ">
+          <div className="productCategory bg-light w-100 ">
             <div className="row p-0 rowball">
               <div className="box col-4 text-center"></div>
               <div className="box col-4 text-center"></div>
