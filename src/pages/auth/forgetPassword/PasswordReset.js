@@ -77,46 +77,40 @@ const PasswordReset = () => {
           validate="true"
           onSubmit={formik.handleSubmit}
         >
-          <div className="form-group mb-3">
+          <div className="form-group mb-4">
             <label htmlFor="resetpassword">
               <strong>Enter password</strong>
             </label>
             <Form.Control
               type="password"
-              className="form-control input-group mb-4"
+              className="form-control input-group "
               id="resetpassword"
               name="password"
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
               values={formik.values.password}
               isInvalid={formik.touched.password && formik.errors.password}
             />
-            {formik.isSubmitting && formik.errors.password ? (
-              <div className="invalid-feedback">{formik.errors.password}</div>
-            ) : null}
+            <div className="invalid-feedback">{formik.errors.password}</div>
           </div>
 
-          <div className="form-group mb-3">
+          <div className="form-group mb-4">
             <label htmlFor="confirmpassword">
               <strong>Confirm password</strong>
             </label>
             <Form.Control
               type="password"
-              className="form-control input-group mb-4"
+              className="form-control input-group "
               id="confirmpassword"
               name="confirmPassword"
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
               values={formik.values.confirmPassword}
               isInvalid={
                 formik.touched.confirmPassword && formik.errors.confirmPassword
               }
             />
-            {formik.isSubmitting && formik.errors.confirmPassword ? (
-              <div className="invalid-feedback">
-                {formik.errors.confirmPassword}
-              </div>
-            ) : null}
+            <div className="invalid-feedback">
+              {formik.errors.confirmPassword}
+            </div>
           </div>
           <button type="submit" className="btn btn-primary btn-md w-100 bold">
             <strong>{isLoading ? "Submitting..." : "Reset Password"}</strong>

@@ -65,13 +65,10 @@ const LoginPage = () => {
             aria-describedby="emailHelp"
             name="username"
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             value={formik.values.username}
             isInvalid={formik.touched.username && formik.errors.username}
           />
-          {formik.touched.username && formik.errors.username ? (
-            <div className="invalid-feedback">{formik.errors.username}</div>
-          ) : null}
+          <div className="invalid-feedback">{formik.errors.username}</div>
         </div>
         <div className="form-group mb-1">
           <label htmlFor="password">Password</label>
@@ -81,13 +78,10 @@ const LoginPage = () => {
             id="password"
             name="password"
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             value={formik.values.password}
             isInvalid={formik.touched.password && formik.errors.password}
           />
-          {formik.touched.password && formik.errors.password ? (
-            <div className="invalid-feedback">{formik.errors.password}</div>
-          ) : null}
+          <div className="invalid-feedback">{formik.errors.password}</div>
         </div>
         <p className=" mb-4 mt-1 text-end small">
           <Link to={"/forget-password"}>Forget password?</Link>

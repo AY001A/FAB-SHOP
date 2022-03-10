@@ -54,36 +54,30 @@ const ForgetPassword = () => {
           validate="true"
           onSubmit={formik.handleSubmit}
         >
-          <div className="form-group mb-3">
+          <div className="form-group mb-4">
             <label htmlFor="resetpassword">
               <strong>Email Address</strong>
             </label>
             <Form.Control
               type="email"
-              className="form-control input-group mb-4"
+              className="form-control input-group "
               id="resetpassword"
               name="emailAddress"
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
               values={formik.values.emailAddress}
-              // isInvalid={formik.isSubmitting && formik.errors.emailAddress}
+              isInvalid={
+                formik.touched.emailAddress && formik.errors.emailAddress
+              }
             />
-            {formik.touched.emailAddress && formik.errors.emailAddress ? (
-              <div className="invalid-feedback">
-                {formik.errors.emailAddress}
-              </div>
-            ) : null}
+            <div className="invalid-feedback">{formik.errors.emailAddress}</div>
           </div>
 
           <button
             type="submit"
             className="btn btn-primary btn-md w-100 bold"
-            disabled={isLoading || formik.errors.emailAddress}
+            disabled={isLoading}
           >
-            <strong>
-              {/* {formik.isSubmitting ? "Submitting..." : "Reset Password"} */}
-              Reset
-            </strong>
+            <strong>{isLoading ? "Submitting..." : "Reset Password"}</strong>
           </button>
         </Form>
         <p className="text-center mt-4">
