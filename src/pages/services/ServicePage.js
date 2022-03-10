@@ -18,6 +18,7 @@ const serviceSchema = Yup.object().shape({
     .required("email is required"),
   phone: Yup.string().required("phone number is required"),
   address: Yup.string().required("address is required"),
+  description: Yup.string(),
 });
 
 const ServicePage = () => {
@@ -81,7 +82,11 @@ const ServicePage = () => {
           </div>
           <div className="service-form col-sm-5  ">
             <h3 className="text-center  pb-2">Book Service</h3>
-            <Form noValidate validate="true" onSubmit={formik.handleSubmit}>
+            <Form
+              noValidate
+              className="requires-validation"
+              onSubmit={formik.handleSubmit}
+            >
               <div className="row">
                 <div className="form-group col-6">
                   <Form.Control
@@ -91,17 +96,14 @@ const ServicePage = () => {
                     name="firstname"
                     placeholder="First name"
                     onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
                     value={formik.values.firstname}
                     isInvalid={
                       formik.touched.firstname && formik.errors.firstname
                     }
                   />
-                  {formik.touched.firstname && formik.errors.firstname ? (
-                    <div className="invalid-feedback">
-                      {formik.errors.firstname}
-                    </div>
-                  ) : null}
+                  <div className="invalid-feedback">
+                    {formik.errors.firstname}
+                  </div>
                 </div>
                 <div className="form-group mb-3 col-6">
                   <Form.Control
@@ -111,17 +113,14 @@ const ServicePage = () => {
                     placeholder="Last name"
                     name="lastname"
                     onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
                     value={formik.values.lastname}
                     isInvalid={
                       formik.touched.lastname && formik.errors.lastname
                     }
                   />
-                  {formik.touched.lastname && formik.errors.lastname ? (
-                    <div className="invalid-feedback">
-                      {formik.errors.lastname}
-                    </div>
-                  ) : null}
+                  <div className="invalid-feedback">
+                    {formik.errors.lastname}
+                  </div>
                 </div>
               </div>
               <div className="row">
@@ -133,15 +132,10 @@ const ServicePage = () => {
                     placeholder="Email Address"
                     name="email"
                     onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
                     value={formik.values.email}
                     isInvalid={formik.touched.email && formik.errors.email}
                   />
-                  {formik.touched.email && formik.errors.email ? (
-                    <div className="invalid-feedback">
-                      {formik.errors.email}
-                    </div>
-                  ) : null}
+                  <div className="invalid-feedback">{formik.errors.email}</div>
                 </div>
 
                 <div className="form-group mb-3 col-6">
@@ -152,15 +146,10 @@ const ServicePage = () => {
                     name="phone"
                     placeholder="Phone Number"
                     onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
                     value={formik.values.phone}
                     isInvalid={formik.touched.phone && formik.errors.phone}
                   />
-                  {formik.touched.phone && formik.errors.phone ? (
-                    <div className="invalid-feedback">
-                      {formik.errors.phone}
-                    </div>
-                  ) : null}
+                  <div className="invalid-feedback">{formik.errors.phone}</div>
                 </div>
                 <div className="form-group mb-3 ">
                   <Form.Control
@@ -170,35 +159,23 @@ const ServicePage = () => {
                     name="address"
                     placeholder="Address"
                     onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
                     value={formik.values.address}
                     isInvalid={formik.touched.address && formik.errors.address}
                   />
-                  {formik.touched.address && formik.errors.address ? (
-                    <div className="invalid-feedback">
-                      {formik.errors.address}
-                    </div>
-                  ) : null}
+                  <div className="invalid-feedback">
+                    {formik.errors.address}
+                  </div>
                 </div>
                 <div className="form-group mb-3  ">
                   <Form.Control
                     type="text"
                     className="form-control input-desc"
-                    id="desc"
-                    name="desc"
+                    id="description"
+                    name="description"
                     placeholder="A brief description of what you need "
                     onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
                     value={formik.values.description}
-                    isInvalid={
-                      formik.touched.description && formik.errors.description
-                    }
                   />
-                  {/* {formik.touched.description && formik.errors.description ? (
-                    <div className="invalid-feedback">
-                      {formik.errors.description}
-                    </div>
-                  ) : null} */}
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-lg">

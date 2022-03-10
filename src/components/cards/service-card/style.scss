@@ -1,9 +1,21 @@
 .services-card {
-  width: 290px;
-  margin-bottom: 32px;
-  .services-card-image-wrapper {
+  width: 150px;
+  margin-bottom: 16px;
+  p {
+    font-size: 12px;
   }
-  .services-card-image {
+
+  @media (min-width: 576px) {
+    min-height: 313px;
     width: 290px;
+    margin-bottom: 32px;
+
+    p {
+      font-size: 16px;
+    }
+
+    .services-card-image {
+      width: 290px;
+    }
   }
 }
