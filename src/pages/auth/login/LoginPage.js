@@ -55,7 +55,12 @@ const LoginPage = () => {
           {errorMessage}
         </div>
       )}
-      <Form noValidate validate="true" onSubmit={formik.handleSubmit}>
+      <Form
+        noValidate
+        validate="true"
+        onSubmit={formik.handleSubmit}
+        autoComplete="true"
+      >
         <div className="form-group mb-3">
           <label htmlFor="email">Email address</label>
           <Form.Control
@@ -64,6 +69,7 @@ const LoginPage = () => {
             id="email"
             aria-describedby="emailHelp"
             name="username"
+            autoComplete="email"
             onChange={formik.handleChange}
             value={formik.values.username}
             isInvalid={formik.touched.username && formik.errors.username}
@@ -77,6 +83,7 @@ const LoginPage = () => {
             className="form-control"
             id="password"
             name="password"
+            autoComplete="current-password"
             onChange={formik.handleChange}
             value={formik.values.password}
             isInvalid={formik.touched.password && formik.errors.password}

@@ -11,6 +11,7 @@ const ServiceCard = ({ title, image, desc, url_path }) => {
           <img
             src={image}
             alt={desc}
+            loading="lazy"
             className="card-img services-card-image"
           />
         </div>

@@ -48,15 +48,14 @@ const ServicePage = () => {
     },
   });
 
-  console.log(data);
   return (
     <div className="service-wrapper">
       <section className="header-section mt-4">
         <div className="header-section-image row g-sm-5">
           <div className="col-sm-7 section-image-wrapper">
             <img
-              src={Wielder}
-              alt="welder"
+              src={data?.image}
+              alt={data?.short_description}
               className="rounded w-100  h-sm-75 mb-5 "
             />
 
@@ -80,7 +79,7 @@ const ServicePage = () => {
               </div>
             </div>
           </div>
-          <div className="service-form col-sm-5  ">
+          <div className="service-form col-sm-5  mb-5 ">
             <h3 className="text-center  pb-2">Book Service</h3>
             <Form
               noValidate
@@ -186,15 +185,55 @@ const ServicePage = () => {
           </div>
         </div>
       </section>
-      <div className="howItWorks">
-        <h1>HOW IT WORKS</h1>
-        <div className="row">
+      <div className="howItWorks mt-5">
+        <h3 className="mb-4">HOW IT WORKS</h3>
+
+        <div className="how-it-works-cards ">
+          <div className="how-it-works-card shadow-sm border">
+            <img
+              src={ServiceIcon}
+              className="card-icons"
+              alt="select service"
+            />
+
+            <div>
+              <h5 className="fw-bold">Select Service</h5>
+              <p>
+                Tell us what service you want, shutter work, steel work
+                weldering work and others.
+              </p>
+            </div>
+          </div>
+          <div className="how-it-works-card shadow-sm border">
+            <img src={CallIcon} className="card-icons" alt="provide contact" />
+
+            <div>
+              <h5 className="fw-bold">Provide Contact</h5>
+              <p>
+                Share your contact details including correct email and mobile
+                phone number.
+              </p>
+            </div>
+          </div>
+          <div className="how-it-works-card shadow-sm border">
+            <img src={RateIcon} className="card-icons " alt="hire technician" />
+
+            <div>
+              <h5 className="fw-bold">Get quote and hire</h5>
+              <p>
+                Share your requirements and get the best price in the the
+                industry.
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* <div className="row">
           <div className="col-lg-4">
-            <div className="card p-5">
+            <div className="card p-5 ">
               <div className="howItWorksIcon">
                 <img src={ServiceIcon} alt="" className="howItWorksIcons" />
               </div>
-              <h5 className="card-title mb-2 ">Select the service</h5>
+              <h5 className="card-title  ">Select the service</h5>
               <p className="card-text text-muted">
                 Tell us what service you want, shutter work, steel work
                 weldering work and others.
@@ -226,8 +265,8 @@ const ServicePage = () => {
                 industry.
               </p>
             </div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
       </div>
     </div>
   );

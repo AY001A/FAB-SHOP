@@ -200,7 +200,8 @@ const Header = () => {
                     </Link>
                   </>
                 ) : (
-                  <Link to={"logout"} className="pt-5">
+                  // Todo : work on logout button
+                  <Link to={"/"} className="pt-5" onClick={() => logout()}>
                     <button className="btn btn-outline-primary text-black w-100">
                       <strong>logout</strong>
                     </button>

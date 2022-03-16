@@ -198,6 +198,40 @@
 }
 
 .top-deals-products {
-  display: grid;
-  place-items: center;
+  // background-color: pink;
+  // width: auto;
+  // overflow-x: hidden;
+  // scroll-snap-type: x mandatory;
+  // position: relative;
+
+  // .next,
+  // .prev {
+  //   cursor: pointer;
+  //   position: absolute;
+  //   top: 50%;
+  //   width: auto;
+  //   padding: 16px;
+  //   margin-top: -22px;
+  //   color: white;
+  //   font-weight: bold;
+  //   font-size: 18px;
+  //   transition: 0.6s ease;
+  //   border-radius: 0 3px 3px 0;
+  //   user-select: none;
+  // }
+
+  // .next {
+  //   right: 0;
+  // }
+  // .prev {
+  // }
+}
+
+.slide-container {
+  width: auto;
+
+  // // scroll-snap-type: x mandatory;
+  // scroll-behaviour: smooth;
+  // user-select: none;
+  // min-width: 100px;
 }

@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TopDealsCard from "../../components/cards/top-deals-card/TopDealsCard";
+import { TopDealsSlider } from "../../components/carousel";
+// import { Fa } from "react-icons/fa";
 import "./style.scss";
+import ServiceCard from "../../components/cards/service-card/ServiceCard";
+import { services } from "../services/services";
 
 const HomePage = () => {
+  const productCount = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   return (
     <>
       <section className="carousel_header ">
@@ -49,13 +55,31 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Deals</p> <Link to={"/"}>see more</Link>
         </div>
-        <div className="top-deals-products ">
-          <div className="row">
+        <div className="top-deals-products w-100 row ">
+          {/* <div className="slide-container row ">
             <TopDealsCard />
             <TopDealsCard />
             <TopDealsCard />
             <TopDealsCard />
-          </div>
+            <TopDealsCard />
+            <TopDealsCard />
+            <TopDealsCard />
+          </div> */}
+          {/* <button type="button" className="prev">
+            bun
+          </button>
+          <button type="button" className="next">
+            gjn
+          </button> */}
+
+          <TopDealsSlider>
+            {productCount.map((prod) => (
+              <TopDealsCard />
+            ))}
+            {/* <TopDealsCard />
+            <TopDealsCard />
+            <TopDealsCard /> */}
+          </TopDealsSlider>
         </div>
       </section>
 
@@ -83,8 +107,18 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Services</p> <Link to={"/"}>see more</Link>
         </div>
-        <div className="top-services">
-          <p>No product available</p>
+        <div className="service-cards-wrapper">
+          {services
+            .filter((serv) => serv.category === "Home")
+            .map((val) => (
+              <ServiceCard
+                title={val.name}
+                image={val.image}
+                desc={val.short_description}
+                url_path={`services/${val.url_path}`}
+                key={val.id}
+              />
+            ))}
         </div>
       </section>
       <section className="top-products-section">

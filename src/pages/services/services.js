@@ -1,10 +1,12 @@
 import WelderImage from "../../assets/images/welder.jpg";
+import ShutterImage from "../../assets/images/services/shutter-page.jpg";
+import SteelImage from "../../assets/images/services/steel-page.jpg";
 
 export const services = [
   {
     id: 1,
     name: "Shutter Technician",
-    image: WelderImage,
+    image: ShutterImage,
     category: "Home",
     short_description:
       "We do home services and help maintain fabricated products",
@@ -31,7 +33,7 @@ export const services = [
   {
     id: 3,
     name: "Steel Repairing",
-    image: WelderImage,
+    image: SteelImage,
     category: "Home",
     short_description: "We do full project from starting to completion",
     description:
