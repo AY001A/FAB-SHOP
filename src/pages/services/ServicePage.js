@@ -50,7 +50,7 @@ const ServicePage = () => {
 
   return (
     <div className="service-wrapper">
-      <section className="header-section mt-4">
+      <section className="header-section">
         <div className="header-section-image row g-sm-5">
           <div className="col-sm-7 section-image-wrapper">
             <img

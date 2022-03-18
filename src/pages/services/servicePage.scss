@@ -4,10 +4,14 @@
 }
 
 .header-section-image {
+  // width: 100vw;
+  margin: 0;
+
   @media (min-width: 576px) {
     // margin: 0 -16px;
     // background-color: pink;
-
+    // width: 98vw;
+    // margin: 0 auto;
     .section-image-wrapper {
       img {
         height: 400px;
