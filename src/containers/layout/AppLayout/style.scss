@@ -11,10 +11,13 @@ main {
   // min-height: 50vh;
   // width: 100vw;
   min-height: 100vh;
-  padding: 0 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  // padding: 0 16px;
 
   @media (min-width: 576px) {
-    padding: 0 32px;
+    // padding: 0 32px;
   }
 }
 

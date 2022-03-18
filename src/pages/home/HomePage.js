@@ -8,7 +8,7 @@ import ServiceCard from "../../components/cards/service-card/ServiceCard";
 import { services } from "../services/services";
 
 const HomePage = () => {
-  const productCount = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const productCount = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <>
@@ -71,15 +71,16 @@ const HomePage = () => {
           <button type="button" className="next">
             gjn
           </button> */}
-
-          <TopDealsSlider>
-            {productCount.map((prod) => (
-              <TopDealsCard />
-            ))}
-            {/* <TopDealsCard />
+          <div className="slide-container row ">
+            <TopDealsSlider>
+              {productCount.map((prod) => (
+                <TopDealsCard />
+              ))}
+              {/* <TopDealsCard />
             <TopDealsCard />
-            <TopDealsCard /> */}
-          </TopDealsSlider>
+          <TopDealsCard /> */}
+            </TopDealsSlider>
+          </div>
         </div>
       </section>
 
@@ -89,8 +90,8 @@ const HomePage = () => {
         </div>
         <div className="category w-100 ">
           <div className="productCategory bg-light w-100 ">
-            <div className="row p-0 rowball">
-              <div className="box col-4 text-center"></div>
+            <div className="row  rowball">
+              <div className="box p-0 col-4 text-center"></div>
               <div className="box col-4 text-center"></div>
               <div className="box col-4 text-center"></div>
             </div>
