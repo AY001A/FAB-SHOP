@@ -5,6 +5,15 @@ import isMobile from "../../utils/hooks/useIsMobileScreen";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 // TODO: change slider library from react-slick to swiper.js
+
+const RightArrow = ({ currentSlide, slideCount, ...props }) => (
+  <FaArrowRight color="black" {...props} />
+);
+
+const LeftArrow = ({ currentSlide, slideCount, ...props }) => (
+  <FaArrowLeft color="black" {...props} />
+);
+
 export const TopDealsSlider = ({ children }) => {
   const settings = {
     infinite: false,
@@ -13,8 +22,8 @@ export const TopDealsSlider = ({ children }) => {
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
-    prevArrow: <FaArrowLeft color="black" />,
-    nextArrow: <FaArrowRight color="black" />,
+    prevArrow: <LeftArrow />,
+    nextArrow: <RightArrow />,
 
     responsive: [
       {
@@ -28,7 +37,7 @@ export const TopDealsSlider = ({ children }) => {
     ],
   };
   return (
-    <Slider swipeToSlide={true} className="slider " {...settings}>
+    <Slider className="slider " {...settings}>
       {children}
     </Slider>
   );

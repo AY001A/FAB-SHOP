@@ -73,8 +73,8 @@ const HomePage = () => {
           </button> */}
           <div className="slide-container row ">
             <TopDealsSlider>
-              {productCount.map((prod) => (
-                <TopDealsCard />
+              {productCount.map((prod, index) => (
+                <TopDealsCard key={index} />
               ))}
               {/* <TopDealsCard />
             <TopDealsCard />
