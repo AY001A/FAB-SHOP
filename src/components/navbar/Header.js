@@ -91,12 +91,23 @@ const Header = () => {
                 Products <FaAngleDown size={14} />
                 <div className="nav-dropdown-menu-content border shadow-sm">
                   <ul>
-                    <li>Shutter</li>
-                    <li>Metal/Iron</li>
-                    <li>Stainless steel</li>
-                    <li>Aluminium</li>
-                    <li>Shed</li>
-                    <li>Metal steel furniture</li>
+                    <Link to={"productCategory/shutter"}>
+                      <li>Shutter</li>
+                    </Link>
+
+                    <Link to={"productCategory/metal-irons"}>
+                      <li>Metal/Iron</li>
+                    </Link>
+
+                    <Link to={"productCategory/stainless-steel"}>
+                      <li>Stainless Steel</li>
+                    </Link>
+                    <Link to={"productCategory/aluminium"}>
+                      <li>Aluminium</li>
+                    </Link>
+                    <Link to={"productCategory/metal-steel-furnitures"}>
+                      <li>Metal steel furnitures</li>
+                    </Link>
                   </ul>
                 </div>
               </Nav.Item>

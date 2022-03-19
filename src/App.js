@@ -12,6 +12,7 @@ import ServicesHomePage from "./pages/services/ServicesHomePage";
 // import ServicePage from "./pages/services/ServicePage";
 import { lazy, Suspense } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
+import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
 
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
 // const LoginPage = lazy(() => import("./pages/auth/login/LoginPage"));
@@ -30,37 +31,42 @@ const ServicePage = lazy(() => import("./pages/services/ServicePage"));
 
 function App() {
   return (
-    <Suspense fallback={<div>loading...</div>}>
-      <ScrollToTop>
-        <Routes>
-          <Route element={<AppLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="forget-password" element={<ForgetPassword />} />
-            <Route
-              path="forget-password/success"
-              element={<ForgetPasswordSuccess />}
-            />
-            <Route path="services" element={<ServicesHomePage />} />
-            <Route path="services/:service" element={<ServicePage />} />
+    // <Suspense fallback={<div>loading...</div>}>
+    <ScrollToTop>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="forget-password" element={<ForgetPassword />} />
+          <Route
+            path="forget-password/success"
+            element={<ForgetPasswordSuccess />}
+          />
+          <Route path="services" element={<ServicesHomePage />} />
+          <Route path="services/:service" element={<ServicePage />} />
 
-            {/* todo make work */}
-            <Route path="resetpassword/" element={<PasswordReset />}>
-              {/* <Route path=":ownerId" element={<PasswordReset />} /> */}
-            </Route>
+          <Route
+            path="productCategory/:category"
+            element={<ProductCategoryPage />}
+          />
 
-            <Route path="*" element={<NotFound />} />
+          {/* todo make work */}
+          <Route path="resetpassword/" element={<PasswordReset />}>
+            {/* <Route path=":ownerId" element={<PasswordReset />} /> */}
           </Route>
-          <Route
-            path="/login"
-            element={<AuthLayout Children={<LoginPage />} />}
-          />
-          <Route
-            path="/register"
-            element={<AuthLayout Children={<RegisterPage />} />}
-          />
-        </Routes>
-      </ScrollToTop>
-    </Suspense>
+
+          <Route path="*" element={<NotFound />} />
+        </Route>
+        <Route
+          path="/login"
+          element={<AuthLayout Children={<LoginPage />} />}
+        />
+        <Route
+          path="/register"
+          element={<AuthLayout Children={<RegisterPage />} />}
+        />
+      </Routes>
+    </ScrollToTop>
+    // </Suspense>
   );
 }
 
