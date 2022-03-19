@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./style.scss";
 import { Outlet } from "react-router-dom";
 import Footer from "../../../components/footer/Footer";
 import Header from "../../../components/navbar/Header";
+import Spinner from "../../../components/spinner/Spinner";
 
 const AppLayout = () => {
   return (
@@ -10,7 +11,9 @@ const AppLayout = () => {
       <Header />
       <div className="main-wrapper">
         <main>
-          <Outlet />
+          <Suspense fallback={<Spinner />}>
+            <Outlet />
+          </Suspense>
         </main>
       </div>
       <Footer />
