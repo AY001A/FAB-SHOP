@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TopDealsCard from "../../components/cards/top-deals-card/TopDealsCard";
 import { TopDealsSlider } from "../../components/carousel";
 // import { Fa } from "react-icons/fa";
@@ -8,6 +8,7 @@ import ServiceCard from "../../components/cards/service-card/ServiceCard";
 import { services } from "../services/services";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const productCount = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
@@ -91,14 +92,32 @@ const HomePage = () => {
         <div className="category w-100 ">
           <div className="productCategory bg-light w-100 ">
             <div className="row  rowball">
-              <div className="box p-0 col-4 text-center"></div>
-              <div className="box col-4 text-center"></div>
-              <div className="box col-4 text-center"></div>
+              <div
+                className="box p-0 col-4 text-center"
+                onClick={() => navigate("/productCategory/aluminium")}
+              ></div>
+              <div
+                className="box col-4 text-center"
+                onClick={() => navigate("/productCategory/stainless-steel")}
+              ></div>
+              <div
+                className="box col-4 text-center"
+                onClick={() => navigate("/productCategory/shutter")}
+              ></div>
             </div>
             <div className="row rowball">
-              <div className="boxTwo col-4 text-center"></div>
-              <div className="boxTwo col-4 text-center"></div>
-              <div className="boxTwo col-4 text-center"></div>
+              <div
+                className="boxTwo col-4 text-center"
+                onClick={() => navigate("/productCategory/metal-iron")}
+              ></div>
+              <div
+                className="boxTwo col-4 text-center"
+                onClick={() => navigate("/productCategory/sheds")}
+              ></div>
+              <div
+                className="boxTwo col-4 text-center"
+                onClick={() => navigate("/productCategory/furnitures")}
+              ></div>
             </div>
           </div>
         </div>
@@ -106,7 +125,7 @@ const HomePage = () => {
 
       <section className="top-services-section">
         <div className="section-banner">
-          <p>Top Services</p> <Link to={"/"}>see more</Link>
+          <p>Top Services</p> <Link to={"/services"}>see more</Link>
         </div>
         <div className="service-cards-wrapper">
           {services

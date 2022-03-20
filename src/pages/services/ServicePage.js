@@ -86,7 +86,7 @@ const ServicePage = () => {
               className="requires-validation"
               onSubmit={formik.handleSubmit}
             >
-              <div className="row">
+              <div className="row g-3">
                 <div className="form-group col-6">
                   <Form.Control
                     type="text"
@@ -122,7 +122,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="row">
+              <div className="row g-3">
                 <div className="form-group col-6">
                   <Form.Control
                     type="email"
@@ -137,7 +137,7 @@ const ServicePage = () => {
                   <div className="invalid-feedback">{formik.errors.email}</div>
                 </div>
 
-                <div className="form-group mb-3 col-6">
+                <div className="form-group  col-6">
                   <Form.Control
                     type="text"
                     className="form-control"
@@ -150,7 +150,7 @@ const ServicePage = () => {
                   />
                   <div className="invalid-feedback">{formik.errors.phone}</div>
                 </div>
-                <div className="form-group mb-3 ">
+                <div className="form-group ">
                   <Form.Control
                     type="text"
                     className="form-control"
@@ -166,15 +166,16 @@ const ServicePage = () => {
                   </div>
                 </div>
                 <div className="form-group mb-3  ">
-                  <Form.Control
-                    type="text"
+                  <textarea
+                    rows={"5"}
+                    cols="60"
                     className="form-control input-desc"
                     id="description"
                     name="description"
                     placeholder="A brief description of what you need "
                     onChange={formik.handleChange}
                     value={formik.values.description}
-                  />
+                  ></textarea>
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-lg">
