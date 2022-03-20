@@ -12,15 +12,15 @@ const Footer = () => {
     <footer className="bd-footer align-middle mt-5">
       <div className="container py-5 ">
         <div className="row">
-          <div className="col-lg-3 mb-3 col-sm-12">
-            <Link to={"/"} className="flex-start">
+          {/* <div className="col-lg-3 mb-3 col-sm-12"> */}
+          {/* <Link to={"/"} className="flex-start">
               <img src={Logo} alt="fabgarage brand" className="logo" />
             </Link>
             <p className="footerDesc mt-3">
               Welcome to Nigeria’s First Online Fabrication Service Provider.
-            </p>
+            </p> */}
 
-            <div className="socialMedia">
+          {/* <div className="socialMedia">
               <Link to={"/"}>
                 <img
                   src={Facebook}
@@ -52,38 +52,47 @@ const Footer = () => {
                   className="socialMediaIcons"
                 />
               </Link>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
           <div className="col-lg offset-lg-1 mb-3 links col-sm-12">
             <h5 className="footerLinkHeader mb-3">Products</h5>
             <ul className="list-unstyled">
               <li className="mb-2">
-                <Link to={"/"} className="footerLinks">
+                <Link to={"/productCategory/shutter"} className="footerLinks">
                   Shutter
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to={"/"} className="footerLinks">
+                <Link
+                  to={"/productCategory/metal-iron"}
+                  className="footerLinks"
+                >
                   Metal/Iron
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to={"/"} className="footerLinks">
+                <Link
+                  to={"/productCategory/stainless-steel"}
+                  className="footerLinks"
+                >
                   Stainless steel
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to={"/"} className="footerLinks">
+                <Link to={"/productCategory/aluminium"} className="footerLinks">
                   Aluminium
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to={"/"} className="footerLinks">
+                <Link to={"/productCategory/shed"} className="footerLinks">
                   Shed
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to={"/"} className="footerLinks">
+                <Link
+                  to={"/productCategory/furnitures"}
+                  className="footerLinks"
+                >
                   Metal steel furniture
                 </Link>
               </li>
@@ -93,12 +102,12 @@ const Footer = () => {
             <h5 className="footerLinkHeader mb-3">Sercives</h5>
             <ul className="list-unstyled">
               <li className="mb-2">
-                <Link to={"/"} className="footerLinks">
+                <Link to={"/services"} className="footerLinks">
                   Home service
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to={"/"} className="footerLinks">
+                <Link to={"/services"} className="footerLinks">
                   Contract service
                 </Link>
               </li>
