@@ -100,13 +100,10 @@ const RegisterPage = () => {
             id="FirstName"
             name="FirstName"
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             isInvalid={formik.touched.FirstName && formik.errors.FirstName}
             value={formik.values.FirstName}
           />
-          {formik.touched.FirstName && formik.errors.FirstName ? (
-            <div className="invalid-feedback">{formik.errors.FirstName}</div>
-          ) : null}
+          <div className="invalid-feedback">{formik.errors.FirstName}</div>
         </div>
 
         <div className="form-group mb-3">
@@ -117,13 +114,10 @@ const RegisterPage = () => {
             id="LastName"
             name="LastName"
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             isInvalid={formik.touched.LastName && formik.errors.LastName}
             value={formik.values.LastName}
           />
-          {formik.touched.LastName && formik.errors.LastName ? (
-            <div className="invalid-feedback">{formik.errors.LastName}</div>
-          ) : null}
+          <div className="invalid-feedback">{formik.errors.LastName}</div>
         </div>
 
         <div className="form-group mb-3">
@@ -137,15 +131,12 @@ const RegisterPage = () => {
             name="EmailAddress"
             aria-describedby="EmailAddress"
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             isInvalid={
               formik.touched.EmailAddress && formik.errors.EmailAddress
             }
             value={formik.values.EmailAddress}
           />
-          {formik.touched.EmailAddress && formik.errors.EmailAddress ? (
-            <div className="invalid-feedback">{formik.errors.EmailAddress}</div>
-          ) : null}
+          <div className="invalid-feedback">{formik.errors.EmailAddress}</div>
         </div>
 
         <div className="form-group mb-3">
@@ -156,13 +147,10 @@ const RegisterPage = () => {
             id="password"
             name="Password"
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             isInvalid={formik.touched.Password && formik.errors.Password}
             value={formik.values.Password}
           />
-          {formik.touched.Password && formik.errors.Password ? (
-            <div className="invalid-feedback">{formik.errors.Password}</div>
-          ) : null}
+          <div className="invalid-feedback">{formik.errors.Password}</div>
         </div>
 
         <div className="form-group mb-3">
@@ -173,13 +161,10 @@ const RegisterPage = () => {
             id="phone"
             name="PhoneNumber"
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             isInvalid={formik.touched.PhoneNumber && formik.errors.PhoneNumber}
             value={formik.values.PhoneNumber}
           />
-          {formik.touched.PhoneNumber && formik.errors.PhoneNumber ? (
-            <div className="invalid-feedback">{formik.errors.PhoneNumber}</div>
-          ) : null}
+          <div className="invalid-feedback">{formik.errors.PhoneNumber}</div>
         </div>
 
         <div className="form-check pt-4 pb-4">
@@ -201,7 +186,6 @@ const RegisterPage = () => {
           className="btn btn-primary btn-md mt-3"
           disabled={isLoading}
         >
-          {/* {console.log(formik.isSubmitting)} */}
           {isLoading ? "Please wait..." : "Register"}
         </button>
       </Form>

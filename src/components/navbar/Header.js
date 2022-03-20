@@ -12,11 +12,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../services/slices/authSlice";
 import { Offcanvas } from "react-bootstrap";
 import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
+import { useState } from "react";
 
 const Header = () => {
-  const isMobile = useIsMobileScreen();
+  const [showSidebar, setShowSidebar] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
+
+  const handleClose = () => setShowSidebar(false);
+  const handleShow = () => setShowSidebar(true);
   const cachedUser = localStorage.getItem("fabUser");
   let firstName;
 
@@ -78,51 +82,51 @@ const Header = () => {
 
         {/* bottom bar */}
         <Navbar className="top-banner border-top border-bottom">
-          <Nav defaultActiveKey="/home" as="ul" className="nav-links">
+          <Nav as="ul" className="nav-links">
             <Link to="/">
-              <Nav.Item as="li">Home</Nav.Item>
+              <li>Home</li>
             </Link>
-            <Link to="/Products">
-              <Nav.Item as="li" className="nav-dropdown-menu">
+            <ul>
+              <li className="nav-dropdown-menu">
                 Products <FaAngleDown size={14} />
                 <div className="nav-dropdown-menu-content border shadow-sm">
                   <ul>
-                    <li>Shutter</li>
-                    <li>Metal/Iron</li>
-                    <li>Stainless steel</li>
-                    <li>Aluminium</li>
-                    <li>Shed</li>
-                    <li>Metal steel furniture</li>
+                    <Link to={"productCategory/shutter"}>
+                      <li>Shutter</li>
+                    </Link>
+
+                    <Link to={"productCategory/metal-irons"}>
+                      <li>Metal/Iron</li>
+                    </Link>
+
+                    <Link to={"productCategory/stainless-steel"}>
+                      <li>Stainless Steel</li>
+                    </Link>
+                    <Link to={"productCategory/aluminium"}>
+                      <li>Aluminium</li>
+                    </Link>
+                    <Link to={"productCategory/furnitures"}>
+                      <li>Metal steel furnitures</li>
+                    </Link>
                   </ul>
                 </div>
-              </Nav.Item>
-            </Link>
-            <Link to="/Services">
-              <Nav.Item as="li" className="nav-dropdown-menu ">
-                Services <FaAngleDown size={14} />
-                <div className="nav-dropdown-menu-content border shadow-sm ">
-                  <ul>
-                    <li>Home services</li>
-                    <li>Contract services</li>
-                  </ul>
-                </div>
-              </Nav.Item>
+              </li>
+            </ul>
+            <Link to="/services">
+              <li className="nav-dropdown-menu ">Services</li>
             </Link>
           </Nav>
 
           <div className="top-banner-contact">
-            <Nav defaultActiveKey="/home" as="ul" className="nav-links">
+            <Nav as="ul">
               <Link to="/">
-                <Nav.Item as="li">Top deals</Nav.Item>
+                <li>help</li>
               </Link>
               <Link to="/Products">
-                <Nav.Item as="li">Top products</Nav.Item>
+                <li>About us</li>
               </Link>
               <Link to="/Services">
-                <Nav.Item as="li">Top services</Nav.Item>
-              </Link>
-              <Link to="/Services">
-                <Nav.Item as="li">Top categories</Nav.Item>
+                <li>Contact us</li>
               </Link>
             </Nav>
           </div>
@@ -131,12 +135,15 @@ const Header = () => {
           <Navbar.Toggle
             aria-controls="navbar-sidebar"
             className="navtoggle "
+            onClick={handleShow}
           />
           <Navbar.Offcanvas
             id="navbar-sidebar"
             aria-labelledby="offcanvasNavbarLabel"
             placement="start"
             className="w-75"
+            show={showSidebar}
+            onHide={handleClose}
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel">
@@ -146,34 +153,37 @@ const Header = () => {
 
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3 pb-4 mobile-nav">
-                <h5>Products</h5>
-                <Link to={"/"}>
+                <h5 className="border-bottom">Products</h5>
+                <Link to={"/productCategory/shutter"} onClick={handleClose}>
                   Shutter
                   <FaAngleRight />
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/productCategory/metal-iron"} onClick={handleClose}>
                   Metal/Iron <FaAngleRight />
                 </Link>
-                <Link to={"/"}>
+                <Link
+                  to={"/productCategory/stainless-steel"}
+                  onClick={handleClose}
+                >
                   Stainless steel <FaAngleRight />
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/productCategory/aluminium"} onClick={handleClose}>
                   Aluminium <FaAngleRight />
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/productCategory/sheds"} onClick={handleClose}>
                   Shed <FaAngleRight />
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/productCategory/furnitures"} onClick={handleClose}>
                   Metal steel furniture <FaAngleRight />
                 </Link>
               </Nav>
               <Nav className="justify-content-end flex-grow-1 pe-3 pb-4 mobile-nav">
-                <h5>Services</h5>
+                <h5 className="border-bottom">Services</h5>
 
-                <Link to={"/"}>
+                <Link to={"services"} onClick={handleClose}>
                   Home services <FaAngleRight />
                 </Link>
-                <Link to={"/"}>
+                <Link to={"services"} onClick={handleClose}>
                   Contract services <FaAngleRight />
                 </Link>
               </Nav>
@@ -192,7 +202,12 @@ const Header = () => {
                     </Link>
                   </>
                 ) : (
-                  <Link to={"logout"} className="pt-5">
+                  // TODO: work on logout button
+                  <Link
+                    to={"/"}
+                    className="pt-5"
+                    onClick={() => dispatch(logout())}
+                  >
                     <button className="btn btn-outline-primary text-black w-100">
                       <strong>logout</strong>
                     </button>

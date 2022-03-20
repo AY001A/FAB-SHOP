@@ -93,12 +93,6 @@ li {
 
 .navtoggle {
   border: none;
-
-  &:focus,
-  :active {
-    // border: none !important;
-    // outline: none !important;
-  }
 }
 
 .brand {
@@ -187,9 +181,8 @@ li {
   a {
     color: rgb(27, 27, 27);
     opacity: 0.8;
-    font-size: 1.1rem;
-    // font-weight: bold;
-    // margin-bottom: 4px;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
 
     text-decoration: none;
     padding: 8px 0;

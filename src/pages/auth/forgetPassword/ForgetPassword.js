@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +19,7 @@ const ForgetPassword = () => {
 
   useEffect(() => {
     if (error) {
-      dispatch(reset());
+      dispatch(() => reset());
     }
   }, [error, dispatch]);
 
@@ -35,7 +35,7 @@ const ForgetPassword = () => {
   });
 
   if (isSuccessful) {
-    return <Navigate to={"success"} />;
+    return <Navigate replace={true} to={"success"} />;
   }
 
   return (
@@ -54,36 +54,30 @@ const ForgetPassword = () => {
           validate="true"
           onSubmit={formik.handleSubmit}
         >
-          <div className="form-group mb-3">
+          <div className="form-group mb-4">
             <label htmlFor="resetpassword">
               <strong>Email Address</strong>
             </label>
             <Form.Control
               type="email"
-              className="form-control input-group mb-4"
+              className="form-control input-group "
               id="resetpassword"
               name="emailAddress"
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
               values={formik.values.emailAddress}
-              // isInvalid={formik.isSubmitting && formik.errors.emailAddress}
+              isInvalid={
+                formik.touched.emailAddress && formik.errors.emailAddress
+              }
             />
-            {formik.touched.emailAddress && formik.errors.emailAddress ? (
-              <div className="invalid-feedback">
-                {formik.errors.emailAddress}
-              </div>
-            ) : null}
+            <div className="invalid-feedback">{formik.errors.emailAddress}</div>
           </div>
 
           <button
             type="submit"
             className="btn btn-primary btn-md w-100 bold"
-            disabled={isLoading || formik.errors.emailAddress}
+            disabled={isLoading}
           >
-            <strong>
-              {/* {formik.isSubmitting ? "Submitting..." : "Reset Password"} */}
-              Reset
-            </strong>
+            <strong>{isLoading ? "Submitting..." : "Reset Password"}</strong>
           </button>
         </Form>
         <p className="text-center mt-4">

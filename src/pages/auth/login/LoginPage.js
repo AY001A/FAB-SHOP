@@ -55,7 +55,12 @@ const LoginPage = () => {
           {errorMessage}
         </div>
       )}
-      <Form noValidate validate="true" onSubmit={formik.handleSubmit}>
+      <Form
+        noValidate
+        validate="true"
+        onSubmit={formik.handleSubmit}
+        autoComplete="true"
+      >
         <div className="form-group mb-3">
           <label htmlFor="email">Email address</label>
           <Form.Control
@@ -64,14 +69,12 @@ const LoginPage = () => {
             id="email"
             aria-describedby="emailHelp"
             name="username"
+            autoComplete="email"
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             value={formik.values.username}
             isInvalid={formik.touched.username && formik.errors.username}
           />
-          {formik.touched.username && formik.errors.username ? (
-            <div className="invalid-feedback">{formik.errors.username}</div>
-          ) : null}
+          <div className="invalid-feedback">{formik.errors.username}</div>
         </div>
         <div className="form-group mb-1">
           <label htmlFor="password">Password</label>
@@ -80,14 +83,12 @@ const LoginPage = () => {
             className="form-control"
             id="password"
             name="password"
+            autoComplete="current-password"
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             value={formik.values.password}
             isInvalid={formik.touched.password && formik.errors.password}
           />
-          {formik.touched.password && formik.errors.password ? (
-            <div className="invalid-feedback">{formik.errors.password}</div>
-          ) : null}
+          <div className="invalid-feedback">{formik.errors.password}</div>
         </div>
         <p className=" mb-4 mt-1 text-end small">
           <Link to={"/forget-password"}>Forget password?</Link>

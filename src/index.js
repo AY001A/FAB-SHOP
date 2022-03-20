@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "normalize.css";
+// import "normalize.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./index.scss";
 import App from "./App";
 import { Provider } from "react-redux";

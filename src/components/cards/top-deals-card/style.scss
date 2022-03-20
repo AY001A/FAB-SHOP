@@ -1,0 +1,66 @@
+.topdeals-card {
+  scroll-snap-align: start;
+  // flex-shrink: 0;
+  width: 140px;
+  height: 200px;
+  padding: 0;
+  // user-select: none;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  // cursor: pointer;
+
+  .topdeals-card-image {
+    width: 140px;
+    height: 130px;
+  }
+
+  .topdeals-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .topdeals-price {
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+  .topdeals-discount {
+    font-size: 10px;
+    color: rgb(92, 92, 92);
+  }
+
+  @media (min-width: 576px) {
+    width: 300px;
+    height: 300px;
+
+    // &:hover {
+    //   .topdeals-card-image {
+    //     // background-color: purple;
+    //     width: 301px;
+    //     height: 201px;
+    //   }
+    // }
+
+    .topdeals-description-wrapper {
+      user-select: none;
+      padding-left: 8px;
+    }
+    .topdeals-card-image {
+      width: 300px;
+      height: 200px;
+    }
+
+    .topdeals-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .topdeals-price {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+    .topdeals-discount {
+      font-size: 12px;
+      color: rgb(92, 92, 92);
+    }
+  }
+}
