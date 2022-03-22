@@ -1,50 +1,41 @@
 import React from "react";
-import { FaStar } from "react-icons/fa";
 import "./style.scss";
 
-const Rating = (count) => {
-  const starCount = [0, 1, 2, 3, 4];
-
+const Star = ({ marked, starId }) => {
   return (
-    // <FaStar />
-    <div class="star-rating">
-      {starCount.map((val, index) => (
-        <>
-          <input
-            type="radio"
-            id="5-stars"
-            name="rating"
-            key={index}
-            value={`${val}`}
-          />
-          <label for="5-stars" key={index} class="star">
-            &#9733;
-          </label>
-        </>
+    <span data-star-id={starId} className="star" role="button">
+      {marked ? "\u2605" : "\u2606"}
+    </span>
+  );
+};
+
+const Rating = ({ value }) => {
+  const [rating, setRating] = React.useState(parseInt(value) || 0);
+  const [selection, setSelection] = React.useState(0);
+
+  const hoverOver = (event) => {
+    let val = 0;
+    if (event && event.target && event.target.getAttribute("data-star-id"))
+      val = event.target.getAttribute("data-star-id");
+    setSelection(val);
+  };
+  return (
+    <div
+      onMouseOut={() => hoverOver(null)}
+      onClick={(e) =>
+        setRating(e.target.getAttribute("data-star-id") || rating)
+      }
+      onMouseOver={hoverOver}
+    >
+      {Array.from({ length: 5 }, (v, i) => (
+        <Star
+          starId={i + 1}
+          key={`star_${i + 1}`}
+          marked={selection ? selection >= i + 1 : rating >= i + 1}
+        />
       ))}
     </div>
   );
 };
 
 export default Rating;
-
-{
-  /* //   <input checked type="radio" id="4-stars" name="rating" value="4" />
-    //   <label for="4-stars" class="star">
-    //     &#9733;
-    //   </label>
-    //   <input type="radio" id="3-stars" name="rating" value="3" />
-    //   <label for="3-stars" class="star">
-    //     &#9733;
-    //   </label>
-    //   <input type="radio" id="2-stars" name="rating" value="2" />
-    //   <label for="2-stars" class="star">
-    //     &#9733;
-    //   </label>
-    //   <input type="radio" id="1-star" name="rating" value="1" />
-    //   <label for="1-star" class="star">
-    //     &#9733;
-    //   </label>
-    // </div>
-     */
-}
