@@ -5,6 +5,7 @@ import { TopDealsSlider } from "../../components/carousel";
 // import { Fa } from "react-icons/fa";
 import "./style.scss";
 import ServiceCard from "../../components/cards/service-card/ServiceCard";
+import ProductCard from "../../components/cards/product-card/ProductCard";
 import { services } from "../services/services";
 
 const HomePage = () => {
@@ -146,7 +147,19 @@ const HomePage = () => {
           <p>Top Products</p> <Link to={"/"}>see more</Link>
         </div>
         <div className="top-products">
-          <p>No product available</p>
+          {/* <p>No product available</p> */}
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
         </div>
       </section>
     </>
