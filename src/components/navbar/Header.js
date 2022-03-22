@@ -187,7 +187,7 @@ const Header = () => {
                   Contract services <FaAngleRight />
                 </Link>
               </Nav>
-              <Nav className="justify-content-end flex-grow-1 pe-3 pb-5 mobile-nav">
+              <Nav className="justify-content-end flex-grow-1 pe-3 pb-5 pt-3 mobile-nav">
                 {!user.isAuthenticated ? (
                   <>
                     <Link to={"login"}>
