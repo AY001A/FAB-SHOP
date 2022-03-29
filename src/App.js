@@ -9,6 +9,7 @@ import PasswordReset from "./pages/auth/forgetPassword/PasswordReset";
 import AuthLayout from "./containers/layout/AuthLayout/AuthLayout";
 import ForgetPassword from "./pages/auth/forgetPassword/ForgetPassword";
 import ServicesHomePage from "./pages/services/ServicesHomePage";
+import ProductPage from "./pages/product/ProductPage";
 // import ServicePage from "./pages/services/ServicePage";
 import { lazy, Suspense } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
@@ -48,6 +49,8 @@ function App() {
             path="productCategory/:category"
             element={<ProductCategoryPage />}
           />
+
+          <Route path="products/:productId/:title" element={<ProductPage />} />
 
           {/* todo make work */}
           <Route path="resetpassword/" element={<PasswordReset />}>
