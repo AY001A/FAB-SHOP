@@ -44,8 +44,6 @@ const ProductCategoryPage = () => {
         <ProductCard />
         <ProductCard />
         <ProductCard />
-        <ProductCard />
-        <ProductCard />
       </div>
     </div>
   );
