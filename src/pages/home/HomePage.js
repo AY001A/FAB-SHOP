@@ -1,12 +1,11 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import TopDealsCard from "../../components/cards/top-deals-card/TopDealsCard";
-import { TopDealsSlider } from "../../components/carousel";
-// import { Fa } from "react-icons/fa";
 import "./style.scss";
 import ServiceCard from "../../components/cards/service-card/ServiceCard";
 import ProductCard from "../../components/cards/product-card/ProductCard";
 import { services } from "../services/services";
+import Slider from "../../components/slider/Slider";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -58,30 +57,12 @@ const HomePage = () => {
           <p>Top Deals</p> <Link to={"/"}>see more</Link>
         </div>
         <div className="top-deals-products w-100 row ">
-          {/* <div className="slide-container row ">
-            <TopDealsCard />
-            <TopDealsCard />
-            <TopDealsCard />
-            <TopDealsCard />
-            <TopDealsCard />
-            <TopDealsCard />
-            <TopDealsCard />
-          </div> */}
-          {/* <button type="button" className="prev">
-            bun
-          </button>
-          <button type="button" className="next">
-            gjn
-          </button> */}
           <div className="slide-container row ">
-            <TopDealsSlider>
+            <Slider>
               {productCount.map((prod, index) => (
                 <TopDealsCard key={index} />
               ))}
-              {/* <TopDealsCard />
-            <TopDealsCard />
-          <TopDealsCard /> */}
-            </TopDealsSlider>
+            </Slider>
           </div>
         </div>
       </section>
