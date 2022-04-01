@@ -21,7 +21,7 @@ jobs:
       - run:
           name: containerd
           command: sudo systemctl enable containerd.service
-      - run: sudo systemctl start docker
+     # - run: sudo systemctl start docker
       - run:
           name: build docker image
           command: sudo docker build -t cucumislushfrontend . 
