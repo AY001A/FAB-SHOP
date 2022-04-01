@@ -1,30 +1,15 @@
 version: 2.1
+orbs: 
+  docker: circleci/docker@2.0.3
 jobs:
   build:
-    docker:
-      - image: cimg/base:2022.03
+    executor: docker/docker
     steps:
+      - setup_remote_docker
       - checkout
-      - run: sudo apt update
-      - run:
-          name: install curl
-          command: sudo apt install curl
-      - run:
-          name: get docker script
-          command: curl -fsSL https://get.docker.com -o get-docker.sh
-      - run:
-          name: install docker with script
-          command: sudo sh get-docker.sh
-      - run:
-          name: enable docker
-          command: sudo systemctl enable docker.service
-      - run:
-          name: containerd
-          command: sudo systemctl enable containerd.service
-      - run: sudo dockerd
-      - run:
-          name: build docker image
-          command: sudo docker build -t cucumislushfrontend . 
+      - docker/build:
+          image: cucumislush
+      
 
 workflows:
   build_workflow:
