@@ -41,6 +41,5 @@ workflows:
     jobs:
       - build
       - push_docker_image:
-          type: approval
           requires:
             - build
