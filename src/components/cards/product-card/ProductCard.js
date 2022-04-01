@@ -5,9 +5,9 @@ import ReviewCount from "../../review-count/ReviewCount";
 import DoorImage from "../../../assets/images/door.jpg";
 import { Link } from "react-router-dom";
 
-const ProductCard = () => {
+const ProductCard = ({ className }) => {
   return (
-    <div className="card border-0 products-card mb-4">
+    <div className={`card border-0 products-card mb-4 ${className}`}>
       <Link to={"/products/282/steel-gate-reforbished"}>
         <div className="products-card-image-wrapper card-img">
           <img
