@@ -30,11 +30,10 @@ jobs:
           command: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - run:
           name: retag docker image and push
-          command: |
-            echo 'cucumislush:$CIRCLE_SHA1'
-            echo '$DOCKER_REPO_NAME/cucumislush:$CIRCLE_SHA1'
-            sudo docker image tag 'cucumislush:$CIRCLE_SHA1' '$DOCKER_REPO_NAME/cucumislush:$CIRCLE_SHA1'
-            sudo docker push '$DOCKER_REPO_NAME/cucumislush:$CIRCLE_SHA1'
+          command: sudo docker image tag 'cucumislush:$CIRCLE_SHA1' '$DOCKER_REPO_NAME/cucumislush:$CIRCLE_SHA1'
+      - run:
+          name: push image
+          command: sudo docker push '$DOCKER_REPO_NAME/cucumislush:$CIRCLE_SHA1'
       #- run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
       
 
