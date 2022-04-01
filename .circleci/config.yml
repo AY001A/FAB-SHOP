@@ -6,8 +6,7 @@ jobs:
     executor: docker/docker
     working_directory: apps
     steps:
-      - setup_remote_docker:
-          docker_layer_caching: true
+      - setup_remote_docker
       - checkout
       - docker/build:
           image: cucumislush
