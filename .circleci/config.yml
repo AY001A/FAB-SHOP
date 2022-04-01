@@ -5,7 +5,7 @@ jobs:
       - image: cimg/node:17.8.0
     steps:
       - checkout
-      - run: sudo docker build -t 'cucumislushfrontend:$CIRCLE_BUILD_NUM' .
+      - run: sudo docker build -t cucumislushfrontend .
 
 workflows:
   build_workflow:
