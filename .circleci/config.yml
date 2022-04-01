@@ -4,7 +4,7 @@ orbs:
 jobs:
   build:
     executor: docker/docker
-    working_directory: apps
+    #working_directory: apps
     steps:
       - setup_remote_docker
       - checkout
@@ -20,7 +20,7 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: false
       - attach_workspace:
-          at: apps/frontends/images
+          at: frontends/images
       - run: sudo docker save -o 'cucumislushfrontend.tar' cucumislush
       
 
