@@ -17,20 +17,30 @@ jobs:
           root: frontends
           paths:
             - "images"
-  save_docker_image:
+  push_docker_image:
     executor: docker/docker
     steps:
       - setup_remote_docker:
           docker_layer_caching: false
+      - docker/install-docker-tools
       - attach_workspace:
           at: frontends/images
-      - run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
+      - run:
+          name: login to docker
+          command: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run:
+          name: retag docker image and push
+          command: |
+            sudo docker tag '$DOCKER_REPO_NAME/cucumislush:$CIRCLE_SHA1' 'cucumislush:$CIRCLE_SHA1'
+            sudo docker push '$DOCKER_REPO_NAME/cucumislush:$CIRCLE_SHA1'
+      #- run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
       
 
 workflows:
   build_workflow:
     jobs:
       - build
-      - save_docker_image:
+      - push_docker_image:
+          type: approval
           requires:
             - build
