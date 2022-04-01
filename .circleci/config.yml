@@ -31,7 +31,7 @@ jobs:
       - run:
           name: retag docker image and push
           command: |
-            sudo docker tag '$DOCKER_REPO_NAME/cucumislush:$CIRCLE_SHA1' 'cucumislush:$CIRCLE_SHA1'
+            sudo docker tag 'cucumislush:$CIRCLE_SHA1' '$DOCKER_REPO_NAME/cucumislush:$CIRCLE_SHA1'
             sudo docker push '$DOCKER_REPO_NAME/cucumislush:$CIRCLE_SHA1'
       #- run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
       
