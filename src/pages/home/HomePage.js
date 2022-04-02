@@ -7,17 +7,17 @@ import ProductCard from "../../components/cards/product-card/ProductCard";
 import { services } from "../services/services";
 import Slider from "../../components/slider/Slider";
 
-import { useDispatch } from 'react-redux'
-import { removeFromCart } from "../../services/slices/cartSlice";
+// import { useDispatch } from 'react-redux'
+// import { removeFromCart } from "../../services/slices/cartSlice";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const productCount = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  const dispatch = useDispatch();
-  const handleRemoveFromCart = () => {
-    dispatch(removeFromCart())
-  }
+  // const dispatch = useDispatch();
+  // const handleRemoveFromCart = () => {
+  //   dispatch(removeFromCart())
+  // }
 
   return (
     <>
@@ -25,7 +25,7 @@ const HomePage = () => {
         <div>
           <p>Enjoy up to 15% discount on your first order</p>
 
-          <button onClick={() => handleRemoveFromCart()} className="btn btn-primary">
+          <button className="btn btn-primary">
             <strong >Shop Now</strong>
           </button>
         </div>
