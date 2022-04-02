@@ -21,7 +21,7 @@ jobs:
     parameters:
       docker_repo_name:
         type: string
-        default: "${DOCKER_REPO_NAME}/cucumislush:${CIRCLE_SHA1}"
+        default: "${DOCKER_REPO_NAME}/cucumislush"
     executor: docker/docker
     steps:
       - setup_remote_docker:
