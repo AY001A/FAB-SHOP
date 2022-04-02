@@ -34,7 +34,7 @@ jobs:
           command: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - run:
           name: get repo name
-          command: "<< parameters.docker_repo_name >>"
+          command: echo "<< parameters.docker_repo_name >>"
       - docker/push:
           image: "<< parameters.docker_repo_name >>"
       #- run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
