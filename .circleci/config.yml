@@ -16,23 +16,24 @@ jobs:
           command: |
             echo 'export TAG=${CIRCLE_BUILD_NUM}' >> $BASH_ENV
             echo 'export IMAGE_NAME=cucumislushfrontend' >> $BASH_ENV 
-            
-      - run:
-          name: Build Docker Image
-          command: docker build -t $DOCKER_REPO_NAME/$IMAGE_NAME:$TAG .
 
-      - run:
-          name: Check List of docker image
-          command: |
-            echo 'checking to see if $DOCKER_REPO_NAME/$IMAGE_NAME:$TAG is present'
-            sudo docker image ls
-            
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
           name: login to docker hub
           command: |
             sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+               
+      - run:
+          name: Build Docker Image
+          command: docker build -t $DOCKER_REPO_NAME/$IMAGE_NAME:$TAG .
+          
+      - run:
+          name: Check List of docker image
+          command: |
+            echo 'checking to see if $DOCKER_REPO_NAME/$IMAGE_NAME:$TAG is present'
+            sudo docker image ls
+            
       - run:
           name: Push Docker image
           command: |
