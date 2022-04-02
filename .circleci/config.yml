@@ -19,12 +19,12 @@ jobs:
             
       - run:
           name: Build Docker Image
-          command: sudo docker build -t << parameter.repo_name >>/$IMAGE_NAME:$TAG .
+          command: docker build -t $DOCKER_REPO_NAME/$IMAGE_NAME:$TAG .
 
       - run:
           name: Check List of docker image
           command: |
-            echo 'checking to see if << parameter.repo_name >>/$IMAGE_NAME:$TAG is present'
+            echo 'checking to see if $DOCKER_REPO_NAME/$IMAGE_NAME:$TAG is present'
             sudo docker image ls
             
       - setup_remote_docker:
