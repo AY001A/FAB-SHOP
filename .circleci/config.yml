@@ -33,6 +33,9 @@ jobs:
           command: |
             echo 'checking to see if $DOCKER_REPO_NAME/$IMAGE_NAME:$TAG is present'
             docker image ls
+      - run:
+          name: login to docker hub
+          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             
       - run:
           name: Push Docker image
