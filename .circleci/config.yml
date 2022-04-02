@@ -39,7 +39,9 @@ jobs:
           at: frontends/images
       - run:
           name: login to docker
-          command: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          command: |
+            sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            sudo docker image tag "cucumislush:<< parameters.docker_image_tag>>" "<< parameters.docker_repo_name >>:<< parameters.docker_image_tag >>"
       - docker/push:
           image: "<< parameters.docker_repo_name >>"
           tag: "<< parameters.docker_image_tag >>"
