@@ -9,7 +9,7 @@ jobs:
       - setup_remote_docker
       - checkout
       - docker/build:
-          image: cucumislush:latest
+          image: cucumislush
       - run:
           name: create directory
           command: mkdir -p frontends/images
@@ -29,7 +29,7 @@ jobs:
           name: login to docker
           command: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - docker/push:
-          image: '$DOCKER_REPO_NAME/cucumislush:latest'
+          image: '${DOCKER_REPO_NAME}/cucumislush:${CIRCLE_SHA1}'
       #- run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
       
 
