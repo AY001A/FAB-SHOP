@@ -18,6 +18,10 @@ jobs:
           paths:
             - "images"
   push_docker_image:
+    parameters:
+      docker_repo_name:
+        type: string
+        default: "${DOCKER_REPO_NAME}/cucumislush:${CIRCLE_SHA1}"
     executor: docker/docker
     steps:
       - setup_remote_docker:
@@ -28,8 +32,11 @@ jobs:
       - run:
           name: login to docker
           command: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run:
+          name: get repo name
+          command: "<< parameters.docker_repo_name >>"
       - docker/push:
-          image: '${DOCKER_REPO_NAME}/cucumislush:${CIRCLE_SHA1}'
+          image: "<< parameters.docker_repo_name >>"
       #- run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
       
 
