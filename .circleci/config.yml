@@ -1,4 +1,7 @@
 version: 2.1
+variables:
+  repo_name: "${DOCKER_REPO_NAME}"
+  image_tag: "${CIRCLE_BUILD_NUM}"
 orbs: 
   docker: circleci/docker@2.0.3
 jobs:
@@ -6,14 +9,17 @@ jobs:
     parameters:
       docker_image_tag:
         type: string
-        default: "${CIRCLE_BUILD_NUM}"
+        default: "${image_tag}"
+      docker_repo_name:
+        type: string
+        default: "${repo_name}/cucumislush"
     executor: docker/docker
     #working_directory: apps
     steps:
       - setup_remote_docker
       - checkout
       - docker/build:
-          image: cucumislush
+          image: "<< parameters.docker_repo_name >>"
           tag:  "<< parameters.docker_image_tag >>"
       - run:
           name: create directory
@@ -26,10 +32,10 @@ jobs:
     parameters:
       docker_repo_name:
         type: string
-        default: "${DOCKER_REPO_NAME}/cucumislush"
+        default: "${repo_name}/cucumislush"
       docker_image_tag:
         type: string
-        default: "${CIRCLE_BUILD_NUM}"
+        default: "${image_tag}"
     executor: docker/docker
     steps:
       - setup_remote_docker:
@@ -41,7 +47,6 @@ jobs:
           name: login to docker
           command: |
             sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            sudo docker image tag "cucumislush:<< parameters.docker_image_tag>>" "<< parameters.docker_repo_name >>:<< parameters.docker_image_tag >>"
       - docker/push:
           image: "<< parameters.docker_repo_name >>"
           tag: "<< parameters.docker_image_tag >>"
