@@ -3,6 +3,10 @@ orbs:
   docker: circleci/docker@2.0.3
 jobs:
   build:
+    parameters:
+      docker_image_tag:
+        type: string
+        default: "${CIRCLE_BUILD_NUM}"
     executor: docker/docker
     #working_directory: apps
     steps:
@@ -10,6 +14,7 @@ jobs:
       - checkout
       - docker/build:
           image: cucumislush
+          tag:  "<< parameters.docker_image_tag >>"
       - run:
           name: create directory
           command: mkdir -p frontends/images
@@ -21,7 +26,7 @@ jobs:
     parameters:
       docker_repo_name:
         type: string
-        default: "${DOCKER_REPO_NAME}/cucumislush"
+        default: "${DOCKER_REPO_NAME}/cucumislush:${CIRCLE_BUILD_NUM}"
       docker_image_tag:
         type: string
         default: "${CIRCLE_SHA1}"
@@ -35,16 +40,6 @@ jobs:
       - run:
           name: login to docker
           command: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-      - run:
-          name: get repo name
-          command: echo "<< parameters.docker_repo_name >>"
-      - run:
-          name: tag image
-          command: sudo docker image tag "cucumislush:<< parameters.docker_image_tag >>" "<< parameters.docker_repo_name >>:<< parameters.docker_image_tag >>"
-      - run:
-          name: list image
-          command: sudo docker image ls
-
       - docker/push:
           image: "<< parameters.docker_repo_name >>"
       #- run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
