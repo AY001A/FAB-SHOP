@@ -28,4 +28,11 @@
 .star {
   color: #ff9933;
   cursor: pointer;
+
+  @media (min-width: 576px) {
+    svg {
+      width: 60px;
+      height: 60px;
+    }
+  }
 }

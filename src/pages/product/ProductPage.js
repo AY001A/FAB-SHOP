@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.scss";
-import Door from "../../assets/images/door.jpg";
+import Chair from "../../assets/images/chair.jpg";
 import { useParams } from "react-router-dom";
 import Rating from "../../components/rating/RatingsViewOnly";
 import Slider from "../../components/slider/Slider";
 import ProductCard from "../../components/cards/product-card/ProductCard";
+import ProductFormModal from "../../components/modal/ProductFormModal";
 
-const ProductPage = () => {
+const ProductPage = ({}) => {
   const { productId, title } = useParams();
+  const [isMeasurable, setIsMeasurable] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className="product-wrapper">
@@ -16,7 +19,7 @@ const ProductPage = () => {
       </h2>
       <div className="product-details-wrapper">
         <div className="product-image-wrapper">
-          <img src={Door} className="product-image" alt="product" />
+          <img src={Chair} className="product-image" alt="product" />
         </div>
 
         <div className="product-info-wrapper">
@@ -37,21 +40,57 @@ const ProductPage = () => {
             <li>Color: Brown</li>
             <li>Height: 925mm</li>
           </ul>
+          <button onClick={() => setIsMeasurable(!isMeasurable)}>
+            IsMeasurable
+          </button>
         </div>
 
         <div className="product-button-card">
-          <div className="product-price ">
-            <p>price: </p>
-            <h2>70,000</h2>
-          </div>
+          {!isMeasurable ? (
+            <div className="product-price ">
+              <p>price: </p>
+              <h2>70,000</h2>
+            </div>
+          ) : (
+            <p>Reach out to us</p>
+          )}
 
-          <button className="btn-cart btn btn-primary ">Add to cart</button>
-          <button className="btn btn-outline-primary">Buy now</button>
+          {!isMeasurable ? (
+            <>
+              <button className="btn-cart btn btn-primary ">Add to cart</button>
+              <button className="btn btn-outline-primary">Buy now</button>
+            </>
+          ) : (
+            <button
+              className="btn-cart btn btn-primary "
+              onClick={() => setOpenModal(true)}
+            >
+              Request Quote
+            </button>
+          )}
+
+          <ProductFormModal
+            show={openModal}
+            onHide={() => setOpenModal(false)}
+          />
         </div>
       </div>
 
-      <button className="btn-cart bm btn btn-primary ">Add to cart</button>
-      <button className="btn bm btn-outline-primary">Buy now</button>
+      {isMeasurable ? (
+        <>
+          <button className="btn-cart bm btn btn-primary ">Add to cart</button>
+          <button className="btn bm btn-outline-primary">Buy now</button>
+        </>
+      ) : (
+        <button
+          className="btn-cart bm btn btn-primary"
+          onClick={() => setOpenModal(true)}
+        >
+          Place Order
+        </button>
+      )}
+
+      <div className="product-featured-services"></div>
 
       <p className="mt-5 you-may-like">
         <strong>You may also like</strong>
