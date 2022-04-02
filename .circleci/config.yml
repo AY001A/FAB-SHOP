@@ -9,10 +9,10 @@ jobs:
     parameters:
       docker_image_tag:
         type: string
-        default: "${image_tag}"
+        default: "${CIRCLE_BUILD_NUM}"
       docker_repo_name:
         type: string
-        default: "${repo_name}/cucumislush"
+        default: "${DOCKER_REPO_NAME}/cucumislush"
     executor: docker/docker
     #working_directory: apps
     steps:
@@ -32,10 +32,10 @@ jobs:
     parameters:
       docker_repo_name:
         type: string
-        default: "${repo_name}/cucumislush"
+        default: "${DOCKER_REPO_NAME}/cucumislush"
       docker_image_tag:
         type: string
-        default: "${image_tag}"
+        default: "${CIRCLE_BUILD_NUM}"
     executor: docker/docker
     steps:
       - setup_remote_docker:
