@@ -12,15 +12,19 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build Docker Image
+          name: Export Env Var
           command: |
             echo 'export TAG=${CIRCLE_BUILD_NUM}' >> $BASH_ENV
             echo 'export IMAGE_NAME=cucumislushfrontend' >> $BASH_ENV 
-            sudo docker build -t << parameter.repo_name>>/$IMAGE_NAME:$TAG .
+            
+      - run:
+          name: Build Docker Image
+          command: sudo docker build -t << parameter.repo_name >>/$IMAGE_NAME:$TAG .
+
       - run:
           name: Check List of docker image
           command: |
-            echo 'checking to see if << parameter.repo_name>>/$IMAGE_NAME:$TAG is present'
+            echo 'checking to see if << parameter.repo_name >>/$IMAGE_NAME:$TAG is present'
             sudo docker image ls
             
       - setup_remote_docker:
