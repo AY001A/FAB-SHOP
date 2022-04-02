@@ -26,10 +26,10 @@ jobs:
     parameters:
       docker_repo_name:
         type: string
-        default: "${DOCKER_REPO_NAME}/cucumislush:${CIRCLE_BUILD_NUM}"
+        default: "${DOCKER_REPO_NAME}/cucumislush"
       docker_image_tag:
         type: string
-        default: "${CIRCLE_SHA1}"
+        default: "${CIRCLE_BUILD_NUM}"
     executor: docker/docker
     steps:
       - setup_remote_docker:
@@ -42,6 +42,7 @@ jobs:
           command: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - docker/push:
           image: "<< parameters.docker_repo_name >>"
+          tag: "<< parameters.docker_image_tag >>"
       #- run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
       
 
