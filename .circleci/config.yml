@@ -1,62 +1,40 @@
-version: 2.1
-variables:
-  repo_name: "${DOCKER_REPO_NAME}"
-  image_tag: "${CIRCLE_BUILD_NUM}"
-orbs: 
-  docker: circleci/docker@2.0.3
+version: 2
 jobs:
   build:
     parameters:
-      docker_image_tag:
+      repo_name:
         type: string
-        default: "${CIRCLE_BUILD_NUM}"
-      docker_repo_name:
-        type: string
-        default: "${DOCKER_REPO_NAME}/cucumislush"
-    executor: docker/docker
-    #working_directory: apps
+        default: ${DOCKER_REPO_NAME}
+    docker:
+      - image: cimg/node:17.8.0
+        environment:
+          ENV_NAME: DEV
     steps:
-      - setup_remote_docker
       - checkout
-      - docker/build:
-          image: "<< parameters.docker_repo_name >>"
-          tag:  "<< parameters.docker_image_tag >>"
       - run:
-          name: create directory
-          command: mkdir -p frontends/images
-      - persist_to_workspace:
-          root: frontends
-          paths:
-            - "images"
-  push_docker_image:
-    parameters:
-      docker_repo_name:
-        type: string
-        default: "${DOCKER_REPO_NAME}/cucumislush"
-      docker_image_tag:
-        type: string
-        default: "${CIRCLE_BUILD_NUM}"
-    executor: docker/docker
-    steps:
-      - setup_remote_docker:
-          docker_layer_caching: false
-      - docker/install-docker-tools
-      - attach_workspace:
-          at: frontends/images
-      - run:
-          name: login to docker
+          name: Build Docker Image
           command: |
-            sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-      - docker/push:
-          image: "<< parameters.docker_repo_name >>"
-          tag: "<< parameters.docker_image_tag >>"
-      #- run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
-      
-
+            echo 'export TAG=${CIRCLE_BUILD_NUM}' >> $BASH_ENV
+            echo 'export IMAGE_NAME=cucumislushfrontend' >> $BASH_ENV 
+            docker build -t << parameter.repo_name>>/$IMAGE_NAME:$TAG .
+      - run:
+          name: Check List of docker image
+          command: |
+            echo 'checking to see if << parameter.repo_name>>/$IMAGE_NAME:$TAG is present'
+            docker image ls
+            
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: login to docker hub
+          command: |
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run:
+          name: Push Docker image
+          command: |
+            docker push << parameter.repo_name>>/$IMAGE_NAME:$TAG
 workflows:
-  build_workflow:
+  version: 2
+  build-docker:
     jobs:
       - build
-      - push_docker_image:
-          requires:
-            - build
