@@ -5,6 +5,9 @@ jobs:
       repo_name:
         type: string
         default: ${DOCKER_REPO_NAME}
+      image_tag:
+        type: string
+        default: ${CIRCLE_BUILD_NUM}
     docker:
       - image: cimg/node:17.8.0
         environment:
@@ -26,7 +29,10 @@ jobs:
                
       - run:
           name: Build Docker Image
-          command: docker build -t "pihemcloud / conclase/"$IMAGE_NAME:$TAG .
+          command: docker build -t $IMAGE_NAME:$TAG .
+      - run:
+          name: Tag Image
+          command: docker image tag $IMAGE_NAME:$TAG "pihemcloud/conclase/cucumislushfrontend:<< parameters.image_tag >>"
 
       - run:
           name: Check List of docker image
@@ -39,7 +45,7 @@ jobs:
             
       - run:
           name: Push Docker image
-          command: docker push "pihemcloud / conclase/"$IMAGE_NAME:$TAG
+          command: docker push "pihemcloud/conclase/cucumislushfrontend:<< parameters.image_tag >>"
 workflows:
   version: 2
   build-docker:
