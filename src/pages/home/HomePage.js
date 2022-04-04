@@ -7,26 +7,54 @@ import ProductCard from "../../components/cards/product-card/ProductCard";
 import { services } from "../services/services";
 import Slider from "../../components/slider/Slider";
 
-// import { useDispatch } from 'react-redux'
-// import { removeFromCart } from "../../services/slices/cartSlice";
+import { useDispatch } from "react-redux";
+import { removeFromCart, addToCart } from "../../services/slices/cartSlice";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const productCount = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  // const dispatch = useDispatch();
-  // const handleRemoveFromCart = () => {
-  //   dispatch(removeFromCart())
-  // }
+  let count = 1;
+  const dispatch = useDispatch();
 
   return (
     <>
+      <button
+        onClick={() =>
+          dispatch(
+            addToCart({
+              productId: count++,
+              name: "staircase",
+              price: 23000,
+              quantity: 2,
+              subtotal: 50000,
+            })
+          )
+        }
+      >
+        addToCart
+      </button>
+      <button
+        onClick={() =>
+          dispatch(
+            removeFromCart({
+              productId: 2,
+              name: "staircase",
+              price: 23000,
+              quantity: 2,
+              subtotal: 10000,
+            })
+          )
+        }
+      >
+        remove
+      </button>
       <section className="carousel_header ">
         <div>
           <p>Enjoy up to 15% discount on your first order</p>
 
           <button className="btn btn-primary">
-            <strong >Shop Now</strong>
+            <strong>Shop Now</strong>
           </button>
         </div>
       </section>

@@ -52,7 +52,9 @@ const ProductPage = ({}) => {
               <h2>70,000</h2>
             </div>
           ) : (
-            <p>Reach out to us</p>
+            <p>
+              <strong>PRICE:</strong> Price will be shared as per measurement
+            </p>
           )}
 
           {!isMeasurable ? (
@@ -65,7 +67,7 @@ const ProductPage = ({}) => {
               className="btn-cart btn btn-primary "
               onClick={() => setOpenModal(true)}
             >
-              Request Quote
+              Request Price Quote
             </button>
           )}
 

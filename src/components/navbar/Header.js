@@ -13,11 +13,13 @@ import { logout } from "../../services/slices/authSlice";
 import { Offcanvas } from "react-bootstrap";
 import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
 import { useState } from "react";
+import Cart from "../cart/Cart";
 
 const Header = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
+  const { cartQuantity } = useSelector((state) => state.cart);
 
   const handleClose = () => setShowSidebar(false);
   const handleShow = () => setShowSidebar(true);
@@ -75,7 +77,7 @@ const Header = () => {
           <IconContext.Provider value={{ size: "24px" }}>
             <div className="col-4 col-sm-3 nav-icons">
               <FiUser />
-              <FiShoppingCart />
+              <Cart count={cartQuantity} />
             </div>
           </IconContext.Provider>
         </Navbar>

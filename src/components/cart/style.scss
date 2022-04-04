@@ -1,0 +1,10 @@
+.cart-wrapper {
+  position: relative;
+  .cart-count {
+    color: black;
+    bottom: 15px;
+    left: 10px;
+    position: absolute;
+    border-radius: 50%;
+  }
+}
