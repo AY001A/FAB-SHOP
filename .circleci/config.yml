@@ -50,7 +50,7 @@ jobs:
     docker:
     - image: arvindr226/alpine-ssh
     steps:
-      - run: ssh -oStrictHostKeyChecking=no -v $DOCKER_USER@$DOCKER_IP "./docker-run.sh"
+      - run: ssh -oStrictHostKeyChecking=no -v $DEV_USER@$DEV_IP "./docker-run.sh"
 
 workflows:
   version: 2
