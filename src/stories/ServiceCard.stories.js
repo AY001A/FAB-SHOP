@@ -1,7 +1,7 @@
 import ServiceCard from "../components/cards/service-card/ServiceCard";
 
 export default {
-  title: "FabGarage/ServiceCard",
+  title: "FabGarage/Cards/ServiceCard",
   component: ServiceCard,
 };
 

@@ -2,7 +2,7 @@ version: 2.1
 variables:
   repo_name: "${DOCKER_REPO_NAME}"
   image_tag: "${CIRCLE_BUILD_NUM}"
-orbs: 
+orbs:
   docker: circleci/docker@2.0.3
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
       - checkout
       - docker/build:
           image: "<< parameters.docker_repo_name >>"
-          tag:  "<< parameters.docker_image_tag >>"
+          tag: "<< parameters.docker_image_tag >>"
       - run:
           name: create directory
           command: mkdir -p frontends/images
@@ -51,7 +51,6 @@ jobs:
           image: "<< parameters.docker_repo_name >>"
           tag: "<< parameters.docker_image_tag >>"
       #- run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
-      
 
 workflows:
   build_workflow:

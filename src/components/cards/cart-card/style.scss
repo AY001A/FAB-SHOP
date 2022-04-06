@@ -1,0 +1,20 @@
+.cart-item-wrapper{
+    background-color: #F8F8F8;
+    
+    .cart-item-container{
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    .cart-product-details{
+        display: flex;
+        // height: 100px;
+    }
+    .cart-image-wrapper{
+        img{
+            width: 100px;
+            height: 100px;
+        }
+    }
+}

@@ -22,3 +22,13 @@
     object-fit: cover;
   }
 }
+.prodcat-products-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-left: 8px;
+
+  @media (min-width: 576px) {
+    padding-left: 16px;
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

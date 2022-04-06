@@ -1,18 +1,54 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import TopDealsCard from "../../components/cards/top-deals-card/TopDealsCard";
-import { TopDealsSlider } from "../../components/carousel";
-// import { Fa } from "react-icons/fa";
 import "./style.scss";
 import ServiceCard from "../../components/cards/service-card/ServiceCard";
+import ProductCard from "../../components/cards/product-card/ProductCard";
 import { services } from "../services/services";
+import Slider from "../../components/slider/Slider";
+
+import { useDispatch } from "react-redux";
+import { removeFromCart, addToCart } from "../../services/slices/cartSlice";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const productCount = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+  let count = 1;
+  const dispatch = useDispatch();
+
   return (
     <>
+      <button
+        onClick={() =>
+          dispatch(
+            addToCart({
+              productId: count++,
+              name: "staircase",
+              price: 23000,
+              quantity: 2,
+              subtotal: 50000,
+            })
+          )
+        }
+      >
+        addToCart
+      </button>
+      <button
+        onClick={() =>
+          dispatch(
+            removeFromCart({
+              productId: 2,
+              name: "staircase",
+              price: 23000,
+              quantity: 2,
+              subtotal: 10000,
+            })
+          )
+        }
+      >
+        remove
+      </button>
       <section className="carousel_header ">
         <div>
           <p>Enjoy up to 15% discount on your first order</p>
@@ -57,30 +93,12 @@ const HomePage = () => {
           <p>Top Deals</p> <Link to={"/"}>see more</Link>
         </div>
         <div className="top-deals-products w-100 row ">
-          {/* <div className="slide-container row ">
-            <TopDealsCard />
-            <TopDealsCard />
-            <TopDealsCard />
-            <TopDealsCard />
-            <TopDealsCard />
-            <TopDealsCard />
-            <TopDealsCard />
-          </div> */}
-          {/* <button type="button" className="prev">
-            bun
-          </button>
-          <button type="button" className="next">
-            gjn
-          </button> */}
           <div className="slide-container row ">
-            <TopDealsSlider>
+            <Slider>
               {productCount.map((prod, index) => (
                 <TopDealsCard key={index} />
               ))}
-              {/* <TopDealsCard />
-            <TopDealsCard />
-          <TopDealsCard /> */}
-            </TopDealsSlider>
+            </Slider>
           </div>
         </div>
       </section>
@@ -146,7 +164,19 @@ const HomePage = () => {
           <p>Top Products</p> <Link to={"/"}>see more</Link>
         </div>
         <div className="top-products">
-          <p>No product available</p>
+          {/* <p>No product available</p> */}
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
         </div>
       </section>
     </>

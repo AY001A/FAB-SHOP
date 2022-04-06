@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import ProductCard from "../../components/cards/product-card/ProductCard";
 import ProductCatImage from "../../assets/images/productcategory/productcategory.jpg";
 import ProductCatImageWebP from "../../assets/images/productcategory/productcategory.webp";
 import "./style.scss";
@@ -9,7 +10,7 @@ const ProductCategoryPage = () => {
 
   return (
     <div className="product-category-wrapper ">
-      <div className="product-category-image-wrapper mb-4">
+      <div className="product-category-image-wrapper mb-4 ">
         <picture>
           <source
             srcSet={ProductCatImageWebP}
@@ -26,7 +27,23 @@ const ProductCategoryPage = () => {
       <h5 className="mb-4 text-capitalize">{category}</h5>
 
       <div className="prodcat-products-wrapper">
-        <p className="text-center">Oops!!! products unavailable...</p>
+        {/* <p className="text-center">Oops!!! products unavailable...</p> */}
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
       </div>
     </div>
   );
