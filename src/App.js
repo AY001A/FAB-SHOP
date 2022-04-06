@@ -10,6 +10,7 @@ import AuthLayout from "./containers/layout/AuthLayout/AuthLayout";
 import ForgetPassword from "./pages/auth/forgetPassword/ForgetPassword";
 import ServicesHomePage from "./pages/services/ServicesHomePage";
 import ProductPage from "./pages/product/ProductPage";
+// import CartPage from "./pages/cart/CartPage";
 // import ServicePage from "./pages/services/ServicePage";
 import { lazy, Suspense } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
@@ -29,6 +30,7 @@ import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
 //   import("./pages/auth/forgetPassword/ForgetPassword")
 // );
 const ServicePage = lazy(() => import("./pages/services/ServicePage"));
+const CartPage = lazy(()=> import('./pages/cart/CartPage'))
 
 function App() {
   return (
@@ -42,15 +44,20 @@ function App() {
             path="forget-password/success"
             element={<ForgetPasswordSuccess />}
           />
+
+          <Route path="cart" element={<CartPage />} />
+          
+          {/* Services */}
           <Route path="services" element={<ServicesHomePage />} />
           <Route path="services/:service" element={<ServicePage />} />
 
+          {/* Products */}
           <Route
             path="productCategory/:category"
             element={<ProductCategoryPage />}
           />
-
           <Route path="products/:productId/:title" element={<ProductPage />} />
+
 
           {/* todo make work */}
           <Route path="resetpassword/" element={<PasswordReset />}>
@@ -59,6 +66,8 @@ function App() {
 
           <Route path="*" element={<NotFound />} />
         </Route>
+
+        {/* authentication */}
         <Route
           path="/login"
           element={<AuthLayout Children={<LoginPage />} />}

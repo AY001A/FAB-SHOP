@@ -77,7 +77,9 @@ const Header = () => {
           <IconContext.Provider value={{ size: "24px" }}>
             <div className="col-4 col-sm-3 nav-icons">
               <FiUser />
+              <Link to={'cart'} >
               <Cart count={cartQuantity} />
+              </Link>
             </div>
           </IconContext.Provider>
         </Navbar>
