@@ -67,7 +67,7 @@ const ProductPage = ({}) => {
               className="btn-cart btn btn-primary "
               onClick={() => setOpenModal(true)}
             >
-              Request Price Quote
+              Request Price
             </button>
           )}
 
