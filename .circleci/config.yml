@@ -48,9 +48,9 @@ jobs:
           command: docker push pihemcloud/conclase:cucumislushfrontend
   deploy:
     docker:
-    - image: arvindr226/alpine-ssh
+      - image: cimg/node:17.8.0
     steps:
-      - run: ssh -oStrictHostKeyChecking=no -v $DEV_USER@$DEV_IP "./docker-run.sh"
+      - run: ssh -oStrictHostKeyChecking=no -v $DEV_USER@$DEV_IP "./conclase-deploy.sh"
 
 workflows:
   version: 2
