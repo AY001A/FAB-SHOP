@@ -1,14 +1,64 @@
-version: 2.1
+version: 2
 jobs:
   build:
+    parameters:
+      repo_name:
+        type: string
+        default: ${DOCKER_REPO_NAME}
+      image_tag:
+        type: string
+        default: ${CIRCLE_BUILD_NUM}
+    docker:
+      - image: cimg/node:17.8.0
+        environment:
+          ENV_NAME: DEV
+    steps:
+      - checkout
+      - run:
+          name: Export Env Var
+          command: |
+            echo 'export TAG=${CIRCLE_BUILD_NUM}' >> $BASH_ENV
+            echo 'export IMAGE_NAME=cucumislushfrontend' >> $BASH_ENV
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: login to docker hub
+          command: |
+            sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+      - run:
+          name: Build Docker Image
+          command: docker build -t $IMAGE_NAME:$TAG .
+      - run:
+          name: Tag Image
+          command: docker tag $IMAGE_NAME:$TAG "pihemcloud/conclase:cucumislushfrontend"
+
+      - run:
+          name: Check List of docker image
+          command: |
+            echo 'checking to see if $DOCKER_REPO_NAME/$IMAGE_NAME:$TAG is present'
+            docker image ls
+      - run:
+          name: login to docker hub
+          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+      - run:
+          name: Push Docker image
+          command: docker push pihemcloud/conclase:cucumislushfrontend
+  deploy:
     docker:
       - image: cimg/node:17.8.0
     steps:
-      - checkout
-      - run: sudo docker build -t 'cucumislushfrontend:$CIRCLE_BUILD_NUM' .
+      - run: ssh -oStrictHostKeyChecking=no -v $DEV_USER@$DEV_IP "./conclase-deploy.sh"
 
 workflows:
-  build_workflow:
+  version: 2
+  build-docker:
     jobs:
-      - build
-  
+      - build:
+          context:
+            - conclase
+      - deploy:
+          requires:
+            - build
