@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 import RatingsViewOnly from "../../rating/RatingsViewOnly";
 import ReviewCount from "../../review-count/ReviewCount";
-import DoorImage from "../../../assets/images/door.jpg";
+import DoorImage from "../../../assets/images/chair.jpg";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ className }) => {
