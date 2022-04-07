@@ -13,7 +13,7 @@
     // width: 100vw;
     margin-bottom: 40px;
     background: url("../../assets/images/headerImage/background.jpg");
-    height: 450px;
+    height: 350px;
     background-size: cover;
   }
 
@@ -277,5 +277,16 @@
     // scroll-snap-stop: always;
     margin: 0 auto;
     // margin-left: 0;
+  }
+}
+
+.top-products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-left: 8px;
+
+  @media (min-width: 576px) {
+    padding-left: 16px;
+    grid-template-columns: repeat(6, 1fr);
   }
 }

@@ -18,7 +18,7 @@ jobs:
           name: Export Env Var
           command: |
             echo 'export TAG=${CIRCLE_BUILD_NUM}' >> $BASH_ENV
-            echo 'export IMAGE_NAME=cucumislushfrontend' >> $BASH_ENV 
+            echo 'export IMAGE_NAME=cucumislushfrontend' >> $BASH_ENV
 
       - setup_remote_docker:
           docker_layer_caching: true
@@ -26,7 +26,7 @@ jobs:
           name: login to docker hub
           command: |
             sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-               
+
       - run:
           name: Build Docker Image
           command: docker build -t $IMAGE_NAME:$TAG .
@@ -42,7 +42,7 @@ jobs:
       - run:
           name: login to docker hub
           command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            
+
       - run:
           name: Push Docker image
           command: docker push pihemcloud/conclase:cucumislushfrontend
@@ -58,7 +58,7 @@ workflows:
     jobs:
       - build:
           context:
-            - conclase 
+            - conclase
       - deploy:
           requires:
             - build
