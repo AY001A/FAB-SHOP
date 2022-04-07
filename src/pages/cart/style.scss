@@ -1,70 +1,98 @@
-.cart-page-wrapper{
-    // margin-left: 250px;
-    // width: 75%;
-    // margin:  12px;
-    // display: flex;
-    // justify-content: space-between;
-    // overflow: hidden;
-    // height: 50vh;
-    // min-height: 2vh;
+// .cart-page-wrapper{
+//     // margin-left: 250px;
+//     // width: 75%;
+//     // margin:  12px;
+//     // display: flex;
+//     // justify-content: space-between;
+//     // overflow: hidden;
+//     // height: 50vh;
+//     // min-height: 2vh;
     
 
-    .cart-header{
-        display: flex;
-        align-items: baseline;
-        margin-top: 32px;
 
-        h2{margin-bottom: 0;
-            font-size: 32px;
-        }
+//     .cart-sidebar{
+    //         height: 100vh;
+    //     }
+    //     .cart-container-wrapper{
+        //         // width: 75%;
+        //         display: flex;
+        //         // width: 100%;
+        //         // height: 150vh;
+        //         // background-color: pink;
+        //         // display: flex;
+        //         // flex-direction: column;
+        //         // justify-content: space-between;
+        //         // position: relative;
+        //     }
+        
+        //     .cart-price-card-container {
+            //         // position: sticky;
+            //         // top: 72px;
+            //         width: 100%;
+            //         height: 440px;
+            //         background-color: #F8F8F8;
 
-        p{
-            padding-left: 8px;
-            font-size: 18px;
-        }
+            //     }
+            
+            
+            //     @media (min-width: 576px) {
+                //         margin: 0 32px;
+                
+                //         .cart-container-wrapper{
+                    //             display: flex;
+                    //             justify-content: space-between;
+                    
+                    //             .cart-card-wrapper{
+                        //                 width: 100%;
+                        
+                        //                 // display: flex;
+                        //             }
+                        //         }
+                        
+                        //     }
+                        // }
+                        
+                        // .cart-sidebar-wrapper{
+                            //     // position: fixed;
+                            //     // width: 250px;
+                            //     // top: 0;
+                            //     // left: 0%;
+                            //     // height: 250px;
+                            //     // background-color: pink;
+                            // }
 
-    }
 
-    .cart-sidebar{
-        height: 100vh;
-    }
-    .cart-container-wrapper{
-        width: 75%;
+                 .cartpage-wrapper{
+                    margin: 0 32px;
+                    // min-height: 50vh;
+        
+                 }     
+                            .cart-header{
+                                display: flex;
+                                align-items: baseline;
+                                margin-top: 32px;
+                            
+                                h2{margin-bottom: 0;
+                                    font-size: 32px;
+                                }
+                            
+                                p{
+                                    padding-left: 8px;
+                                    font-size: 18px;
+                                }
+                            
+                            }
 
-        // width: 100%;
-        // height: 150vh;
-        // background-color: pink;
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: space-between;
-        // position: relative;
-    }
+                            .cart-price-card{
+                                padding: 24px;
+                                width: 100%;
+                                min-height: 250px;
+                                background-color:  #F8F8F8;
 
-    .cart-price-card {
-        position: sticky;
-        top: 72px;
-    }
-
-
-    @media (min-width: 576px) {
-        margin: 0 32px;
-
-        .cart-container-wrapper{
-            flex-direction: row;
-
-            .cart-card-wrapper{
-                // width: 70%;
-            }
-        }
-
-    }
-}
-
-.cart-sidebar-wrapper{
-    // position: fixed;
-    // width: 250px;
-    // top: 0;
-    // left: 0%;
-    // height: 250px;
-    // background-color: pink;
-}
+                                h3{
+                                margin-bottom: 32px;
+                                  font-size: 24px;
+                                  font-weight: 700;  
+                                  text-align: center;
+                                }
+                            }

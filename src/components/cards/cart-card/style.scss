@@ -1,20 +1,115 @@
+
+
 .cart-item-wrapper{
     background-color: #F8F8F8;
+    padding: 32px;
+    border-radius: 16px;
     
     .cart-item-container{
         display: flex;
         justify-content: space-between;
+        // flex: 0.5;
     }
 
 
     .cart-product-details{
         display: flex;
         // height: 100px;
-    }
-    .cart-image-wrapper{
-        img{
-            width: 100px;
-            height: 100px;
+
+        .product-code{
+            font-size: 14px;
+        }
+       
+        .cart-title{
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
     }
+
+    .cart-delete-btn{
+        // margin-top: 45px;
+        cursor: pointer;
+        
+    }
+
+    .cart-image-wrapper{
+        padding-right: 24px;
+        
+
+        img{
+            width: 100px;
+            height: 110px;
+            border-radius: 4px;
+        }
+    }
+
+    // .cart-item-details{
+    //     display: flex;
+    //     flex-direction: column;
+    //     flex: 0.5;
+    //     width: 100%;
+    // }
+
+    .card-quantity{
+
+        display: flex;
+        align-items: center;
+        width: 200px;
+        justify-content: space-between;
+        margin-bottom: 18px;
+
+
+        p{
+            // margin-right: 24px;
+            color: #777777;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        
+        button {
+            width: 24px;
+            height: 24px;
+            background-color: #fecf00;
+            padding: 0;
+        }
+     
+    }
+
+   
+    .quantityCol{
+        display: flex;
+        width: 100px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .unit-price{
+        display: flex;
+        width: 200px;
+        justify-content: space-between;
+        color: #777777;
+        margin-bottom: 18px;
+        font-size: 14px;
+
+
+
+
+        .unit-price-value{
+            font-size: 16px;
+            font-weight: 700;
+
+            p{
+                margin-bottom: 0;
+
+            }
+        }
+
+    }
+
+   
+
+   
 }

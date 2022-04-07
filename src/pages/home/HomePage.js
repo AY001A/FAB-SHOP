@@ -26,8 +26,8 @@ const HomePage = () => {
               productId: count++,
               name: "staircase",
               price: 23000,
-              quantity: 2,
-              subtotal: 50000,
+              quantity: 1,
+              subtotal: 23000,
             })
           )
         }
