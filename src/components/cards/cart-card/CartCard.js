@@ -8,6 +8,7 @@ import {
   decreaseProductQuantity,
   removeFromCart,
 } from "../../../services/slices/cartSlice";
+import Currency from "../../currency/Currency";
 
 const CartCard = ({ name, productId, price, subtotal, product }) => {
   const { products } = useSelector((state) => state.cart);
@@ -44,8 +45,8 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
 
             <div>
               <div className="cart-title-wrapper">
-                <p className="fw-bold fs-5">{name}</p>
-                <p className="fw-normal text-muted">
+                <p className="cart-title">{name}</p>
+                <p className="text-muted product-code">
                   Product Code: {productId}
                 </p>
               </div>
@@ -53,8 +54,8 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
               <div className="cart-delete-btn">
                 {/* <img src={DeleteIcon} /> */}
                 <DeleteIcon
-                  width={35}
-                  height={35}
+                  width={24}
+                  height={24}
                   onClick={() => dispatch(removeFromCart(product))}
                 />
               </div>
@@ -63,24 +64,26 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
         </div>
 
         <div className="cart-item-details">
-          <div className="row align-items-start quantityRow">
-            <div className="col">
-              <div className="quantityAdjustment row align-items-center fs-6 text-secondary">
+          <div className=" card-quantity">
+            <div>
+              <p className="quantityAdjustment row align-items-center">
                 Quantity :{" "}
-              </div>
+              </p>
             </div>
 
-            <div className="col quantityCol">
+            <div className=" quantityCol">
               <button
-                className="decreaseButton"
                 onClick={() => dispatch(decreaseProductQuantity(productId))}
                 disabled={prodQuantity === 1}
+                className="btn"
               >
                 -
               </button>
-              <p className="quantityFigure">{prodQuantity}</p>
+              <div>
+                <strong>{prodQuantity}</strong>
+              </div>
               <button
-                className="increaseButton"
+                className="btn"
                 onClick={() => dispatch(increaseProductQuantity(productId))}
               >
                 +
@@ -88,27 +91,27 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
             </div>
           </div>
 
-          <div className="row align-items-center unitRow">
-            <div className="col">
-              <div className="unitPrice row align-items-center fs-6 text-secondary">
-                Unit :{" "}
-              </div>
+          <div className="unit-price">
+            <div className="">
+              <div className=" row align-items-center">Unit : </div>
             </div>
-            <div className="col">
-              <div className="text-dark unitPriceFigure">₦{price}</div>
+            <div className="unit-price-value">
+              <p className="text-dark">
+                <Currency>{price}</Currency>
+              </p>
             </div>
           </div>
 
-          <div className="row align-items-end subtotalRow">
-            <div className="col">
-              <div className="subtotalPrice row align-items-center fs-6 text-secondary">
+          <div className="unit-price">
+            <div className="">
+              <div className="subtotalPrice row align-items-center  text-secondary">
                 Sub total:
               </div>
             </div>
-            <div className="col">
-              <div className="subtotalPriceFigure text-dark">
-                ₦{price * prodQuantity}
-              </div>
+            <div className="unit-price-value">
+              <p className="subtotalPriceFigure text-dark">
+                <Currency>{price * prodQuantity}</Currency>
+              </p>
             </div>
           </div>
         </div>

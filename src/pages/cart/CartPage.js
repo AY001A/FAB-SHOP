@@ -2,37 +2,15 @@ import React from "react";
 import "./style.scss";
 import { useSelector } from "react-redux";
 import CartCard from "../../components/cards/cart-card/CartCard";
+import { Link } from "react-router-dom";
+import Currency from "../../components/currency/Currency";
 
 const CartPage = () => {
-  const { cartQuantity, products } = useSelector((state) => state.cart);
+  const { cartQuantity, products, totalPrice } = useSelector(
+    (state) => state.cart
+  );
 
   return (
-    // <div className="cart-page-wrapper">
-    //   <div className="cart-container-wrapper">
-    //     <div className="cart-card-wrapper">
-    //       <div className="cart-header">
-    //         <h2>Cart </h2> <p>({cartQuantity} Items)</p>
-    //       </div>
-    //       <CartCard />
-    //     </div>
-
-    //     {/* <div className="cart-price-card"> */}
-    //     <div className="cart-price-card-container">
-    //       <h3>Order Summary</h3>
-
-    //       <p></p>
-    //       {/* </div> */}
-    //     </div>
-    //   </div>
-    // </div>
-    // <div className="row">
-    //   <div className=" col-8 ">main menul</div>
-    //   <div className="col-4  ">
-    //     {" "}
-    //     <div>side bar</div>
-    //   </div>
-    // </div>
-
     <div className="cartpage-wrapper">
       <div className="cart-header">
         <h2>Cart </h2> <p>({cartQuantity} Items)</p>
@@ -40,16 +18,32 @@ const CartPage = () => {
 
       <div className="row">
         <div className="col-8">
-          {products.map((cartproduct) => (
-            <CartCard
-              name={cartproduct.name}
-              price={cartproduct.price}
-              subtotal={cartproduct.subtotal}
-              productId={cartproduct.productId}
-              key={cartproduct.productId}
-              product={cartproduct}
-            />
-          ))}
+          {products.length > 0 ? (
+            products.map((cartproduct) => (
+              <CartCard
+                name={cartproduct.name}
+                price={cartproduct.price}
+                subtotal={cartproduct.subtotal}
+                productId={cartproduct.productId}
+                key={cartproduct.productId}
+                product={cartproduct}
+              />
+            ))
+          ) : (
+            <div className="cart-isEmpty-wrapper text-center mt-5">
+              <p>
+                <strong>Your cart is empty!</strong>
+              </p>
+              <p className="text-muted">
+                Browse our categories and discover our best deals
+              </p>
+              <Link to={"/"}>
+                <button className="btn btn-primary mt-2">
+                  Continue shopping
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
         <div className="col-4">
           <div className="cart-price-card">
@@ -60,13 +54,16 @@ const CartPage = () => {
               <p className="col-6"></p>
             </div>
             <div className="row justify-between ">
-              <p className="col-6">Subtotal:</p>
-              <p className="col-6 fw-bold">N40,000</p>
+              <p className="col-6">Total:</p>
+              <p className="col-6 fw-bold">
+                <Currency>{totalPrice}</Currency>
+              </p>
             </div>
-            {/* <div className="border-bottom w-"></div> */}
             <div className="row justify-between">
-              <p className="col-6">Main total:</p>
-              <p className="col-6 fw-bold">N59,0000</p>
+              <p className="col-6">Accumulated total:</p>
+              <p className="col-6 fw-bold">
+                <Currency>{totalPrice}</Currency>
+              </p>
             </div>
 
             <button className="btn btn-primary btn-lg w-100 mt-2 mb-2">
