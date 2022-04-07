@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const API_BASE_ENDPOINT =
-  "http://fabmicroservice.eastus2.cloudapp.azure.com:3000";
+const API_BASE_ENDPOINT = "http://174.138.0.201:3000";
 
 export default axios.create({
   baseURL: API_BASE_ENDPOINT,
