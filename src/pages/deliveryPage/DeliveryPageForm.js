@@ -62,7 +62,7 @@ const DeliveryPageForm = () => {
               </div>
               
               <div className='mt-5'>
-                <button type="submit" className="btn-primary w-100 p-2">Continue</button>
+                <button type="submit" className="btn-primary w-100 p-2 deliveryButton">Continue</button>
               </div>
               
 
