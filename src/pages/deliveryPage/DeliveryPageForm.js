@@ -1,8 +1,27 @@
 import React from 'react'
+import { useState } from 'react'
 import "./styles.scss";
 import Delivery from '../../assets/images/delievryImage.svg';
 
 const DeliveryPageForm = () => {
+
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [number, setNumber] = useState('')
+  const [address, setAddress] = useState('')
+  const [state, setState] = useState('')
+
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const deliveryDetails = { fullName, email, number, address, state }
+
+    console.log(deliveryDetails);
+  }
+
   return (
     <div className="container deliveryPage mt-5">
       <div className="row p-4">
@@ -10,30 +29,30 @@ const DeliveryPageForm = () => {
           <div className="deliveryLeftCol">
             <h1 className='deliveryHeader'>Delivery Address Form</h1>
             <p className='deliverParagrapgh'>Kindly fill this form to help you get your order delivered at your doorstep.</p>
-            <form className='my-5'>
+            <form className='my-5' onSubmit={handleSubmit}>
               <div class="mb-4">
                 <label for="exampleInputEmail1" className="labelTitle form-label">Full name</label>
-                <input placeholder='Noah Abraham' type="text" className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                <input placeholder='Noah Abraham' value={fullName} onChange={(e)=> setFullName(e.target.value)} type="text" className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
               </div>
 
               <div class="mb-4">
                 <label for="exampleInputEmail1" className="labelTitle form-label">Email address</label>
-                <input placeholder='Noahabraham@conclase.com.ng' type="email" className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                <input placeholder='Noahabraham@conclase.com.ng' value={email} onChange={(e)=> setEmail(e.target.value)} type="email" className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
               </div>
 
               <div class="mb-4">
                 <label for="exampleInputEmail1" className="labelTitle form-label">Phone number</label>
-                <input placeholder='08041941941' type="number" className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                <input placeholder='08041941941' type="number" value={number} onChange={(e)=> setNumber(e.target.value)} className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
               </div>
 
               <div class="mb-4">
                 <label for="exampleInputEmail1" className="labelTitle form-label">Address</label>
-                <input placeholder='10,Wole Ogunjimi, Opebi-Ikeja' type="text" className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                <input placeholder='10,Wole Ogunjimi, Opebi-Ikeja' type="text" value={address} onChange={(e)=> setAddress(e.target.value)} className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
               </div>
 
               <div class="mb-5">
                 <label for="Select" className="labelTitle form-label">State</label>
-                <select id="Select" className="form-select p-2">
+                <select id="Select" className="form-select p-2 " value={state} onChange={(e)=> setState(e.target.value)}>
                   <option>Lagos</option>
                   <option>Abuja</option>
                   <option>Kano</option>
@@ -67,7 +86,7 @@ const DeliveryPageForm = () => {
 
 
 
-        
+
     </div>
 
     </div>
