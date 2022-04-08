@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import THUMBSUP from "../../assets/icons/thumbsup.svg";
+import Footer from "../../components/footer/Footer";
+import Header from "../../components/navbar/Header";
 import './checkoutSuccess.scss'
 
 
-const checkoutSuccess = () => {
+const CheckoutSuccess = () => {
   return (
     <div>
+      <Header />
     <div className="container">
       <div className="row">
       <div className="col-lg-12 thumb">
@@ -30,9 +33,11 @@ const checkoutSuccess = () => {
         </button>
       </Link>
     </div>
+   
+    <Footer />
     </div>
   );
  
 };
 
-export default checkoutSuccess;
+export default CheckoutSuccess;

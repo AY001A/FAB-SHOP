@@ -15,6 +15,7 @@ import ProductPage from "./pages/product/ProductPage";
 import { lazy, Suspense } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
+import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
 // const LoginPage = lazy(() => import("./pages/auth/login/LoginPage"));
@@ -67,6 +68,9 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
 
+        <Route path="/checkout" element={<CheckoutSuccess />} />
+        {/* </Route> */}
+
         {/* authentication */}
         <Route
           path="/login"
@@ -76,6 +80,7 @@ function App() {
           path="/register"
           element={<AuthLayout Children={<RegisterPage />} />}
         />
+       
       </Routes>
     </ScrollToTop>
     // </Suspense>

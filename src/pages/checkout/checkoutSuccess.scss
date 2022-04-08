@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    margin-top: 72px;
     
  }
 
@@ -14,15 +14,20 @@
     justify-content: center;
     align-items: center;
     font-weight: 700;
-    font-size: 48px;
+    font-size: 38px;
+   margin-top: -20px;
 
 }
 
 .h3{
  font-weight: 300;
- font-size: 24px;
+ font-size: 18px;
 }
 
 .span{
     font-weight: 700;
+}
+
+.btn{
+    margin-bottom: 46px;
 }
