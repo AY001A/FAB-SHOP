@@ -30,28 +30,28 @@ const DeliveryPageForm = () => {
             <h1 className='deliveryHeader'>Delivery Address Form</h1>
             <p className='deliverParagrapgh'>Kindly fill this form to help you get your order delivered at your doorstep.</p>
             <form className='my-5' onSubmit={handleSubmit}>
-              <div class="mb-4">
-                <label for="exampleInputEmail1" className="labelTitle form-label">Full name</label>
+              <div className="mb-4">
+                <label htmlFor="name" className="labelTitle form-label">Full name</label>
                 <input placeholder='Noah Abraham' value={fullName} onChange={(e)=> setFullName(e.target.value)} type="text" className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
               </div>
 
-              <div class="mb-4">
-                <label for="exampleInputEmail1" className="labelTitle form-label">Email address</label>
+              <div className="mb-4">
+                <label htmlFor="email" className="labelTitle form-label">Email address</label>
                 <input placeholder='Noahabraham@conclase.com.ng' value={email} onChange={(e)=> setEmail(e.target.value)} type="email" className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
               </div>
 
-              <div class="mb-4">
-                <label for="exampleInputEmail1" className="labelTitle form-label">Phone number</label>
+              <div className="mb-4">
+                <label htmlFor="number" className="labelTitle form-label">Phone number</label>
                 <input placeholder='08041941941' type="number" value={number} onChange={(e)=> setNumber(e.target.value)} className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
               </div>
 
-              <div class="mb-4">
-                <label for="exampleInputEmail1" className="labelTitle form-label">Address</label>
+              <div className="mb-4">
+                <label htmlFor="address" className="labelTitle form-label">Address</label>
                 <input placeholder='10,Wole Ogunjimi, Opebi-Ikeja' type="text" value={address} onChange={(e)=> setAddress(e.target.value)} className=" p-2 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
               </div>
 
-              <div class="mb-5">
-                <label for="Select" className="labelTitle form-label">State</label>
+              <div className="mb-5">
+                <label htmlFor="Select" className="labelTitle form-label">State</label>
                 <select id="Select" className="form-select p-2 " value={state} onChange={(e)=> setState(e.target.value)}>
                   <option>Lagos</option>
                   <option>Abuja</option>
