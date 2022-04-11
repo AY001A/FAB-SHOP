@@ -1,0 +1,68 @@
+.deliveryName{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+
+}
+
+.deliveryButton{
+    outline: none;
+    border: none;
+    background: none;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #C58002;
+}
+
+.checkBox{
+    border: 2px solid #E59502;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+}
+
+.summaryImage{
+    height: 150px;
+    width: 135px;
+}
+
+.shippingDetailsProductName{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: capitalize;
+    width: 278px;
+    color: #000000;
+}
+
+.shippingDetailsProductColor{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: capitalize;
+    color: #494949;
+}
+
+.shippingDetailsProductMeasurement{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: capitalize;
+    color: #494949;
+}
+
+.shippingDetailsProductQuantity{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: capitalize;
+    color: #494949;
+}
