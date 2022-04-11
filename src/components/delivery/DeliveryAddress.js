@@ -7,11 +7,10 @@ const DeliveryAddress = () => {
         
         <div className='d-flex justify-content-between'>
             <p className='deliveryName'>Noah Abraham</p>
-            <button className='deliveryButton'>Change</button>
         </div>
 
-        <p>10,Wole Ogunjimi, Opebi-Ikeja</p>
-        <p>09016247864</p>
+        <p className='text-secondary'>10,Wole Ogunjimi, Opebi-Ikeja</p>
+        <p className='text-secondary'>09016247864</p>
         
 
     </div>

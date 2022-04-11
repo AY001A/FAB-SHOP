@@ -10,7 +10,7 @@ const DeliveryMethod = () => {
             <input className="form-check-input checkBox" type="checkbox" value="" id="flexCheckDefault" />
         </div>
 
-        <p>Get the product you ordered for immediately for  ₦7,500 </p>
+        <p className="text-secondary">Get the product you ordered for immediately for  ₦7,500 </p>
     </div>
   )
 }

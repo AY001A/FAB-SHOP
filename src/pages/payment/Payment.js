@@ -6,13 +6,12 @@ import './style.scss'
 
 const Payment = () => {
   return (
-    <div className="payment-wrapper container my-5 px-5">
+    <div className="payment-wrapper container my-5 px-4">
         <div className="row">
             <h2 className='paymentSummary mb-3'>Delivery Address Details </h2>
             <div className="col-7">
                 <div>
                     
-                    <DeliveryAddress />
                     <DeliveryAddress />
 
                 </div>
@@ -24,47 +23,9 @@ const Payment = () => {
 
                 </div>
 
-                <div className="mt-5">
-                    <h2 className='paymentSummary mb-3 mt-3'>Shipment Details</h2>
-                    <p>Please select a delivery option</p>
-                        <ShippingDetails /> 
-                        <ShippingDetails /> 
 
-                </div>
 
-                <div className="mt-5 px-4">
-                    <div className="d-flex justify-content-between mt-5">
-                        <div>
-                            <p className='subTotalSummary'>Subtotal</p>
-                        </div>
-                        <div>
-                            <p className='subTotalSummaryPrice fw-bold'>₦70,000</p>
-                        </div>
-                    </div>
-                    <div className="d-flex justify-content-between mt-1">
-                        <div>
-                            <p className='subTotalSummary'>Delivery Fee</p>
-                        </div>
-                        <div>
-                            <p className='subTotalSummaryPrice fw-bold'>₦70,000</p>
-                        </div>
-                    </div>
-                    <hr className='px-5'/>
-
-                    <div className="d-flex justify-content-between mt-1">
-                        <div>
-                            <p className='subTotalSummary'>Total</p>
-                        </div>
-                        <div>
-                            <p className='subTotalSummaryPrice fw-bold'>₦700,000</p>
-                        </div>
-                    </div>
-                    <div className="d-grid gap-2 mt-3">
-                        <button className="btn btn-primary py-3 fw-bold" type="button">Proceed to make Payment</button>
-                    </div>
-                    
-
-                </div>
+                
             </div>
 
             <div className="col-5">
@@ -130,6 +91,51 @@ const Payment = () => {
                     <hr />
 
                 </div>
+            </div>
+
+            <div className='col-7'>
+                <div className="mt-5">
+                    <h2 className='paymentSummary mb-3 mt-3'>Shipment Details</h2>
+                    <p>Please select a delivery option</p>
+                        <ShippingDetails /> 
+                        <ShippingDetails /> 
+
+                </div>
+
+                <div className="mt-5 px-4">
+                    <div className="d-flex justify-content-between mt-5">
+                        <div>
+                            <p className='subTotalSummary'>Subtotal</p>
+                        </div>
+                        <div>
+                            <p className='subTotalSummaryPrice fw-bold'>₦70,000</p>
+                        </div>
+                    </div>
+                    <div className="d-flex justify-content-between mt-1">
+                        <div>
+                            <p className='subTotalSummary'>Delivery Fee</p>
+                        </div>
+                        <div>
+                            <p className='subTotalSummaryPrice fw-bold'>₦70,000</p>
+                        </div>
+                    </div>
+                    <hr className='px-5'/>
+
+                    <div className="d-flex justify-content-between mt-1">
+                        <div>
+                            <p className='subTotalSummary'>Total</p>
+                        </div>
+                        <div>
+                            <p className='subTotalSummaryPrice fw-bold'>₦700,000</p>
+                        </div>
+                    </div>
+                    <div className="d-grid gap-2 mt-3">
+                        <button className="btn btn-primary py-3 fw-bold" type="button">Proceed to make Payment</button>
+                    </div>
+                    
+
+                </div>
+
             </div>
         </div>
 
