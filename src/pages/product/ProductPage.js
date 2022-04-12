@@ -6,9 +6,12 @@ import Rating from "../../components/rating/RatingsViewOnly";
 import Slider from "../../components/slider/Slider";
 import ProductCard from "../../components/cards/product-card/ProductCard";
 import ProductFormModal from "../../components/modal/ProductFormModal";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../services/slices/cartSlice";
 
-const ProductPage = ({}) => {
+const ProductPage = ({ product }) => {
   const { productId, title } = useParams();
+  const dispatch = useDispatch();
   const [isMeasurable, setIsMeasurable] = useState(true);
   const [openModal, setOpenModal] = useState(false);
 
@@ -28,9 +31,9 @@ const ProductPage = ({}) => {
             corrosion resistance. This gate fits a 2438mm wide opening. Supplied
             with all necessary fittings to complete installation.
           </p>
-          <div className="product-rating">
+          {/* <div className="product-rating">
             <Rating value={4} /> <p>4.0</p>
-          </div>
+          </div> */}
           {/* <p className="product-review-count">12 reviews</p> */}
           <h2 className="product-price-mobile">70,000</h2>
           <p className="product-detail">Product detail</p>
@@ -59,7 +62,12 @@ const ProductPage = ({}) => {
 
           {!isMeasurable ? (
             <>
-              <button className="btn-cart btn btn-primary ">Add to cart</button>
+              <button
+                className="btn-cart btn btn-primary "
+                onClick={() => dispatch(addToCart(product))}
+              >
+                Add to cart
+              </button>
               <button className="btn btn-outline-primary">Buy now</button>
             </>
           ) : (

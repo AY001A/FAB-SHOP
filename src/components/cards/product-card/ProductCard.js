@@ -25,11 +25,11 @@ const ProductCard = ({ className }) => {
           <p className="topdeals-price mb-0 fw-bold">&#8358;70,000</p>
         </div>
 
-        <div className="d-flex">
+        {/* <div className="d-flex">
           <RatingsViewOnly value={4} />
           <ReviewCount count={15} />
-        </div>
-        <p className="services-description card-text small d-none d-sm-block">
+        </div> */}
+        <p className="services-description card-text small d-none d-sm-block mt-2">
           A random description about the product
         </p>
       </div>
