@@ -65,11 +65,11 @@ const Header = () => {
               <img src={Logo} alt="fabgarage brand" className="logo" />
             </Link>
 
-            <div className="category">
+            {/* <div className="category">
               <p>Shop by category</p>
 
               <FaAngleDown size={14} />
-            </div>
+            </div> */}
           </div>
           <div className="col-sm searchbar">
             <Searchbar />
@@ -77,8 +77,8 @@ const Header = () => {
           <IconContext.Provider value={{ size: "24px" }}>
             <div className="col-4 col-sm-3 nav-icons">
               <FiUser />
-              <Link to={'cart'} >
-              <Cart count={cartQuantity} />
+              <Link to={"cart"}>
+                <Cart count={cartQuantity} />
               </Link>
             </div>
           </IconContext.Provider>

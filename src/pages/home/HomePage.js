@@ -92,7 +92,7 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Deals</p> <Link to={"/"}>see more</Link>
         </div>
-        <div className="top-deals-products w-100 row ">
+        <div className="top-deals-products w-100 row p-sm-5 ">
           <div className="slide-container row ">
             <Slider>
               {productCount.map((prod, index) => (
@@ -107,7 +107,7 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Product Category</p>
         </div>
-        <div className="category w-100 ">
+        <div className="category w-100 p-5">
           <div className="productCategory bg-light w-100 ">
             <div className="row  rowball">
               <div
@@ -145,7 +145,7 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Services</p> <Link to={"/services"}>see more</Link>
         </div>
-        <div className="service-cards-wrapper">
+        <div className="service-cards-wrapper p-sm-5">
           {services
             .filter((serv) => serv.category === "Home")
             .map((val) => (
@@ -163,7 +163,7 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Products</p> <Link to={"/"}>see more</Link>
         </div>
-        <div className="top-products">
+        <div className="top-products p-sm-5">
           {/* <p>No product available</p> */}
           <ProductCard />
           <ProductCard />
