@@ -3,7 +3,7 @@ import './style.scss';
 
 const DeliveryMethod = () => {
   return (
-    <div className='p-4 orderSummaryContainer me-4 bg-light mb-4'>
+    <div className='p-4 orderSummaryContainer bg-light mb-4 sm-me-0'>
         
         <div className='d-flex justify-content-between'>
             <p className='deliveryName'>Priority Delivery</p>

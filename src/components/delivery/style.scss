@@ -66,3 +66,9 @@
     text-transform: capitalize;
     color: #494949;
 }
+
+@media (min-width: 320px) {
+    .shippingSummaryContainer{
+        width: 100%;
+    }
+}

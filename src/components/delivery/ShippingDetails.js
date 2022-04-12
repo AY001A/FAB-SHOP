@@ -4,7 +4,7 @@ import  Chair  from '../../assets/images/chair.jpg'
 
 const ShippingDetails = () => {
   return (
-    <div className='p-4 shippingSummaryContainer me-4 bg-light mb-4 d-flex justify-content '>
+    <div className='p-4 w-100 shippingSummaryContainer me-4 bg-light mb-4 d-flex justify-content '>
         <div>
             <img src={Chair} alt='' className='summaryImage' />
         </div>

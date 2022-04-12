@@ -9,7 +9,7 @@ const Payment = () => {
     <div className="payment-wrapper container my-5 px-4">
         <div className="row">
             <h2 className='paymentSummary mb-3'>Delivery Address Details </h2>
-            <div className="col-7">
+            <div className="col-md-7">
                 <div>
                     
                     <DeliveryAddress />
@@ -28,7 +28,7 @@ const Payment = () => {
                 
             </div>
 
-            <div className="col-5">
+            <div className="col-md-5">
                 <div className="orderSummaryContainer p-4 bg-light">
                     <h2 className='paymentSummary mb-4'>Order  Summary</h2>
                     <div className="d-flex justify-content-between">
@@ -93,7 +93,7 @@ const Payment = () => {
                 </div>
             </div>
 
-            <div className='col-7'>
+            <div className='col-sm-7'>
                 <div className="mt-5">
                     <h2 className='paymentSummary mb-3 mt-3'>Shipment Details</h2>
                     <p>Please select a delivery option</p>
