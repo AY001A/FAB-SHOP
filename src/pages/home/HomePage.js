@@ -62,7 +62,7 @@ const HomePage = () => {
         </section>
         <section className="carousel_header billboard_ad">
           <div className="carousel_info">
-            <p>Advertise your products on bilboards in Nigeria</p>
+            <p>Advertise your business on bilboards in Nigeria</p>
 
             <button className="btn btn-primary">
               <strong>Shop Now</strong>

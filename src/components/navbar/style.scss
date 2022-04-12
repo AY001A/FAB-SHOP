@@ -28,11 +28,15 @@ header {
     font-size: 14px;
     padding: 4px 20px;
 
+     z-index: -1;
+
     ul {
       padding-left: 0;
       a {
         text-decoration: none;
         color: black;
+        z-index: 0;
+
 
         &:hover {
           color: $primary;
@@ -54,6 +58,41 @@ header {
     }
   }
 }
+.dropdown_btn{
+  width: 80%;
+  margin: 0 14px;
+  margin-bottom: 12px;
+}
+
+.cart_btn{
+   display: flex;
+   p{
+     font-size: 14px;
+     margin: 0;
+     padding-left: 4px;
+     color:black;
+   }
+   
+}
+.account_btn{
+
+  display: flex;
+  align-items: center;
+  p{
+    font-size: 14px;
+
+    margin: 0;
+    padding-left: 4px;
+    color:black;
+  }
+
+  .account_dropdown{
+    a{
+      color: black;
+    }
+  }
+}
+
 
 .mobile-searchnav {
   padding-right: 8px;
@@ -87,9 +126,7 @@ header {
       display: block;
       // min-width: 300px;
 
-      input {
-      
-   }
+  
 
       
     }
