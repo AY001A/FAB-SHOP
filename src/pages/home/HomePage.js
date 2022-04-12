@@ -9,6 +9,7 @@ import Slider from "../../components/slider/Slider";
 
 import { useDispatch } from "react-redux";
 import { removeFromCart, addToCart } from "../../services/slices/cartSlice";
+import { HeaderSlider } from "../../components/carousel";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const HomePage = () => {
 
   return (
     <>
-      <button
+      {/* <button
         onClick={() =>
           dispatch(
             addToCart({
@@ -48,16 +49,37 @@ const HomePage = () => {
         }
       >
         remove
-      </button>
-      <section className="carousel_header ">
-        <div>
-          <p>Enjoy up to 15% discount on your first order</p>
+      </button> */}
+      <HeaderSlider>
+        <section className="carousel_header services_ad">
+          <div className="carousel_info ">
+            <p>World class proffessionals at your doorstep </p>
 
-          <button className="btn btn-primary">
-            <strong>Shop Now</strong>
-          </button>
-        </div>
-      </section>
+            <button className="btn btn-primary">
+              <strong>Hire Now</strong>
+            </button>
+          </div>
+        </section>
+        <section className="carousel_header billboard_ad">
+          <div className="carousel_info">
+            <p>Advertise your products on bilboards in Nigeria</p>
+
+            <button className="btn btn-primary">
+              <strong>Shop Now</strong>
+            </button>
+          </div>
+        </section>
+
+        <section className="carousel_header">
+          <div className="carousel_info discount_ad">
+            <p>Enjoy up to 15% discounts on your first order</p>
+
+            <button className="btn btn-primary">
+              <strong>Shop Now</strong>
+            </button>
+          </div>
+        </section>
+      </HeaderSlider>
 
       <section className="intro_section">
         <div className="intro_section_paragraphs">

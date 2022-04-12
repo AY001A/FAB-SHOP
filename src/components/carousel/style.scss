@@ -1,18 +1,22 @@
 .slider {
-  min-width: 600px;
-  scroll-snap-type: x mandatory;
+  // min-width: 1200px;
+ 
 
   // display: flex;
   // flex-wrap: nowrap;
 
   @media (min-width: 576px) {
-    margin-left: 8px;
-    // min-width: 100%;
-    // padding-left: 8px;
-
-    // background-color: pink;
+   
   }
 }
+
+
+.slick-slide, .slick-active, .slick-current{
+ 
+ 
+}
+
+
 
 // .arrow {
 //   display: none;
