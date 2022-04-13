@@ -85,10 +85,18 @@ const Header = () => {
 
                   {profile.isAuthenticated ? (
                     <>
-                      <NavDropdown.Item href="#action/3.2" className="mt-4">
+                      <NavDropdown.Item
+                        href="#action/3.2"
+                        className="mt-4 text-center"
+                        style={{ fontSize: "14px" }}
+                      >
                         My Account
                       </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2" className="mt-2">
+                      <NavDropdown.Item
+                        href="#action/3.2"
+                        className="mt-2 text-center"
+                        style={{ fontSize: "14px" }}
+                      >
                         My Orders
                       </NavDropdown.Item>
 
