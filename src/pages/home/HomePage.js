@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import TopDealsCard from "../../components/cards/top-deals-card/TopDealsCard";
 import "./style.scss";
@@ -10,16 +10,27 @@ import Slider from "../../components/slider/Slider";
 import { useDispatch } from "react-redux";
 import { removeFromCart, addToCart } from "../../services/slices/cartSlice";
 import { HeaderSlider } from "../../components/carousel";
+import { uploadToCloudinary } from "../../services/slices/imageUploadToCloudinarySlice";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const productCount = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const [imageFile, setImageFile] = useState("");
 
   let count = 1;
   const dispatch = useDispatch();
 
+  const handleImageUpload = () => {
+    dispatch(uploadToCloudinary(imageFile));
+  };
+
   return (
     <>
+      <input
+        type={"file"}
+        onChange={(event) => setImageFile(event.target.files[0])}
+      />
+      <button onClick={handleImageUpload}>upload</button>
       {/* <button
         onClick={() =>
           dispatch(
@@ -70,7 +81,7 @@ const HomePage = () => {
           </div>
         </section>
 
-        <section className="carousel_header">
+        {/* <section className="carousel_header">
           <div className="carousel_info discount_ad">
             <p>Enjoy up to 15% discounts on your first order</p>
 
@@ -78,7 +89,7 @@ const HomePage = () => {
               <strong>Shop Now</strong>
             </button>
           </div>
-        </section>
+        </section> */}
       </HeaderSlider>
 
       <section className="intro_section">
