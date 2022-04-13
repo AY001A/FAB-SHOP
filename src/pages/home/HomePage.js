@@ -20,7 +20,7 @@ const HomePage = () => {
 
   return (
     <>
-      {/* <button
+      <button
         onClick={() =>
           dispatch(
             addToCart({
@@ -49,7 +49,7 @@ const HomePage = () => {
         }
       >
         remove
-      </button> */}
+      </button>
       <HeaderSlider>
         <section className="carousel_header services_ad">
           <div className="carousel_info ">

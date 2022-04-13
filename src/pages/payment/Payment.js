@@ -2,9 +2,16 @@ import React from 'react'
 import DeliveryAddress from '../../components/delivery/DeliveryAddress'
 import DeliveryMethod from '../../components/delivery/DeliveryMethod'
 import ShippingDetails from '../../components/delivery/ShippingDetails'
+import { useSelector } from "react-redux";
 import './style.scss'
+import Currency from './../../components/currency/Currency';
 
 const Payment = () => {
+    const { cartQuantity, products, totalPrice } = useSelector(
+        (state) => state.cart
+      );
+
+
   return (
     <div className="payment-wrapper container my-5 px-4 ">
         <div className="row">
@@ -25,41 +32,25 @@ const Payment = () => {
                 <div className="orderSummaryContainer p-4 bg-light">
                     <h2 className='paymentSummary mb-4'>Order  Summary</h2>
                     <div className="d-flex justify-content-between">
-                        <p>1 x</p>
+                        <p>{cartQuantity}</p>
                         <div>
-                            <p className='paymentSummaryProduct'>Gold Metal Iron Fabricated gate (2438 x 1050 mm)</p>
+                            <p className='paymentSummaryProduct'>{products.name}</p>
                         </div>
                         <div>
-                            <p className='paymentSummaryPrice'>₦70,000</p>
-                        </div>
-                    </div>
-
-                    <div className="d-flex justify-content-between">
-                        <p>1 x</p>
-                        <div>
-                            <p className='paymentSummaryProduct'>Gold Metal Iron Fabricated gate (2438 x 1050 mm)</p>
-                        </div>
-                        <div>
-                            <p className='paymentSummaryPrice'>₦70,000</p>
+                            <p className='paymentSummaryPrice'>{products.price}</p>
                         </div>
                     </div>
 
-                    <div className="d-flex justify-content-between">
-                        <p>1 x</p>
-                        <div>
-                            <p className='paymentSummaryProduct'>Gold Metal Iron Fabricated gate (2438 x 1050 mm)</p>
-                        </div>
-                        <div>
-                            <p className='paymentSummaryPrice'>₦70,000</p>
-                        </div>
-                    </div>
+                    
+
+                    
 
                     <div className="d-flex justify-content-between mt-3">
                         <div>
                             <p className='subTotalSummary'>Subtotal</p>
                         </div>
                         <div>
-                            <p className='subTotalSummaryPrice fw-bold'>₦70,000</p>
+                            <p className='subTotalSummaryPrice fw-bold'><Currency>{totalPrice}</Currency></p>
                         </div>
                     </div>
 
@@ -68,7 +59,7 @@ const Payment = () => {
                             <p className='subTotalSummary'>Delivery Fee</p>
                         </div>
                         <div>
-                            <p className='subTotalSummaryPrice fw-bold'>₦70,000</p>
+                            <p className='subTotalSummaryPrice fw-bold'>---</p>
                         </div>
                     </div>
 
@@ -78,7 +69,7 @@ const Payment = () => {
                             <p className='totalSummary'>Total</p>
                         </div>
                         <div>
-                            <p className='totalSummaryPrice'>₦270,000</p>
+                            <p className='totalSummaryPrice'><Currency>{totalPrice}</Currency></p>
                         </div>
                     </div>
                     <hr />
@@ -90,8 +81,7 @@ const Payment = () => {
                 <div className="mt-5">
                     <h2 className='paymentSummary mb-3 mt-3'>Shipment Details</h2>
                     <p>Please select a delivery option</p>
-                        <ShippingDetails /> 
-                        <ShippingDetails /> 
+                        <ShippingDetails />  
 
                 </div>
 
@@ -101,7 +91,7 @@ const Payment = () => {
                             <p className='subTotalSummary'>Subtotal</p>
                         </div>
                         <div>
-                            <p className='subTotalSummaryPrice fw-bold'>₦70,000</p>
+                            <p className='subTotalSummaryPrice fw-bold'><Currency>{totalPrice}</Currency></p>
                         </div>
                     </div>
                     <div className="d-flex justify-content-between mt-1">
@@ -109,7 +99,7 @@ const Payment = () => {
                             <p className='subTotalSummary'>Delivery Fee</p>
                         </div>
                         <div>
-                            <p className='subTotalSummaryPrice fw-bold'>₦70,000</p>
+                            <p className='subTotalSummaryPrice fw-bold'>---</p>
                         </div>
                     </div>
                     <hr className='px-5'/>
@@ -119,7 +109,7 @@ const Payment = () => {
                             <p className='subTotalSummary'>Total</p>
                         </div>
                         <div>
-                            <p className='subTotalSummaryPrice fw-bold'>₦700,000</p>
+                            <p className='subTotalSummaryPrice fw-bold'><Currency>{totalPrice}</Currency></p>
                         </div>
                     </div>
                     <div className="d-grid gap-2 mt-3">
