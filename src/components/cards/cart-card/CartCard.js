@@ -23,16 +23,6 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
   }, [product.quantity]);
 
   const [prodQuantity, setProdQuantity] = useState(1);
-  // let incrementQuantity = () => {
-  //   dispatch(increaseProductQuantity(productId));
-  // };
-
-  // let decrementQuantity = () => {
-  //   dispatch(increaseProductQuantity(productId));
-  // };
-  // const handleChangeQuantity = () => {
-
-  // };
 
   return (
     <div className="cart-item-wrapper mb-4">
@@ -54,8 +44,8 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
               <div className="cart-delete-btn">
                 {/* <img src={DeleteIcon} /> */}
                 <DeleteIcon
-                  width={24}
-                  height={24}
+                  width={20}
+                  height={20}
                   onClick={() => dispatch(removeFromCart(product))}
                 />
               </div>
@@ -71,7 +61,7 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
               </p>
             </div>
 
-            <div className=" quantityCol">
+            <div className="quantityCol">
               <button
                 onClick={() => dispatch(decreaseProductQuantity(productId))}
                 disabled={prodQuantity === 1}
@@ -79,7 +69,7 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
               >
                 -
               </button>
-              <div>
+              <div className="quantity-count">
                 <strong>{prodQuantity}</strong>
               </div>
               <button
