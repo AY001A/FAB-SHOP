@@ -4,19 +4,24 @@ import  Chair  from '../../assets/images/chair.jpg'
 
 const ShippingDetails = () => {
   return (
-    <div className='p-4 w-100 shippingSummaryContainer me-4 bg-light mb-4 d-flex justify-content '>
-        <div>
-            <img src={Chair} alt='' className='summaryImage' />
-        </div>
 
-        <div className='ms-4 d-block align-content-between'>
-            <h2 className='shippingDetailsProductName mb-6'>Gold Metal Iron Fabricated gate</h2>
-            <p className='shippingDetailsProductColor'>Color: Black</p>
-            <p className='shippingDetailsProductMeasurement'>Measurement: 2438 x 925 mm</p>
-            <p className='shippingDetailsProductQuantity'>Quantity: 1</p>
+    <div class="card mb-3 p-3 bg-light border-0">
+      <div class="row g-0">
+        <div class="col-4">
+          <img src={Chair} className="img-fluid summaryImage" alt="..." />
         </div>
-        
-    </div>
+        <div class="col-8">
+          
+            <h5 class="card-title fw-bold">Gold Metal Iron Fabricated gate</h5>
+            <p className='card-text text-muted shippingDetailsProductColor'>Color: Black</p>
+            <p className='card-text text-muted shippingDetailsProductMeasurement'>Measurement: 2438 x 925 mm</p>
+            <p className='card-text text-muted shippingDetailsProductQuantity'>Quantity: 1</p>
+          
+        </div>
+      </div>
+    </div>  
+
+    
   )
 }
 
