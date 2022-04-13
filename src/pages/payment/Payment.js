@@ -6,22 +6,22 @@ import './style.scss'
 
 const Payment = () => {
   return (
-    <div className="payment-wrapper container my-3 px-4">
+    <div className="payment-wrapper container my-5 px-4 ">
         <div className="row">
             <h2 className='paymentSummary mb-3'>Delivery Address Details </h2>
-            <div className='col-sm-7 col-lg-7'>
+            <div className='col-lg-7'>
                 <div>
                     <DeliveryAddress />
                 </div>
                 <div className="mt-5">
                     <h2 className='paymentSummary mb-3 mt-3'>Delivery Method</h2>
                     <p>Please select a delivery option</p>
-                        <DeliveryMethod />
-                        <DeliveryMethod /> 
+                        <DeliveryMethod delivery={'Priority Delivery'} deliveryText={'Get the product you ordered for immediately for  ₦7,500' }/>
+                        <DeliveryMethod delivery={'Normal Delivery'} deliveryText={'Get the product you ordered within 6 - 9 hours for  ₦5,500' }/> 
                 </div>
             </div>
 
-            <div className="col-sm-5">
+            <div className="col-lg-5">
                 <div className="orderSummaryContainer p-4 bg-light">
                     <h2 className='paymentSummary mb-4'>Order  Summary</h2>
                     <div className="d-flex justify-content-between">
@@ -86,7 +86,7 @@ const Payment = () => {
                 </div>
             </div>
 
-            <div className='col-sm-7'>
+            <div className='col-lg-7'>
                 <div className="mt-5">
                     <h2 className='paymentSummary mb-3 mt-3'>Shipment Details</h2>
                     <p>Please select a delivery option</p>
