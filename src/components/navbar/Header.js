@@ -6,11 +6,11 @@ import Logo from "../../assets/icons/cucumislogo.svg";
 import CartLogo from "../../assets/icons/carticon.svg";
 import Searchbar from "../../containers/searchbar/Searchbar";
 import { FaAngleDown, FaAngleRight, FaArrowDown } from "react-icons/fa";
-import { FiShoppingCart, FiUser } from "react-icons/fi";
+import { FiShoppingCart, FiUser, FiArrowDown } from "react-icons/fi";
 import { IconContext } from "react-icons/lib";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../services/slices/authSlice";
-import { Offcanvas } from "react-bootstrap";
+import { NavDropdown, Offcanvas } from "react-bootstrap";
 import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
 import { useState } from "react";
 import Cart from "../cart/Cart";
@@ -46,15 +46,7 @@ const Header = () => {
             </span>
           )}
           <div className="top-banner-contact">
-            {profile.isAuthenticated && (
-              <span
-                className="text-decoration-underline"
-                style={{ cursor: "pointer" }}
-                onClick={() => dispatch(logout())}
-              >
-                Logout
-              </span>
-            )}
+            <div>Contact us</div>
           </div>
         </div>
 
@@ -65,20 +57,90 @@ const Header = () => {
               <img src={Logo} alt="fabgarage brand" className="logo" />
             </Link>
 
-            <div className="category">
+            {/* <div className="category">
               <p>Shop by category</p>
 
               <FaAngleDown size={14} />
-            </div>
+            </div> */}
           </div>
           <div className="col-sm searchbar">
             <Searchbar />
           </div>
           <IconContext.Provider value={{ size: "24px" }}>
-            <div className="col-4 col-sm-3 nav-icons">
-              <FiUser />
-              <Link to={'cart'} >
-              <Cart count={cartQuantity} />
+            <div className="col-4 col-sm-3 nav-icons ">
+              <Link
+                to={"/"}
+                className="account_btn "
+                style={{ textDecoration: "none" }}
+              >
+                <FiUser color="black" />
+                <NavDropdown
+                  title={
+                    profile.isAuthenticated ? `Hi, ${firstName}` : "Account"
+                  }
+                  className="d-flex align-items-center account_dropdown d-none d-sm-block"
+                >
+                  {/* <p className="">Account</p>
+                  <FaAngleDown color="black" size={14} /> */}
+
+                  {profile.isAuthenticated ? (
+                    <>
+                      <NavDropdown.Item
+                        href="#action/3.2"
+                        className="mt-4 text-center"
+                        style={{ fontSize: "14px" }}
+                      >
+                        My Account
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        href="#action/3.2"
+                        className="mt-2 text-center"
+                        style={{ fontSize: "14px" }}
+                      >
+                        My Orders
+                      </NavDropdown.Item>
+
+                      <button
+                        className="btn btn-outline-primary border-0 btn-sm dropdown_btn mt-4"
+                        onClick={() => dispatch(logout())}
+                      >
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <Link to={"/login"}>
+                        <button className="btn btn-primary btn-sm dropdown_btn mt-4">
+                          Login
+                        </button>
+                      </Link>
+                      <Link to={"/register"}>
+                        <button
+                          className="btn  dropdown_btn  btn-sm"
+                          style={{ backgroundColor: "#FEF7D8" }}
+                        >
+                          Register
+                        </button>
+                      </Link>
+                    </>
+                  )}
+
+                  {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">
+                    Another action
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">
+                    Something
+                  </NavDropdown.Item> */}
+                </NavDropdown>
+              </Link>
+              <Link
+                to={"cart"}
+                className="cart_btn"
+                style={{ textDecoration: "none" }}
+              >
+                <Cart count={cartQuantity} />{" "}
+                <p className="d-none d-sm-block">Cart</p>
               </Link>
             </div>
           </IconContext.Provider>

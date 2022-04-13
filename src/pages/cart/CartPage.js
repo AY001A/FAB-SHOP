@@ -17,7 +17,7 @@ const CartPage = () => {
       </div>
 
       <div className="row">
-        <div className="col-8">
+        <div className="col col-sm-8">
           {products.length > 0 ? (
             products.map((cartproduct) => (
               <CartCard
@@ -45,8 +45,8 @@ const CartPage = () => {
             </div>
           )}
         </div>
-        <div className="col-4">
-          <div className="cart-price-card">
+        <div className="col-sm-4">
+          <div className=" d-none d-sm-block cart-price-card">
             <h3>Order Summary</h3>
 
             <div className="row justify-between">

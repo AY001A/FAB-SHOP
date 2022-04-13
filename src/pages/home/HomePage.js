@@ -9,6 +9,7 @@ import Slider from "../../components/slider/Slider";
 
 import { useDispatch } from "react-redux";
 import { removeFromCart, addToCart } from "../../services/slices/cartSlice";
+import { HeaderSlider } from "../../components/carousel";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const HomePage = () => {
 
   return (
     <>
-      <button
+      {/* <button
         onClick={() =>
           dispatch(
             addToCart({
@@ -48,16 +49,37 @@ const HomePage = () => {
         }
       >
         remove
-      </button>
-      <section className="carousel_header ">
-        <div>
-          <p>Enjoy up to 15% discount on your first order</p>
+      </button> */}
+      <HeaderSlider>
+        <section className="carousel_header services_ad">
+          <div className="carousel_info ">
+            <p>World class proffessionals at your doorstep </p>
 
-          <button className="btn btn-primary">
-            <strong>Shop Now</strong>
-          </button>
-        </div>
-      </section>
+            <button className="btn btn-primary">
+              <strong>Hire Now</strong>
+            </button>
+          </div>
+        </section>
+        <section className="carousel_header billboard_ad">
+          <div className="carousel_info">
+            <p>Advertise your business on bilboards in Nigeria</p>
+
+            <button className="btn btn-primary">
+              <strong>Shop Now</strong>
+            </button>
+          </div>
+        </section>
+
+        <section className="carousel_header">
+          <div className="carousel_info discount_ad">
+            <p>Enjoy up to 15% discounts on your first order</p>
+
+            <button className="btn btn-primary">
+              <strong>Shop Now</strong>
+            </button>
+          </div>
+        </section>
+      </HeaderSlider>
 
       <section className="intro_section">
         <div className="intro_section_paragraphs">
@@ -92,7 +114,7 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Deals</p> <Link to={"/"}>see more</Link>
         </div>
-        <div className="top-deals-products w-100 row ">
+        <div className="top-deals-products w-100 row p-sm-5 ">
           <div className="slide-container row ">
             <Slider>
               {productCount.map((prod, index) => (
@@ -107,7 +129,7 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Product Category</p>
         </div>
-        <div className="category w-100 ">
+        <div className="category w-100 p-5">
           <div className="productCategory bg-light w-100 ">
             <div className="row  rowball">
               <div
@@ -145,7 +167,7 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Services</p> <Link to={"/services"}>see more</Link>
         </div>
-        <div className="service-cards-wrapper">
+        <div className="service-cards-wrapper p-sm-5">
           {services
             .filter((serv) => serv.category === "Home")
             .map((val) => (
@@ -163,7 +185,7 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Products</p> <Link to={"/"}>see more</Link>
         </div>
-        <div className="top-products">
+        <div className="top-products p-sm-5">
           {/* <p>No product available</p> */}
           <ProductCard />
           <ProductCard />
