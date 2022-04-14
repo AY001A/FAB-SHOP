@@ -16,7 +16,7 @@ import { lazy, Suspense } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
-
+// import Alert from "./components/Alert/Alert"
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
 // const LoginPage = lazy(() => import("./pages/auth/login/LoginPage"));
 // const RegisterPage = lazy(() => import("./pages/auth/register/RegisterPage"));
@@ -69,6 +69,7 @@ function App() {
         </Route>
 
         <Route path="/checkout" element={<CheckoutSuccess />} />
+        {/* <Route path="/Alert" element={<Alert/>} /> */}
         {/* </Route> */}
 
         {/* authentication */}
