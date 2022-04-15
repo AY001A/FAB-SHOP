@@ -46,6 +46,8 @@ function App() {
             element={<ForgetPasswordSuccess />}
           />
 
+          
+
           <Route path="cart" element={<CartPage />} />
           
           {/* Services */}
@@ -67,6 +69,8 @@ function App() {
           <Route path="resetpassword/" element={<PasswordReset />}>
             {/* <Route path=":ownerId" element={<PasswordReset />} /> */}
           </Route>
+
+          
 
           <Route path="*" element={<NotFound />} />
         </Route>
