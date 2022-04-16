@@ -1,4 +1,4 @@
-import React, { useState, }  from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import THUMBSUP from "../../assets/icons/thumbsup.svg";
 import Alert from "../../components/Alert/Alert";
@@ -6,20 +6,15 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/navbar/Header";
 import "./checkoutSuccess.scss";
 
-
 const CheckoutSuccess = () => {
   const [alert, setAlert] = useState({
-    'show': false,
-    'style':'',
-    'message':''
+    show: false,
+    style: "",
+    message: "changes saved successfully",
   });
   return (
-  
     <div className="checkout_wrapper">
-
-      
-<Alert show={alert.show} style={alert.style} message={alert.message} />
-
+      <Alert show={alert.show} style={alert.style} message={alert.message} />
 
       <Header />
       <div className="container">

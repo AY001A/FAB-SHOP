@@ -1,10 +1,13 @@
 import React from 'react'
 import './Alert.scss'
 
-const Alert = () => {
+const Alert = props => {
+console.log(props)
   return (
     <div className="checkout_alert" role="alert">
-    changes saved successfully</div>
+    {props.message}
+    </div>
+    
   )
 }
 
