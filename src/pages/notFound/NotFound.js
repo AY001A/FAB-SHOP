@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
+    
     <div className="mt-5 text-center">
       <p className=" display-1 fw-700">404</p>
       <p className="h3 mb-5">page not found</p>
@@ -13,6 +14,7 @@ const NotFound = () => {
           Return to Homepage
         </button>
       </Link>
+      
     </div>
   );
 };
