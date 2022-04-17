@@ -14,7 +14,7 @@ export const products = [
     description:
       "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
     imageUrls: [
-      "https://res.cloudinary.com/conclase/image/upload/v1649931301/products/tg1kxjdzsryht0jfzqub.jpg",
+      "https://res.cloudinary.com/conclase/image/upload/v1650063980/products/ejcksmahx8en3gi0r1vf.jpg",
     ],
     quantity: 100,
     createdBy: "admin",
@@ -33,7 +33,7 @@ export const products = [
     description:
       "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
     imageUrls: [
-      "https://res.cloudinary.com/conclase/image/upload/v1649931301/products/tg1kxjdzsryht0jfzqub.jpg",
+      "https://res.cloudinary.com/conclase/image/upload/v1650063980/products/ejcksmahx8en3gi0r1vf.jpg",
     ],
     quantity: 100,
     createdBy: "admin",
