@@ -26,9 +26,9 @@ const CheckoutSuccess = () => {
         </p>
         <p class="fw-bold">
           Do you need our expert to help you fix it?{" "}
-          <a href="#" class="link-warning">
+          {/* <a href="#" class="link-warning">
             Book for installation
-          </a>
+          </a> */}
         </p>
 
         <Link to="/">
