@@ -70,11 +70,11 @@ function App() {
           <Route path="resetpassword/" element={<PasswordReset />}>
             {/* <Route path=":ownerId" element={<PasswordReset />} /> */}
           </Route>
+          <Route path="/checkout" element={<CheckoutSuccess />} />
 
           <Route path="*" element={<NotFound />} />
         </Route>
 
-        <Route path="/checkout" element={<CheckoutSuccess />} />
         {/* <Route path="/Alert" element={<Alert/>} /> */}
         {/* </Route> */}
 

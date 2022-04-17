@@ -1,22 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import THUMBSUP from "../../assets/icons/thumbsup.svg";
-import Alert from "../../components/Alert/Alert";
-import Footer from "../../components/footer/Footer";
-import Header from "../../components/navbar/Header";
+
 import "./checkoutSuccess.scss";
 
 const CheckoutSuccess = () => {
-  const [alert] = useState({
-    show: false,
-    style: "",
-    message: "changes saved successfully",
-  });
   return (
     <div className="checkout_wrapper">
-      <Alert show={alert.show} style={alert.style} message={alert.message} />
-
-      <Header />
       <div className="container">
         <div className="row">
           <div className="col-lg-12 thumb">
@@ -48,8 +38,6 @@ const CheckoutSuccess = () => {
           </button>
         </Link>
       </div>
-
-      <Footer />
     </div>
   );
 };
