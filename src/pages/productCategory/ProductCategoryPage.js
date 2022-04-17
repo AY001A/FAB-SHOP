@@ -4,13 +4,15 @@ import ProductCard from "../../components/cards/product-card/ProductCard";
 import ProductCatImage from "../../assets/images/productcategory/productcategory.jpg";
 import ProductCatImageWebP from "../../assets/images/productcategory/productcategory.webp";
 import "./style.scss";
+import { products } from "../../api/products";
 
 const ProductCategoryPage = () => {
-  const { category } = useParams();
+  const { category, categoryId } = useParams();
 
+  // fetch products where categoryId is same with products
   return (
     <div className="product-category-wrapper ">
-      <div className="product-category-image-wrapper mb-4 ">
+      <div className="product-category-image-wrapper mb-4">
         <picture>
           <source
             srcSet={ProductCatImageWebP}
@@ -28,22 +30,19 @@ const ProductCategoryPage = () => {
 
       <div className="prodcat-products-wrapper">
         {/* <p className="text-center">Oops!!! products unavailable...</p> */}
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {products
+          .filter((prod) => prod.categoryId === Number(categoryId))
+          .map((prod) => (
+            <ProductCard
+              key={prod.productId}
+              title={prod.name}
+              image={prod.imageUrls[0]}
+              description={prod.description}
+              id={prod.productId}
+              price={prod.price}
+              isMeasurable={prod.kind}
+            />
+          ))}
       </div>
     </div>
   );

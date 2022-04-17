@@ -11,26 +11,17 @@ import { useDispatch } from "react-redux";
 import { removeFromCart, addToCart } from "../../services/slices/cartSlice";
 import { HeaderSlider } from "../../components/carousel";
 import { uploadToCloudinary } from "../../services/slices/imageUploadToCloudinarySlice";
+import { products } from "../../api/products";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const productCount = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const [imageFile, setImageFile] = useState("");
 
   let count = 1;
   const dispatch = useDispatch();
 
-  const handleImageUpload = () => {
-    dispatch(uploadToCloudinary(imageFile));
-  };
-
   return (
     <>
-      <input
-        type={"file"}
-        onChange={(event) => setImageFile(event.target.files[0])}
-      />
-      <button onClick={handleImageUpload}>upload</button>
       {/* <button
         onClick={() =>
           dispatch(
@@ -128,8 +119,17 @@ const HomePage = () => {
         <div className="top-deals-products w-100 row p-sm-5 ">
           <div className="slide-container row ">
             <Slider>
-              {productCount.map((prod, index) => (
-                <TopDealsCard key={index} />
+              {products.map((prod) => (
+                <ProductCard
+                  className={"m-2"}
+                  key={prod.productId}
+                  title={prod.name}
+                  image={prod.imageUrls[0]}
+                  description={prod.description}
+                  id={prod.productId}
+                  price={prod.price}
+                  isMeasurable={prod.kind}
+                />
               ))}
             </Slider>
           </div>
@@ -145,29 +145,29 @@ const HomePage = () => {
             <div className="row  rowball">
               <div
                 className="box p-0 col-4 text-center"
-                onClick={() => navigate("/productCategory/aluminium")}
+                onClick={() => navigate("/productCategory/5/aluminium")}
               ></div>
               <div
                 className="box col-4 text-center"
-                onClick={() => navigate("/productCategory/stainless-steel")}
+                onClick={() => navigate("/productCategory/4/stainless-steel")}
               ></div>
               <div
                 className="box col-4 text-center"
-                onClick={() => navigate("/productCategory/shutter")}
+                onClick={() => navigate("/productCategory/2/shutter")}
               ></div>
             </div>
             <div className="row rowball">
               <div
                 className="boxTwo col-4 text-center"
-                onClick={() => navigate("/productCategory/metal-iron")}
+                onClick={() => navigate("/productCategory/3/metal-iron")}
               ></div>
               <div
                 className="boxTwo col-4 text-center"
-                onClick={() => navigate("/productCategory/sheds")}
+                onClick={() => navigate("/productCategory/8/sheds")}
               ></div>
               <div
                 className="boxTwo col-4 text-center"
-                onClick={() => navigate("/productCategory/furnitures")}
+                onClick={() => navigate("/productCategory/6/furnitures")}
               ></div>
             </div>
           </div>
@@ -185,7 +185,7 @@ const HomePage = () => {
               <ServiceCard
                 title={val.name}
                 image={val.image}
-                desc={val.short_description}
+                desc={val.description}
                 url_path={`services/${val.url_path}`}
                 key={val.id}
               />
@@ -198,18 +198,17 @@ const HomePage = () => {
         </div>
         <div className="top-products p-sm-5">
           {/* <p>No product available</p> */}
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {products.map((prod) => (
+            <ProductCard
+              key={prod.productId}
+              title={prod.name}
+              image={prod.imageUrls[0]}
+              description={prod.description}
+              id={prod.productId}
+              price={prod.price}
+              isMeasurable={prod.kind}
+            />
+          ))}
         </div>
       </section>
     </>

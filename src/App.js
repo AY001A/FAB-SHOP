@@ -12,9 +12,10 @@ import ServicesHomePage from "./pages/services/ServicesHomePage";
 import ProductPage from "./pages/product/ProductPage";
 // import CartPage from "./pages/cart/CartPage";
 // import ServicePage from "./pages/services/ServicePage";
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
+import ProductFormPage from "./pages/addProduct/ProductFormPage";
 
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
 // const LoginPage = lazy(() => import("./pages/auth/login/LoginPage"));
@@ -30,7 +31,7 @@ import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
 //   import("./pages/auth/forgetPassword/ForgetPassword")
 // );
 const ServicePage = lazy(() => import("./pages/services/ServicePage"));
-const CartPage = lazy(()=> import('./pages/cart/CartPage'))
+const CartPage = lazy(() => import("./pages/cart/CartPage"));
 
 function App() {
   return (
@@ -46,18 +47,19 @@ function App() {
           />
 
           <Route path="cart" element={<CartPage />} />
-          
+
           {/* Services */}
           <Route path="services" element={<ServicesHomePage />} />
           <Route path="services/:service" element={<ServicePage />} />
 
           {/* Products */}
           <Route
-            path="productCategory/:category"
+            path="productCategory/:categoryId/:category"
             element={<ProductCategoryPage />}
           />
           <Route path="products/:productId/:title" element={<ProductPage />} />
 
+          <Route path="product" element={<ProductFormPage />} />
 
           {/* todo make work */}
           <Route path="resetpassword/" element={<PasswordReset />}>

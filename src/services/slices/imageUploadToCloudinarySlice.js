@@ -1,26 +1,39 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import Compressor from "compressorjs";
 
 const CLOUDINARY_ENDPOINT =
   "https://api.cloudinary.com/v1_1/conclase/image/upload";
 
 const initialState = {
   loading: false,
-  response: null,
+  url: null,
   isUploaded: false,
-  errorMsg: null,
+  errorMsg: "",
 };
 export const uploadToCloudinary = createAsyncThunk(
   "image/upload",
   async (file, thunkAPI) => {
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "z5by6os1");
+      if (!file) return;
 
-      const response = await axios.post(CLOUDINARY_ENDPOINT, formData);
+      //  uses image compression from compress.js
 
-      return response.data.url;
+      return new Compressor(file, {
+        quality: 0.8,
+        maxHeight: 350,
+        maxWidth: 512,
+        convertSize: 3000,
+
+        success(result, dispatch) {
+          const formData = new FormData();
+          formData.append("file", result, result.name);
+          formData.append("upload_preset", "z5by6os1");
+          return axios
+            .post(CLOUDINARY_ENDPOINT, formData)
+            .then((res) => geturl(res.data.url));
+        },
+      });
     } catch (error) {
       const message =
         error.response && error.response.data && error.response.data.errors;
@@ -33,6 +46,11 @@ export const uploadToCloudinary = createAsyncThunk(
 export const imageUploadSlice = createSlice({
   name: "image",
   initialState,
+  reducers: {
+    geturl: (state, action) => {
+      state.url = action.payload.url;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(uploadToCloudinary.pending, (state) => {
@@ -40,16 +58,18 @@ export const imageUploadSlice = createSlice({
       })
       .addCase(uploadToCloudinary.fulfilled, (state, action) => {
         state.loading = false;
-        state.response = action.payload;
+        // state.url = action.payload;
         state.isUploaded = true;
+        state.errorMsg = "";
       })
       .addCase(uploadToCloudinary.rejected, (state, action) => {
         state.loading = false;
         state.isUploaded = false;
         state.errorMsg = action.error;
-        state.response = action.payload;
+        state.url = null;
       });
   },
 });
 
+export const { geturl } = imageUploadSlice.actions;
 export default imageUploadSlice.reducer;

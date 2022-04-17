@@ -4,170 +4,43 @@ import http from "../http-common";
 //   const response = await http.post("/")
 // }
 
-export const top_deals = [
-  {
-    productId: 1,
-    name: "Black Gate",
-    price: 150000,
-    oldPrice: 200000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 2,
-    name: "Light Stand Table ",
-    price: 12000,
-    oldPrice: 13000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 3,
-    name: "Cupboard Double Doors",
-    price: 90000,
-    oldPrice: 950000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 4,
-    name: "Office Table ",
-    price: 110000,
-    oldPrice: 120000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 5,
-    name: "Staircase Colored",
-    price: 150000,
-    oldPrice: 200000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: true,
-  },
-  {
-    productId: 6,
-    name: "Black Gate",
-    price: 450000,
-    oldPrice: 500000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-];
-
 export const products = [
   {
     productId: 1,
     name: "Black Gate",
     price: 150000,
-    oldPrice: 200000,
+    categoryId: 2,
+    // oldPrice: 200000,
     description:
       "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
+    imageUrls: [
+      "https://res.cloudinary.com/conclase/image/upload/v1649931301/products/tg1kxjdzsryht0jfzqub.jpg",
+    ],
+    quantity: 100,
+    createdBy: "admin",
+    kind: "normal",
+    Metadata: [
+      { Name: "weight", Value: "100" },
+      { Name: "Color", Value: "black" },
+    ],
   },
   {
     productId: 2,
-    name: "Light Stand Table ",
-    price: 12000,
-    oldPrice: 13000,
+    name: "Steel chair",
+    price: 10000,
+    categoryId: 3,
+    // oldPrice: 200000,
     description:
       "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 3,
-    name: "Cupboard Double Doors",
-    price: 90000,
-    oldPrice: 950000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 4,
-    name: "Office Table ",
-    price: 110000,
-    oldPrice: 120000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 5,
-    name: "Staircase Colored",
-    price: 150000,
-    oldPrice: 200000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: true,
-  },
-  {
-    productId: 6,
-    name: "Black Gate",
-    price: 450000,
-    oldPrice: 500000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 7,
-    name: "Black Gate",
-    price: 150000,
-    oldPrice: 200000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 8,
-    name: "Light Stand Table ",
-    price: 12000,
-    oldPrice: 13000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 9,
-    name: "Cupboard Double Doors",
-    price: 90000,
-    oldPrice: 950000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 10,
-    name: "Office Table ",
-    price: 110000,
-    oldPrice: 120000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
-  },
-  {
-    productId: 11,
-    name: "Staircase Colored",
-    price: 150000,
-    oldPrice: 200000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: true,
-  },
-  {
-    productId: 12,
-    name: "Black Gate",
-    price: 450000,
-    oldPrice: 500000,
-    description:
-      "A solid back gate with that stands 10ft high and made from a random description about the gate follows here",
-    isMeasurable: false,
+    imageUrls: [
+      "https://res.cloudinary.com/conclase/image/upload/v1649931301/products/tg1kxjdzsryht0jfzqub.jpg",
+    ],
+    quantity: 100,
+    createdBy: "admin",
+    kind: "measurable",
+    Metadata: [
+      { Name: "weight", Value: "100" },
+      { Name: "Color", Value: "black" },
+    ],
   },
 ];

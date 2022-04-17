@@ -87,7 +87,7 @@ const Header = () => {
                     <>
                       <NavDropdown.Item
                         href="#action/3.2"
-                        className="mt-4 text-center"
+                        className="mt-4"
                         style={{ fontSize: "14px" }}
                       >
                         My Account
