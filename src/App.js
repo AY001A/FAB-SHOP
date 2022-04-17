@@ -5,6 +5,7 @@ import HomePage from "./pages/home/HomePage";
 import LoginPage from "./pages/auth/login/LoginPage";
 import RegisterPage from "./pages/auth/register/RegisterPage";
 import NotFound from "./pages/notFound/NotFound";
+import CustomerSupport from "./pages/CustomerSupport/CustomerSupport";
 import PasswordReset from "./pages/auth/forgetPassword/PasswordReset";
 import AuthLayout from "./containers/layout/AuthLayout/AuthLayout";
 import ForgetPassword from "./pages/auth/forgetPassword/ForgetPassword";
@@ -71,6 +72,8 @@ function App() {
             {/* <Route path=":ownerId" element={<PasswordReset />} /> */}
           </Route>
           <Route path="/checkout" element={<CheckoutSuccess />} />
+
+          <Route path="/customSupport" element={<CustomerSupport />} />
 
           <Route path="*" element={<NotFound />} />
         </Route>
