@@ -7,7 +7,7 @@ import Header from "../../components/navbar/Header";
 import "./checkoutSuccess.scss";
 
 const CheckoutSuccess = () => {
-  const [alert, setAlert] = useState({
+  const [alert] = useState({
     show: false,
     style: "",
     message: "changes saved successfully",
