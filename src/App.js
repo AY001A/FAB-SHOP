@@ -17,6 +17,8 @@ import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
 import ProductFormPage from "./pages/addProduct/ProductFormPage";
 
+import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
+// import Alert from "./components/Alert/Alert"
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
 // const LoginPage = lazy(() => import("./pages/auth/login/LoginPage"));
 // const RegisterPage = lazy(() => import("./pages/auth/register/RegisterPage"));
@@ -68,6 +70,10 @@ function App() {
 
           <Route path="*" element={<NotFound />} />
         </Route>
+
+        <Route path="/checkout" element={<CheckoutSuccess />} />
+        {/* <Route path="/Alert" element={<Alert/>} /> */}
+        {/* </Route> */}
 
         {/* authentication */}
         <Route
