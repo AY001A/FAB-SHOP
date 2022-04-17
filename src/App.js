@@ -15,11 +15,8 @@ import ProductPage from "./pages/product/ProductPage";
 import { lazy } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
-<<<<<<< HEAD
 import ProductFormPage from "./pages/addProduct/ProductFormPage";
-=======
 import AccountPage from "./pages/accountPage/AccountPage";
->>>>>>> myAccPage
 
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 // import Alert from "./components/Alert/Alert"
@@ -52,8 +49,6 @@ function App() {
             element={<ForgetPasswordSuccess />}
           />
 
-          
-
           <Route path="cart" element={<CartPage />} />
 
           {/* Services */}
@@ -71,13 +66,10 @@ function App() {
           {/* Account Page */}
           <Route path="account" element={<AccountPage />} />
 
-
           {/* todo make work */}
           <Route path="resetpassword/" element={<PasswordReset />}>
             {/* <Route path=":ownerId" element={<PasswordReset />} /> */}
           </Route>
-
-          
 
           <Route path="*" element={<NotFound />} />
         </Route>
