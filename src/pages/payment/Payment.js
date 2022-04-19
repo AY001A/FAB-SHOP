@@ -23,8 +23,8 @@ const Payment = () => {
                 <div className="mt-5">
                     <h2 className='paymentSummary mb-3 mt-3'>Delivery Method</h2>
                     <p>Please select a delivery option</p>
-                        <DeliveryMethod delivery={'Priority Delivery'} deliveryText={'Get the product you ordered for immediately for  ₦7,500' }/>
-                        <DeliveryMethod delivery={'Normal Delivery'} deliveryText={'Get the product you ordered within 6 - 9 hours for  ₦5,500' }/> 
+                    <DeliveryMethod delivery={'Priority Delivery'} deliveryText={'Get the product you ordered for immediately for  ₦7,500' }/>
+                    <DeliveryMethod delivery={'Normal Delivery'} deliveryText={'Get the product you ordered within 6 - 9 hours for  ₦5,500' }/> 
                 </div>
             </div>
 
