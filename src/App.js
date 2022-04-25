@@ -18,7 +18,7 @@ import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
 import AccountPage from "./pages/accountPage/AccountPage";
 
-import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
+// import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 // import Alert from "./components/Alert/Alert"
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
 // const LoginPage = lazy(() => import("./pages/auth/login/LoginPage"));
@@ -69,7 +69,7 @@ function App() {
           <Route path="resetpassword/" element={<PasswordReset />}>
             {/* <Route path=":ownerId" element={<PasswordReset />} /> */}
           </Route>
-          <Route path="/checkout" element={<CheckoutSuccess />} />
+          {/* <Route path="/checkout" element={<CheckoutSuccess />} /> */}
 
           <Route path="/customSupport" element={<CustomerSupport />} />
 
