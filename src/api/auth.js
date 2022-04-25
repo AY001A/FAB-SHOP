@@ -11,7 +11,7 @@ const login = async (userDetails) => {
 };
 
 const logout = () => {
-  localStorage.clear();
+  setTimeout(() => localStorage.clear(), 3000);
 };
 
 const resetPassword = async (email) => {

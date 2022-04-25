@@ -1,4 +1,13 @@
+<<<<<<< HEAD
+version: 2.1
+variables:
+  repo_name: "${DOCKER_REPO_NAME}"
+  image_tag: "${CIRCLE_BUILD_NUM}"
+orbs:
+  docker: circleci/docker@2.0.3
+=======
 version: 2
+>>>>>>> f55991516106ceddd7c9eff8caa730086d941d27
 jobs:
   build:
     parameters:
@@ -7,13 +16,25 @@ jobs:
         default: ${DOCKER_REPO_NAME}
       image_tag:
         type: string
+<<<<<<< HEAD
+        default: "${DOCKER_REPO_NAME}/cucumislush"
+    executor: docker/docker
+    #working_directory: apps
+=======
         default: ${CIRCLE_BUILD_NUM}
     docker:
       - image: cimg/node:17.8.0
         environment:
           ENV_NAME: DEV
+>>>>>>> f55991516106ceddd7c9eff8caa730086d941d27
     steps:
       - checkout
+<<<<<<< HEAD
+      - docker/build:
+          image: "<< parameters.docker_repo_name >>"
+          tag: "<< parameters.docker_image_tag >>"
+=======
+>>>>>>> f55991516106ceddd7c9eff8caa730086d941d27
       - run:
           name: Export Env Var
           command: |
@@ -26,6 +47,12 @@ jobs:
           name: login to docker hub
           command: |
             sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+<<<<<<< HEAD
+      - docker/push:
+          image: "<< parameters.docker_repo_name >>"
+          tag: "<< parameters.docker_image_tag >>"
+      #- run: sudo docker save -o 'cucumislushfrontend.tar' 'cucumislush:$CIRCLE_SHA1'
+=======
 
       - run:
           name: Build Docker Image
@@ -51,14 +78,20 @@ jobs:
       - image: cimg/node:17.8.0
     steps:
       - run: ssh -oStrictHostKeyChecking=no -v $DEV_USER@$DEV_IP "./conclase-deploy.sh"
+>>>>>>> f55991516106ceddd7c9eff8caa730086d941d27
 
 workflows:
   version: 2
   build-docker:
     jobs:
+<<<<<<< HEAD
+      - build
+      - push_docker_image:
+=======
       - build:
           context:
             - conclase
       - deploy:
+>>>>>>> f55991516106ceddd7c9eff8caa730086d941d27
           requires:
             - build
