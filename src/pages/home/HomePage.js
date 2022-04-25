@@ -1,57 +1,23 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import TopDealsCard from "../../components/cards/top-deals-card/TopDealsCard";
 import "./style.scss";
 import ServiceCard from "../../components/cards/service-card/ServiceCard";
 import ProductCard from "../../components/cards/product-card/ProductCard";
 import { services } from "../services/services";
 import Slider from "../../components/slider/Slider";
 
-import { useDispatch } from "react-redux";
-import { removeFromCart, addToCart } from "../../services/slices/cartSlice";
 import { HeaderSlider } from "../../components/carousel";
-import { uploadToCloudinary } from "../../services/slices/imageUploadToCloudinarySlice";
-import { products } from "../../api/products";
+import { mock_top_deals } from "../../api/products";
+import { useGetProducts } from "../../hook/useProducts";
+import Spinner from "../../components/spinner/Spinner";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const productCount = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  let count = 1;
-  const dispatch = useDispatch();
+  const { status, data, error } = useGetProducts(1, 10);
 
   return (
     <>
-      {/* <button
-        onClick={() =>
-          dispatch(
-            addToCart({
-              productId: count++,
-              name: "staircase",
-              price: 23000,
-              quantity: 1,
-              subtotal: 23000,
-            })
-          )
-        }
-      >
-        addToCart
-      </button>
-      <button
-        onClick={() =>
-          dispatch(
-            removeFromCart({
-              productId: 2,
-              name: "staircase",
-              price: 23000,
-              quantity: 2,
-              subtotal: 10000,
-            })
-          )
-        }
-      >
-        remove
-      </button> */}
       <HeaderSlider>
         <section className="carousel_header services_ad">
           <div className="carousel_info ">
@@ -71,16 +37,6 @@ const HomePage = () => {
             </button>
           </div>
         </section>
-
-        {/* <section className="carousel_header">
-          <div className="carousel_info discount_ad">
-            <p>Enjoy up to 15% discounts on your first order</p>
-
-            <button className="btn btn-primary">
-              <strong>Shop Now</strong>
-            </button>
-          </div>
-        </section> */}
       </HeaderSlider>
 
       <section className="intro_section">
@@ -119,16 +75,15 @@ const HomePage = () => {
         <div className="top-deals-products w-100 row p-sm-5 ">
           <div className="slide-container row ">
             <Slider>
-              {products.map((prod) => (
+              {mock_top_deals.map((prod) => (
                 <ProductCard
                   className={"m-2"}
-                  key={prod.productId}
-                  title={prod.name}
-                  image={prod.imageUrls[0]}
-                  description={prod.description}
-                  id={prod.productId}
-                  price={prod.price}
-                  isMeasurable={prod.kind}
+                  id={prod.Id}
+                  description={prod.Description}
+                  title={prod.Name}
+                  image={prod.ImagesUrls[0]}
+                  price={prod.Price}
+                  key={prod.Id}
                 />
               ))}
             </Slider>
@@ -196,19 +151,30 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Products</p> <Link to={"/"}>see more</Link>
         </div>
+        {console.log(data?.data?.data)}
         <div className="top-products p-sm-5">
           {/* <p>No product available</p> */}
-          {products.map((prod) => (
-            <ProductCard
-              key={prod.productId}
-              title={prod.name}
-              image={prod.imageUrls[0]}
-              description={prod.description}
-              id={prod.productId}
-              price={prod.price}
-              isMeasurable={prod.kind}
-            />
-          ))}
+          {status === "loading" && <Spinner />}
+
+          {status === "success" && !data?.data.data.length ? (
+            <p>Inventory is empty</p>
+          ) : (
+            data?.data?.data.map((prod) => (
+              <ProductCard
+                id={prod.Id}
+                description={prod.Description}
+                title={prod.Name}
+                image={prod.ImagesUrls[0]}
+                price={prod.Price}
+                key={prod.Id}
+              />
+            ))
+          )}
+          {status === "error" && (
+            <p className="justify-self-center">
+              Something went wrong, please try again after some time
+            </p>
+          )}
         </div>
       </section>
     </>

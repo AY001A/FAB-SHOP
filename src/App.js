@@ -16,7 +16,6 @@ import ProductPage from "./pages/product/ProductPage";
 import { lazy } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
-import ProductFormPage from "./pages/addProduct/ProductFormPage";
 import AccountPage from "./pages/accountPage/AccountPage";
 
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
@@ -63,7 +62,6 @@ function App() {
           />
           <Route path="products/:productId/:title" element={<ProductPage />} />
 
-          <Route path="product" element={<ProductFormPage />} />
           {/* Account Page */}
           <Route path="account" element={<AccountPage />} />
 

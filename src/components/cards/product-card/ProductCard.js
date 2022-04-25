@@ -24,7 +24,7 @@ const ProductCard = ({ className, id, title, image, description, price }) => {
       <div className="topdeals-description-wrapper pt-2">
         <div className="product-title-wrapper">
           <Link to={`/products/${id}/${link}`}>
-            <p className="topdeals-title text-truncate fw-bold">{title}</p>
+            <p className="topdeals-title text-truncate  fw-bold">{title}</p>
           </Link>
           <p className="topdeals-price mb-0 fw-bold">
             <Currency>{price}</Currency>
