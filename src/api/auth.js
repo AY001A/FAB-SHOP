@@ -1,12 +1,18 @@
+import axios from "axios";
 import http from "../http-common";
 
+const BASE_URL = `http://174.138.0.201:3000`;
+
 const register = async (userDetails) => {
-  const response = await http.post(`/account/register`, userDetails);
+  const response = await axios.post(
+    `${BASE_URL}/account/register`,
+    userDetails
+  );
   return response;
 };
 
 const login = async (userDetails) => {
-  const response = await http.post(`/account/login`, userDetails);
+  const response = await http.post(`${BASE_URL}/account/login`, userDetails);
   return response;
 };
 
@@ -15,14 +21,14 @@ const logout = () => {
 };
 
 const resetPassword = async (email) => {
-  return await http.post("account/resetPassword", email);
+  return await axios.post(`${BASE_URL}/account/resetPassword`, email);
 };
 
 const processPasswordReset = async (cred) => {
   const { password, ownerId, emCid } = cred;
 
   return await http.post(
-    `account/processPasswordReset?ownerId=${ownerId}&emCid=${emCid}`,
+    `${BASE_URL}/account/processPasswordReset?ownerId=${ownerId}&emCid=${emCid}`,
     password
   );
 };

@@ -8,6 +8,12 @@ export const products = async (currentPage, pageSize) => {
   return res.data;
 };
 
+export const productsUnpaginated = async () => {
+  const res = await http.get(`/product/listByCategory`);
+
+  return res.data;
+};
+
 export const productById = async (id) => {
   const res = await http.get(`/product/${id}`);
 
