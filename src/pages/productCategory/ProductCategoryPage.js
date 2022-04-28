@@ -4,10 +4,18 @@ import ProductCard from "../../components/cards/product-card/ProductCard";
 import ProductCatImage from "../../assets/images/productcategory/productcategory.jpg";
 import ProductCatImageWebP from "../../assets/images/productcategory/productcategory.webp";
 import "./style.scss";
-import { products } from "../../api/products";
+import { useGetUnpaginatedProducts } from "../../hook/useProducts";
+import Spinner from "../../components/spinner/Spinner";
 
 const ProductCategoryPage = () => {
   const { category, categoryId } = useParams();
+  const { data, status, error } = useGetUnpaginatedProducts();
+
+  const productsCategory = data?.data?.filter(
+    (prod) => prod.Category?.Id === Number(categoryId)
+  );
+
+  console.log(data);
 
   return (
     <div className="product-category-wrapper ">
@@ -28,20 +36,23 @@ const ProductCategoryPage = () => {
       <h5 className="mb-4 text-capitalize">{category}</h5>
 
       <div className="prodcat-products-wrapper">
-        {/* <p className="text-center">Oops!!! products unavailable...</p> */}
-        {products
-          .filter((prod) => prod.categoryId === Number(categoryId))
-          .map((prod) => (
-            <ProductCard
-              key={prod.productId}
-              title={prod.name}
-              image={prod.imageUrls[0]}
-              description={prod.description}
-              id={prod.productId}
-              price={prod.price}
-              isMeasurable={prod.kind}
-            />
-          ))}
+        {status === "loading" && <Spinner />}
+        {!productsCategory.length && (
+          <p className="text-center w-100">Products unavailable...</p>
+        )}
+        {productsCategory.map((prod) => (
+          <ProductCard
+            id={prod.Id}
+            description={prod.Description}
+            title={prod.Name}
+            image={prod.ImagesUrls[0]}
+            price={prod.Price}
+            key={prod.Id}
+          />
+        ))}
+        {status === "error" && (
+          <p className="text-center">Oops!!! something went wrong...</p>
+        )}
       </div>
     </div>
   );
