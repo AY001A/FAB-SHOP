@@ -11,11 +11,9 @@ const ProductCategoryPage = () => {
   const { category, categoryId } = useParams();
   const { data, status, error } = useGetUnpaginatedProducts();
 
-  const productsCategory = data?.data?.filter(
+  const productsCategory = data?.data.filter(
     (prod) => prod.Category?.Id === Number(categoryId)
   );
-
-  console.log(data);
 
   return (
     <div className="product-category-wrapper ">
@@ -37,19 +35,20 @@ const ProductCategoryPage = () => {
 
       <div className="prodcat-products-wrapper">
         {status === "loading" && <Spinner />}
-        {!productsCategory.length && (
+        {!productsCategory?.length && (
           <p className="text-center w-100">Products unavailable...</p>
         )}
-        {productsCategory.map((prod) => (
-          <ProductCard
-            id={prod.Id}
-            description={prod.Description}
-            title={prod.Name}
-            image={prod.ImagesUrls[0]}
-            price={prod.Price}
-            key={prod.Id}
-          />
-        ))}
+        {status === "success" &&
+          productsCategory.map((prod) => (
+            <ProductCard
+              id={prod.Id}
+              description={prod.Description}
+              title={prod.Name}
+              image={prod.ImagesUrls[0]}
+              price={prod.Price}
+              key={prod.Id}
+            />
+          ))}
         {status === "error" && (
           <p className="text-center">Oops!!! something went wrong...</p>
         )}
