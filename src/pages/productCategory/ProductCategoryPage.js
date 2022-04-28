@@ -9,7 +9,6 @@ import { products } from "../../api/products";
 const ProductCategoryPage = () => {
   const { category, categoryId } = useParams();
 
-  // fetch products where categoryId is same with products
   return (
     <div className="product-category-wrapper ">
       <div className="product-category-image-wrapper mb-4">
