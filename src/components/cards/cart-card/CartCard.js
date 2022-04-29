@@ -10,29 +10,17 @@ import {
 } from "../../../services/slices/cartSlice";
 import Currency from "../../currency/Currency";
 
-const CartCard = ({ name, productId, price, subtotal, product }) => {
-  const { products } = useSelector((state) => state.cart);
+const CartCard = ({ name, productId, price, photo, subtotal, product }) => {
+  const { Items } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const product = products.find((product) => product.productId === productId);
+    const product = Items.find((product) => product.ProductId === productId);
 
-    setProdQuantity(product.quantity);
-
-    return () => {};
-  }, [product.quantity]);
+    setProdQuantity(product.Quantity);
+  }, [productId, Items]);
 
   const [prodQuantity, setProdQuantity] = useState(1);
-  // let incrementQuantity = () => {
-  //   dispatch(increaseProductQuantity(productId));
-  // };
-
-  // let decrementQuantity = () => {
-  //   dispatch(increaseProductQuantity(productId));
-  // };
-  // const handleChangeQuantity = () => {
-
-  // };
 
   return (
     <div className="cart-item-wrapper mb-4">
@@ -40,7 +28,7 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
         <div>
           <div className="cart-product-details">
             <div className="cart-image-wrapper">
-              <img src={Chair} />
+              <img src={photo} alt={name} />
             </div>
 
             <div>
@@ -54,8 +42,8 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
               <div className="cart-delete-btn">
                 {/* <img src={DeleteIcon} /> */}
                 <DeleteIcon
-                  width={24}
-                  height={24}
+                  width={20}
+                  height={20}
                   onClick={() => dispatch(removeFromCart(product))}
                 />
               </div>
@@ -71,7 +59,7 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
               </p>
             </div>
 
-            <div className=" quantityCol">
+            <div className="quantityCol">
               <button
                 onClick={() => dispatch(decreaseProductQuantity(productId))}
                 disabled={prodQuantity === 1}
@@ -79,7 +67,7 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
               >
                 -
               </button>
-              <div>
+              <div className="quantity-count">
                 <strong>{prodQuantity}</strong>
               </div>
               <button

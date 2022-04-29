@@ -15,12 +15,13 @@ main {
   // min-height: 50vh;
   // width: 100vw;
   // min-height: 100vh;
-  max-width: 1400px;
   margin: 0 auto;
-
+  overflow-x: hidden;
+  
   // padding: 0 16px;
-
+  
   @media (min-width: 576px) {
+    max-width: 1400px;
     // padding: 0 32px;
   }
 }

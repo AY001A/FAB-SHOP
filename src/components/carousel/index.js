@@ -43,13 +43,19 @@ export const TopDealsSlider = ({ children }) => {
   );
 };
 
-export const HeaderSlider = (cards) => {
-  const settings = {
-    dots: true,
+export const HeaderSlider = ({ children }) => {
+  const options = {
+    fade: true,
     infinite: true,
-    speed: 500,
+    autoplay: true,
+    speed: 1500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplaySpeed: 10000,
   };
-  return <Slider {...settings}>cards</Slider>;
+  return (
+    // <div className="slider">
+    <Slider {...options}>{children}</Slider>
+    // </div>
+  );
 };

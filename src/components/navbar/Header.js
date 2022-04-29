@@ -6,11 +6,11 @@ import Logo from "../../assets/icons/cucumislogo.svg";
 import CartLogo from "../../assets/icons/carticon.svg";
 import Searchbar from "../../containers/searchbar/Searchbar";
 import { FaAngleDown, FaAngleRight, FaArrowDown } from "react-icons/fa";
-import { FiShoppingCart, FiUser } from "react-icons/fi";
+import { FiShoppingCart, FiUser, FiArrowDown } from "react-icons/fi";
 import { IconContext } from "react-icons/lib";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../services/slices/authSlice";
-import { Offcanvas } from "react-bootstrap";
+import { NavDropdown, Offcanvas } from "react-bootstrap";
 import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
 import { useState } from "react";
 import Cart from "../cart/Cart";
@@ -19,7 +19,7 @@ const Header = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
-  const { cartQuantity } = useSelector((state) => state.cart);
+  const { Quantity } = useSelector((state) => state.cart);
 
   const handleClose = () => setShowSidebar(false);
   const handleShow = () => setShowSidebar(true);
@@ -46,15 +46,7 @@ const Header = () => {
             </span>
           )}
           <div className="top-banner-contact">
-            {profile.isAuthenticated && (
-              <span
-                className="text-decoration-underline"
-                style={{ cursor: "pointer" }}
-                onClick={() => dispatch(logout())}
-              >
-                Logout
-              </span>
-            )}
+            <div>Contact us</div>
           </div>
         </div>
 
@@ -64,21 +56,77 @@ const Header = () => {
             <Link to={"/"}>
               <img src={Logo} alt="fabgarage brand" className="logo" />
             </Link>
-
-            <div className="category">
-              <p>Shop by category</p>
-
-              <FaAngleDown size={14} />
-            </div>
           </div>
           <div className="col-sm searchbar">
             <Searchbar />
           </div>
           <IconContext.Provider value={{ size: "24px" }}>
-            <div className="col-4 col-sm-3 nav-icons">
-              <FiUser />
-              <Link to={'cart'} >
-              <Cart count={cartQuantity} />
+            <div className="col-4 col-sm-3 nav-icons ">
+              <Link
+                to={"/"}
+                className="account_btn "
+                style={{ textDecoration: "none" }}
+              >
+                <FiUser color="black" />
+                <NavDropdown
+                  title={
+                    profile.isAuthenticated ? `Hi, ${firstName}` : "Account"
+                  }
+                  className="d-flex align-items-center account_dropdown d-none d-sm-block"
+                >
+                  {/* <p className="">Account</p>
+                  <FaAngleDown color="black" size={14} /> */}
+
+                  {profile.isAuthenticated ? (
+                    <>
+                      <NavDropdown.Item
+                        href="#action/3.2"
+                        className="mt-4"
+                        style={{ fontSize: "14px" }}
+                      >
+                        My Account
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        href="#action/3.2"
+                        className="mt-2 text-center"
+                        style={{ fontSize: "14px" }}
+                      >
+                        My Orders
+                      </NavDropdown.Item>
+
+                      <button
+                        className="btn btn-outline-primary border-0 btn-sm dropdown_btn mt-4"
+                        onClick={() => dispatch(logout())}
+                      >
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <Link to={"/login"}>
+                        <button className="btn btn-primary btn-sm dropdown_btn mt-4">
+                          Login
+                        </button>
+                      </Link>
+                      <Link to={"/register"}>
+                        <button
+                          className="btn  dropdown_btn  btn-sm"
+                          style={{ backgroundColor: "#FEF7D8" }}
+                        >
+                          Register
+                        </button>
+                      </Link>
+                    </>
+                  )}
+                </NavDropdown>
+              </Link>
+              <Link
+                to={"cart"}
+                className="cart_btn"
+                style={{ textDecoration: "none" }}
+              >
+                <Cart count={Quantity} />{" "}
+                {/* <p className="d-none d-sm-block">Cart</p> */}
               </Link>
             </div>
           </IconContext.Provider>
@@ -95,21 +143,24 @@ const Header = () => {
                 Products <FaAngleDown size={14} />
                 <div className="nav-dropdown-menu-content border shadow-sm">
                   <ul>
-                    <Link to={"productCategory/shutter"}>
+                    <Link to={"productCategory/5/shutter"}>
                       <li>Shutter</li>
                     </Link>
+                    <Link to={"productCategory/7/sheds"}>
+                      <li>Sheds</li>
+                    </Link>
 
-                    <Link to={"productCategory/metal-irons"}>
+                    <Link to={"productCategory/6/metal-irons"}>
                       <li>Metal/Iron</li>
                     </Link>
 
-                    <Link to={"productCategory/stainless-steel"}>
+                    <Link to={"productCategory/4/stainless-steel"}>
                       <li>Stainless Steel</li>
                     </Link>
-                    <Link to={"productCategory/aluminium"}>
+                    <Link to={"productCategory/3/aluminium"}>
                       <li>Aluminium</li>
                     </Link>
-                    <Link to={"productCategory/furnitures"}>
+                    <Link to={"productCategory/8/furnitures"}>
                       <li>Metal steel furnitures</li>
                     </Link>
                   </ul>
@@ -158,26 +209,32 @@ const Header = () => {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3 pb-4 mobile-nav">
                 <h5 className="border-bottom">Products</h5>
-                <Link to={"/productCategory/shutter"} onClick={handleClose}>
+                <Link to={"/productCategory/5/shutter"} onClick={handleClose}>
                   Shutter
                   <FaAngleRight />
                 </Link>
-                <Link to={"/productCategory/metal-iron"} onClick={handleClose}>
+                <Link
+                  to={"/productCategory/6/metal-iron"}
+                  onClick={handleClose}
+                >
                   Metal/Iron <FaAngleRight />
                 </Link>
                 <Link
-                  to={"/productCategory/stainless-steel"}
+                  to={"/productCategory/4/stainless-steel"}
                   onClick={handleClose}
                 >
                   Stainless steel <FaAngleRight />
                 </Link>
-                <Link to={"/productCategory/aluminium"} onClick={handleClose}>
+                <Link to={"/productCategory/3/aluminium"} onClick={handleClose}>
                   Aluminium <FaAngleRight />
                 </Link>
-                <Link to={"/productCategory/sheds"} onClick={handleClose}>
+                <Link to={"/productCategory/7/sheds"} onClick={handleClose}>
                   Shed <FaAngleRight />
                 </Link>
-                <Link to={"/productCategory/furnitures"} onClick={handleClose}>
+                <Link
+                  to={"/productCategory/8/furnitures"}
+                  onClick={handleClose}
+                >
                   Metal steel furniture <FaAngleRight />
                 </Link>
               </Nav>

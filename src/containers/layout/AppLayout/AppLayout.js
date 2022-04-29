@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "../../../components/footer/Footer";
 import Header from "../../../components/navbar/Header";
 import Spinner from "../../../components/spinner/Spinner";
+import { ToastContainer } from "react-toastify";
 
 const AppLayout = () => {
   return (
@@ -11,6 +12,12 @@ const AppLayout = () => {
       <Header />
       <div className="main-wrapper">
         <main>
+          <ToastContainer
+            position="top-center"
+            hideProgressBar={true}
+            autoClose={2000}
+          />
+
           <Suspense fallback={<Spinner />}>
             <Outlet />
           </Suspense>

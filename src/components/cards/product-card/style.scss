@@ -1,5 +1,16 @@
+.product-description p{
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
 .products-card {
   width: 100px;
+
+ 
+
 
   margin-right: 0;
   //   margin-bottom: 0;
@@ -21,17 +32,18 @@
 
     a {
       text-decoration: none;
-      color: inherit;
+      color: black;
 
       &:hover {
         text-decoration: underline;
       }
     }
 
+   
     @media (min-width: 576px) {
-      flex-direction: row;
       p {
-        font-size: 16px;
+
+        font-size: 14px;
       }
     }
   }

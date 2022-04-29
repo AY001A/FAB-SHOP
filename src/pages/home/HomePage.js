@@ -1,63 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import TopDealsCard from "../../components/cards/top-deals-card/TopDealsCard";
 import "./style.scss";
 import ServiceCard from "../../components/cards/service-card/ServiceCard";
 import ProductCard from "../../components/cards/product-card/ProductCard";
 import { services } from "../services/services";
 import Slider from "../../components/slider/Slider";
 
-import { useDispatch } from "react-redux";
-import { removeFromCart, addToCart } from "../../services/slices/cartSlice";
+import { HeaderSlider } from "../../components/carousel";
+import { mock_top_deals } from "../../api/products";
+import { useGetProducts } from "../../hook/useProducts";
+import Spinner from "../../components/spinner/Spinner";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const productCount = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  let count = 1;
-  const dispatch = useDispatch();
+  const { status, data, error } = useGetProducts(1, 10);
 
   return (
     <>
-      <button
-        onClick={() =>
-          dispatch(
-            addToCart({
-              productId: count++,
-              name: "staircase",
-              price: 23000,
-              quantity: 1,
-              subtotal: 23000,
-            })
-          )
-        }
-      >
-        addToCart
-      </button>
-      <button
-        onClick={() =>
-          dispatch(
-            removeFromCart({
-              productId: 2,
-              name: "staircase",
-              price: 23000,
-              quantity: 2,
-              subtotal: 10000,
-            })
-          )
-        }
-      >
-        remove
-      </button>
-      <section className="carousel_header ">
-        <div>
-          <p>Enjoy up to 15% discount on your first order</p>
+      <HeaderSlider>
+        <section className="carousel_header services_ad">
+          <div className="carousel_info ">
+            <p>World class proffessionals at your doorstep </p>
 
-          <button className="btn btn-primary">
-            <strong>Shop Now</strong>
-          </button>
-        </div>
-      </section>
+            <button className="btn btn-primary">
+              <strong>Hire Now</strong>
+            </button>
+          </div>
+        </section>
+        <section className="carousel_header billboard_ad">
+          <div className="carousel_info">
+            <p>Advertise your business on bilboards in Nigeria</p>
+
+            <button className="btn btn-primary">
+              <strong>Shop Now</strong>
+            </button>
+          </div>
+        </section>
+      </HeaderSlider>
 
       <section className="intro_section">
         <div className="intro_section_paragraphs">
@@ -92,11 +72,19 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Deals</p> <Link to={"/"}>see more</Link>
         </div>
-        <div className="top-deals-products w-100 row ">
+        <div className="top-deals-products w-100 row p-sm-5 ">
           <div className="slide-container row ">
             <Slider>
-              {productCount.map((prod, index) => (
-                <TopDealsCard key={index} />
+              {mock_top_deals.map((prod) => (
+                <ProductCard
+                  className={"m-2"}
+                  id={prod.Id}
+                  description={prod.Description}
+                  title={prod.Name}
+                  image={prod.ImagesUrls[0]}
+                  price={prod.Price}
+                  key={prod.Id}
+                />
               ))}
             </Slider>
           </div>
@@ -107,34 +95,34 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Product Category</p>
         </div>
-        <div className="category w-100 ">
+        <div className="category w-100 p-5">
           <div className="productCategory bg-light w-100 ">
             <div className="row  rowball">
               <div
                 className="box p-0 col-4 text-center"
-                onClick={() => navigate("/productCategory/aluminium")}
+                onClick={() => navigate("/productCategory/3/aluminium")}
               ></div>
               <div
                 className="box col-4 text-center"
-                onClick={() => navigate("/productCategory/stainless-steel")}
+                onClick={() => navigate("/productCategory/4/stainless-steel")}
               ></div>
               <div
                 className="box col-4 text-center"
-                onClick={() => navigate("/productCategory/shutter")}
+                onClick={() => navigate("/productCategory/5/shutter")}
               ></div>
             </div>
             <div className="row rowball">
               <div
                 className="boxTwo col-4 text-center"
-                onClick={() => navigate("/productCategory/metal-iron")}
+                onClick={() => navigate("/productCategory/6/metal-iron")}
               ></div>
               <div
                 className="boxTwo col-4 text-center"
-                onClick={() => navigate("/productCategory/sheds")}
+                onClick={() => navigate("/productCategory/7/sheds")}
               ></div>
               <div
                 className="boxTwo col-4 text-center"
-                onClick={() => navigate("/productCategory/furnitures")}
+                onClick={() => navigate("/productCategory/8/furnitures")}
               ></div>
             </div>
           </div>
@@ -145,14 +133,14 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Services</p> <Link to={"/services"}>see more</Link>
         </div>
-        <div className="service-cards-wrapper">
+        <div className="service-cards-wrapper p-sm-5">
           {services
             .filter((serv) => serv.category === "Home")
             .map((val) => (
               <ServiceCard
                 title={val.name}
                 image={val.image}
-                desc={val.short_description}
+                desc={val.description}
                 url_path={`services/${val.url_path}`}
                 key={val.id}
               />
@@ -163,20 +151,30 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Products</p> <Link to={"/"}>see more</Link>
         </div>
-        <div className="top-products">
+        {console.log(data?.data?.data)}
+        <div className="top-products p-sm-5">
           {/* <p>No product available</p> */}
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {status === "loading" && <Spinner />}
+
+          {status === "success" && !data?.data.data.length ? (
+            <p>Inventory is empty</p>
+          ) : (
+            data?.data?.data.map((prod) => (
+              <ProductCard
+                id={prod.Id}
+                description={prod.Description}
+                title={prod.Name}
+                image={prod.ImagesUrls[0]}
+                price={prod.Price}
+                key={prod.Id}
+              />
+            ))
+          )}
+          {status === "error" && (
+            <p className="justify-self-center">
+              Something went wrong, please try again after some time
+            </p>
+          )}
         </div>
       </section>
     </>
