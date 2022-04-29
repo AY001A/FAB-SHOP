@@ -16,6 +16,8 @@ import ProductPage from "./pages/product/ProductPage";
 import { lazy } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
+import DeliveryPageForm from "./pages/deliveryPage/DeliveryPageForm";
+
 import AccountPage from "./pages/accountPage/AccountPage";
 
 // import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
@@ -49,6 +51,8 @@ function App() {
             path="forget-password/success"
             element={<ForgetPasswordSuccess />}
           />
+
+          <Route path='delivery' element={<DeliveryPageForm />} />
 
           <Route path="cart" element={<CartPage />} />
 
