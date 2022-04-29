@@ -10,17 +10,15 @@ import {
 } from "../../../services/slices/cartSlice";
 import Currency from "../../currency/Currency";
 
-const CartCard = ({ name, productId, price, subtotal, product }) => {
-  const { products } = useSelector((state) => state.cart);
+const CartCard = ({ name, productId, price, photo, subtotal, product }) => {
+  const { Items } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const product = products.find((product) => product.productId === productId);
+    const product = Items.find((product) => product.ProductId === productId);
 
-    setProdQuantity(product.quantity);
-
-    return () => {};
-  }, [product.quantity]);
+    setProdQuantity(product.Quantity);
+  }, [productId, Items]);
 
   const [prodQuantity, setProdQuantity] = useState(1);
 
@@ -30,7 +28,7 @@ const CartCard = ({ name, productId, price, subtotal, product }) => {
         <div>
           <div className="cart-product-details">
             <div className="cart-image-wrapper">
-              <img src={Chair} />
+              <img src={photo} alt={name} />
             </div>
 
             <div>

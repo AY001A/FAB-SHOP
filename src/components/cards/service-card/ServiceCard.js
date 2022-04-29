@@ -17,7 +17,9 @@ const ServiceCard = ({ title, image, desc, url_path }) => {
         </div>
         <div className="services-description-wrapper card-body p-0 pt-2 ">
           <p className="services-title card-title fw-bold ">{title}</p>
-          <p className="services-description card-text ">{desc}</p>
+          <div className="product-description card-text ">
+            <p>{desc}</p>
+          </div>
         </div>
       </div>
     </Link>

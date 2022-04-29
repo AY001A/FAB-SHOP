@@ -19,7 +19,7 @@ const Header = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
-  const { cartQuantity } = useSelector((state) => state.cart);
+  const { Quantity } = useSelector((state) => state.cart);
 
   const handleClose = () => setShowSidebar(false);
   const handleShow = () => setShowSidebar(true);
@@ -56,12 +56,6 @@ const Header = () => {
             <Link to={"/"}>
               <img src={Logo} alt="fabgarage brand" className="logo" />
             </Link>
-
-            {/* <div className="category">
-              <p>Shop by category</p>
-
-              <FaAngleDown size={14} />
-            </div> */}
           </div>
           <div className="col-sm searchbar">
             <Searchbar />
@@ -87,7 +81,7 @@ const Header = () => {
                     <>
                       <NavDropdown.Item
                         href="#action/3.2"
-                        className="mt-4 text-center"
+                        className="mt-4"
                         style={{ fontSize: "14px" }}
                       >
                         My Account
@@ -124,14 +118,6 @@ const Header = () => {
                       </Link>
                     </>
                   )}
-
-                  {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item> */}
                 </NavDropdown>
               </Link>
               <Link
@@ -139,8 +125,8 @@ const Header = () => {
                 className="cart_btn"
                 style={{ textDecoration: "none" }}
               >
-                <Cart count={cartQuantity} />{" "}
-                <p className="d-none d-sm-block">Cart</p>
+                <Cart count={Quantity} />{" "}
+                {/* <p className="d-none d-sm-block">Cart</p> */}
               </Link>
             </div>
           </IconContext.Provider>
@@ -157,21 +143,24 @@ const Header = () => {
                 Products <FaAngleDown size={14} />
                 <div className="nav-dropdown-menu-content border shadow-sm">
                   <ul>
-                    <Link to={"productCategory/shutter"}>
+                    <Link to={"productCategory/5/shutter"}>
                       <li>Shutter</li>
                     </Link>
+                    <Link to={"productCategory/7/sheds"}>
+                      <li>Sheds</li>
+                    </Link>
 
-                    <Link to={"productCategory/metal-irons"}>
+                    <Link to={"productCategory/6/metal-irons"}>
                       <li>Metal/Iron</li>
                     </Link>
 
-                    <Link to={"productCategory/stainless-steel"}>
+                    <Link to={"productCategory/4/stainless-steel"}>
                       <li>Stainless Steel</li>
                     </Link>
-                    <Link to={"productCategory/aluminium"}>
+                    <Link to={"productCategory/3/aluminium"}>
                       <li>Aluminium</li>
                     </Link>
-                    <Link to={"productCategory/furnitures"}>
+                    <Link to={"productCategory/8/furnitures"}>
                       <li>Metal steel furnitures</li>
                     </Link>
                   </ul>
@@ -220,26 +209,32 @@ const Header = () => {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3 pb-4 mobile-nav">
                 <h5 className="border-bottom">Products</h5>
-                <Link to={"/productCategory/shutter"} onClick={handleClose}>
+                <Link to={"/productCategory/5/shutter"} onClick={handleClose}>
                   Shutter
                   <FaAngleRight />
                 </Link>
-                <Link to={"/productCategory/metal-iron"} onClick={handleClose}>
+                <Link
+                  to={"/productCategory/6/metal-iron"}
+                  onClick={handleClose}
+                >
                   Metal/Iron <FaAngleRight />
                 </Link>
                 <Link
-                  to={"/productCategory/stainless-steel"}
+                  to={"/productCategory/4/stainless-steel"}
                   onClick={handleClose}
                 >
                   Stainless steel <FaAngleRight />
                 </Link>
-                <Link to={"/productCategory/aluminium"} onClick={handleClose}>
+                <Link to={"/productCategory/3/aluminium"} onClick={handleClose}>
                   Aluminium <FaAngleRight />
                 </Link>
-                <Link to={"/productCategory/sheds"} onClick={handleClose}>
+                <Link to={"/productCategory/7/sheds"} onClick={handleClose}>
                   Shed <FaAngleRight />
                 </Link>
-                <Link to={"/productCategory/furnitures"} onClick={handleClose}>
+                <Link
+                  to={"/productCategory/8/furnitures"}
+                  onClick={handleClose}
+                >
                   Metal steel furniture <FaAngleRight />
                 </Link>
               </Nav>
