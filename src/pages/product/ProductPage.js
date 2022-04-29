@@ -10,17 +10,34 @@ import { useGetProductById } from "../../hook/useProducts";
 import Currency from "../../components/currency/Currency";
 import Spinner from "../../components/spinner/Spinner";
 import { mock_top_deals } from "../../api/products";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const ProductPage = ({ product }) => {
   const { productId, title } = useParams();
   const dispatch = useDispatch();
 
+  const { Items } = useSelector((state) => state.cart);
+
   const { data, status, error } = useGetProductById(productId);
 
-  // const { Id, Name, Description, Category, Kind, ImageUrls, Price, MetaData } =
   const prod = data?.data;
-  console.log(prod);
 
+  const handleAddtocart = (product) => {
+    const inCart = Items.filter((id) => id.ProductId === product.Id);
+
+    !inCart.length
+      ? dispatch(
+          addToCart({
+            BaseAmount: Number(prod?.Price),
+            ProductId: prod?.Id,
+            Name: prod?.Name,
+            Image: prod?.ImagesUrls[0],
+            TotalAmount: Number(prod?.Price),
+          })
+        )
+      : toast.info("product already in cart");
+  };
   const [openModal, setOpenModal] = useState(false);
 
   if (status === "loading") return <Spinner />;
@@ -69,11 +86,11 @@ const ProductPage = ({ product }) => {
               <>
                 <button
                   className="btn-cart btn btn-primary "
-                  onClick={() => dispatch(addToCart(product))}
+                  onClick={() => handleAddtocart(prod)}
                 >
                   Add to cart
                 </button>
-                <button className="btn btn-outline-primary">Buy now</button>
+                {/* <button className="btn btn-outline-primary">Buy now</button> */}
               </>
             ) : (
               <button
@@ -93,10 +110,23 @@ const ProductPage = ({ product }) => {
 
         {prod?.Kind === "Direct" ? (
           <>
-            <button className="btn-cart bm btn btn-primary ">
+            <button
+              className="btn-cart bm btn btn-primary "
+              onClick={() =>
+                dispatch(
+                  addToCart({
+                    BaseAmount: Number(prod?.Price),
+                    ProductId: prod?.Id,
+                    TotalAmount: Number(prod?.Price),
+                    Name: prod?.Name,
+                    Photo: prod?.ImagesUrls[0],
+                  })
+                )
+              }
+            >
               Add to cart
             </button>
-            <button className="btn bm btn-outline-primary">Buy now</button>
+            {/* <button className="btn bm btn-outline-primary">Buy now</button> */}
           </>
         ) : (
           <button

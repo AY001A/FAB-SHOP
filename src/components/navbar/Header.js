@@ -19,7 +19,7 @@ const Header = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
-  const { cartQuantity } = useSelector((state) => state.cart);
+  const { Quantity } = useSelector((state) => state.cart);
 
   const handleClose = () => setShowSidebar(false);
   const handleShow = () => setShowSidebar(true);
@@ -139,8 +139,8 @@ const Header = () => {
                 className="cart_btn"
                 style={{ textDecoration: "none" }}
               >
-                <Cart count={cartQuantity} />{" "}
-                <p className="d-none d-sm-block">Cart</p>
+                <Cart count={Quantity} />{" "}
+                {/* <p className="d-none d-sm-block">Cart</p> */}
               </Link>
             </div>
           </IconContext.Provider>
