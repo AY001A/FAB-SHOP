@@ -8,6 +8,7 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./services/store";
 import reportWebVitals from "./reportWebVitals";
+import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
