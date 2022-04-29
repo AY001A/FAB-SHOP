@@ -9,6 +9,7 @@ const initialState = {
   Quantity: 0,
   TotalAmount: 0,
   Items: [],
+  UserDetails: null,
 };
 
 const cartSlice = createSlice({
@@ -81,6 +82,15 @@ const cartSlice = createSlice({
       state.TotalAmount = newTotal;
       toast.info("decreased quantity");
     },
+    addShippingDetails(state, action) {
+      state.UserDetails = {
+        FullName: action.payload.fullName,
+        Email: action.payload.email,
+        Phone: action.payload.number,
+        Address: action.payload.address,
+        State: action.payload.state,
+      };
+    },
   },
 });
 
@@ -89,6 +99,7 @@ export const {
   removeFromCart,
   increaseProductQuantity,
   decreaseProductQuantity,
+  addShippingDetails,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

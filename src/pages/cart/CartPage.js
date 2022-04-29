@@ -65,9 +65,11 @@ const CartPage = () => {
               </p>
             </div> */}
 
-            <button className="btn btn-primary btn-lg w-100 mt-2 mb-2">
-              <strong>Checkout</strong>
-            </button>
+            <Link to={"proceed"}>
+              <button className="btn btn-primary btn-lg w-100 mt-2 mb-2">
+                <strong>Checkout</strong>
+              </button>
+            </Link>
             <button className="btn btn-outline-primary btn-lg w-100 text-black">
               <strong>Continue Shopping</strong>
             </button>

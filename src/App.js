@@ -52,9 +52,12 @@ function App() {
             element={<ForgetPasswordSuccess />}
           />
 
-          <Route path='delivery' element={<DeliveryPageForm />} />
+          <Route path="delivery" element={<DeliveryPageForm />} />
 
-          <Route path="cart" element={<CartPage />} />
+          <Route path="cart">
+            <Route index element={<CartPage />} />
+            <Route path="proceed" element={<DeliveryPageForm />} />
+          </Route>
 
           {/* Services */}
           <Route path="services" element={<ServicesHomePage />} />
