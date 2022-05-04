@@ -21,7 +21,7 @@ import DeliveryPageForm from "./pages/deliveryPage/DeliveryPageForm";
 
 import AccountPage from "./pages/accountPage/AccountPage";
 
-import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
+import CheckoutSuccess from "./pages/checkout/SuccessPage";
 import SearchPage from "./pages/search/SearchPage";
 
 // import Alert from "./components/Alert/Alert"
