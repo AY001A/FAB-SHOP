@@ -1,39 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import THUMBSUP from "../../assets/icons/thumbsup.svg";
+import { refreshCart } from "../../services/slices/cartSlice";
 
 import "./checkoutSuccess.scss";
 
 const CheckoutSuccess = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshCart());
+  }, [dispatch]);
+
   return (
     <div className="checkout_wrapper">
       <div className="container">
         <div className="row">
-          <div className="col-lg-12 thumb">
+          <div className="col-lg-12 text-center thumb">
             <img src={THUMBSUP} alt="fabgarage brand" />
           </div>
         </div>
       </div>
 
-      <div className="mt-5 text-center">
-        <p className="display-1 fw-700">Thank you for your Purchase</p>
-        <p className="h3 mb-5">
-          We’ve sent an email and SMS with all the details <br />
-          of your order
-        </p>
-        <p className="h3 mb-5">
-          Your order number is <strong className="span">R6982209887</strong>{" "}
-        </p>
-        <p class="fw-bold">
-          Do you need our expert to help you fix it?{" "}
-          {/* <a href="#" class="link-warning">
-            Book for installation
-          </a> */}
-        </p>
+      <div className="text-center">
+        <p className="text-bold">Thank you for shopping with us</p>
+
+        <p className="">Our agents will reach out to you soon.</p>
 
         <Link to="/">
           {" "}
-          <button className="btn btn-primary fw-bold" type="button">
+          <button className="btn btn-primary mt-2" type="button">
             Return to Homepage
           </button>
         </Link>

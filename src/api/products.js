@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import http from "../http-common";
 
 export const products = async (currentPage, pageSize) => {
@@ -6,6 +7,22 @@ export const products = async (currentPage, pageSize) => {
   );
 
   return res.data;
+};
+export const searchProduct = async (
+  currentPage = 1,
+  pageSize = 20,
+  keyword
+) => {
+  try {
+    const res = await http.post(
+      `product/searchProduct?currentPage=${currentPage}&pageSize=${pageSize}`,
+      { searchKeyword: keyword }
+    );
+
+    return res.data;
+  } catch (err) {
+    toast.warn("something went wrong, try again");
+  }
 };
 
 export const productsUnpaginated = async () => {

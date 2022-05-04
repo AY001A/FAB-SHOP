@@ -112,17 +112,7 @@ const ProductPage = ({ product }) => {
           <>
             <button
               className="btn-cart bm btn btn-primary "
-              onClick={() =>
-                dispatch(
-                  addToCart({
-                    BaseAmount: Number(prod?.Price),
-                    ProductId: prod?.Id,
-                    TotalAmount: Number(prod?.Price),
-                    Name: prod?.Name,
-                    Photo: prod?.ImagesUrls[0],
-                  })
-                )
-              }
+              onClick={() => handleAddtocart(prod)}
             >
               Add to cart
             </button>

@@ -4,15 +4,20 @@ $primary: #fecf00;
 // $white: #fafaf9;
 // $black: #171717;
 
+
 /* TYPOGRAPHY */
 $font-family-base: "Public Sans", Sans serif;
 
 /* FORM INPUTS */
-$input-bg: #f2f2f2;
-$input-border-color: transparent;
+$input-bg: #f8f6f6;
+$input-height: 30px;
+// $input-border-color: transparent;
 $input-border-radius: 8px;
 $input-focus-box-shadow: none;
 
+$input-border-color:  rgba(0, 0, 0, 0.541); 
+// $input-border-width: 
+$input-height-border: 40px;
 // NAVBAR TOGGLER
 $navbar-toggler-padding-y: 0.25rem;
 $navbar-toggler-padding-x: 0.5rem;

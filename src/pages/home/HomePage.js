@@ -14,29 +14,37 @@ import Spinner from "../../components/spinner/Spinner";
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const { status, data, error } = useGetProducts(1, 10);
+  const { status, data, error } = useGetProducts(1, 18);
 
   return (
     <>
-
-
       <HeaderSlider>
         <section className="carousel_header services_ad">
           <div className="carousel_info ">
-            <p>World class proffessionals at your doorstep </p>
+            <p>World class professionals at your doorstep </p>
 
-            <button className="btn btn-primary">
-              <strong>Hire Now</strong>
-            </button>
+            <Link to={"/services"}>
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate("/services")}
+              >
+                <strong>Hire Now</strong>
+              </button>
+            </Link>
           </div>
         </section>
         <section className="carousel_header billboard_ad">
           <div className="carousel_info">
             <p>Advertise your business on bilboards in Nigeria</p>
 
-            <button className="btn btn-primary">
-              <strong>Shop Now</strong>
-            </button>
+            <Link to={"/services"}>
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate("/services")}
+              >
+                <strong>Shop Now</strong>
+              </button>
+            </Link>
           </div>
         </section>
       </HeaderSlider>

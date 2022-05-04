@@ -1,13 +1,14 @@
 import React from "react";
 import "./style.scss";
+import Chair from "../../assets/images/chair.jpg";
 import { useSelector } from "react-redux";
 import CartCard from "../../components/cards/cart-card/CartCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Currency from "../../components/currency/Currency";
 
 const CartPage = () => {
   const { Quantity, Items, TotalAmount } = useSelector((state) => state.cart);
-
+  const navigate = useNavigate();
   return (
     <div className="cartpage-wrapper">
       <div className="cart-header">
@@ -48,33 +49,41 @@ const CartPage = () => {
           <div className=" d-none d-sm-block cart-price-card">
             <h3>Order Summary</h3>
 
-            {/* <div className="row justify-between"> */}
-            {/* <p className="col-6">Delivery Fee:</p> */}
-            {/* <p className="col-6"></p> */}
-            {/* </div> */}
             <div className="row justify-between ">
               <p className="col-6">Total:</p>
               <p className="col-6 fw-bold">
                 <Currency>{TotalAmount}</Currency>
               </p>
             </div>
-            {/* <div className="row justify-between">
-              <p className="col-6">Accumulated total:</p>
-              <p className="col-6 fw-bold">
-                <Currency>{TotalAmount}</Currency>
-              </p>
-            </div> */}
 
-            <Link to={"proceed"}>
-              <button className="btn btn-primary btn-lg w-100 mt-2 mb-2">
-                <strong>Checkout</strong>
-              </button>
-            </Link>
-            <button className="btn btn-outline-primary btn-lg w-100 text-black">
-              <strong>Continue Shopping</strong>
+            <button
+              className="btn btn-primary btn-md w-100 mt-3"
+              onClick={() => navigate("/cart/proceed", { replace: true })}
+              disabled={Quantity === 0}
+            >
+              <strong>Proceed to checkout</strong>
             </button>
           </div>
         </div>
+      </div>
+
+      <div className=" d-block d-sm-none mt-4">
+        <h3 className="p-4">Order Summary</h3>
+
+        <div className="row justify-between ">
+          <p className="col-6">Total:</p>
+          <p className="col-6 fw-bold">
+            <Currency>{TotalAmount}</Currency>
+          </p>
+        </div>
+
+        <button
+          className="btn btn-primary btn-lg  w-100 mt-4"
+          onClick={() => navigate("/cart/proceed", { replace: true })}
+          disabled={Quantity === 0}
+        >
+          <strong>Proceed to checkout</strong>
+        </button>
       </div>
     </div>
   );

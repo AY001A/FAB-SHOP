@@ -56,19 +56,19 @@ const ServicePage = () => {
             <img
               src={data?.image}
               alt={data?.short_description}
-              className="rounded w-100  h-sm-75 mb-5 "
+              className="rounded w-100  h-sm-75 mb-3"
             />
 
             <div className="service-header-description">
               <h3 className="fw-bold">{data?.name}</h3>
               <p>{data?.description}</p>
               <div className="d-flex">
-                <h5 className="">Features:</h5>
-                <p className=""> Fixing, Repair, Maintainance</p>
+                {/* <h5 className="">Features:</h5> */}
+                {/* <p className=""> Fixing, Repair, Maintainance</p> */}
               </div>
 
               <div>
-                <h5 className="fw-bold">Additional information</h5>
+                {/* <h5 className="fw-bold">Additional information</h5> */}
                 <p>
                   We offer high class services to all our clients, and we
                   guarantee that our professionals are highly trained and will
@@ -79,8 +79,8 @@ const ServicePage = () => {
               </div>
             </div>
           </div>
-          <div className="service-form col-sm-5  mb-5 ">
-            <h3 className="text-center  pb-2">Book Service</h3>
+          <div className="service-form col-sm-5  mb-4 ">
+            {/* <h3 className="text-center  pb-2">Book Service</h3> */}
             <Form
               noValidate
               className="requires-validation"

@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
-const initialState = {
-  // products: [],
-  // cartQuantity: 0,
-  // totalPrice: 0,
-  OwnerId: "",
-  Quantity: 0,
-  TotalAmount: 0,
-  Items: [],
-  UserDetails: null,
-};
+const local_cart = window.localStorage.getItem("cucumislush-cart");
+const initialState = local_cart
+  ? JSON.parse(local_cart)
+  : {
+      OwnerId: "",
+      Quantity: 0,
+      TotalAmount: 0,
+      Items: [],
+      UserDetails: null,
+      Receipt: null,
+    };
 
 const cartSlice = createSlice({
   name: "cart",
@@ -40,6 +41,7 @@ const cartSlice = createSlice({
         Photo: action.payload.Image,
       });
       toast.success(`product added to cart`);
+      window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
     },
 
     removeFromCart(state, action) {
@@ -51,6 +53,7 @@ const cartSlice = createSlice({
       state.TotalAmount = state.TotalAmount - action.payload.TotalAmount;
 
       toast.warn(`product removed from cart`);
+      window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
     },
 
     increaseProductQuantity(state, action) {
@@ -66,6 +69,7 @@ const cartSlice = createSlice({
 
       state.TotalAmount = newTotal;
       toast.info("increased quantity");
+      window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
     },
 
     decreaseProductQuantity(state, action) {
@@ -81,6 +85,7 @@ const cartSlice = createSlice({
 
       state.TotalAmount = newTotal;
       toast.info("decreased quantity");
+      window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
     },
     addShippingDetails(state, action) {
       state.UserDetails = {
@@ -90,6 +95,21 @@ const cartSlice = createSlice({
         Address: action.payload.address,
         State: action.payload.state,
       };
+      state.OwnerId = action.payload.email;
+      window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
+    },
+    paymentReceipt(state, action) {
+      state.Receipt = action.payload;
+      window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
+    },
+    refreshCart(state) {
+      window.localStorage.removeItem("cucumislush-cart");
+      state.OwnerId = "";
+      state.Quantity = 0;
+      state.TotalAmount = 0;
+      state.Items = [];
+      state.UserDetails = null;
+      state.Receipt = null;
     },
   },
 });
@@ -100,6 +120,8 @@ export const {
   increaseProductQuantity,
   decreaseProductQuantity,
   addShippingDetails,
+  paymentReceipt,
+  refreshCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

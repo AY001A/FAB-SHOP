@@ -16,12 +16,13 @@ import ProductPage from "./pages/product/ProductPage";
 import { lazy } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
-import Payment from "./pages/payment/Payment";
+import CheckoutSummary from "./pages/payment/Payment";
 import DeliveryPageForm from "./pages/deliveryPage/DeliveryPageForm";
 
 import AccountPage from "./pages/accountPage/AccountPage";
 
-// import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
+import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
+import SearchPage from "./pages/search/SearchPage";
 
 // import Alert from "./components/Alert/Alert"
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
@@ -53,19 +54,22 @@ function App() {
             element={<ForgetPasswordSuccess />}
           />
 
-          {/* Payment page */}
-          <Route path="payment" element={<Payment />} />
-
           {/* Cart page  */}
 
           <Route path="cart">
             <Route index element={<CartPage />} />
-            <Route path="proceed" element={<DeliveryPageForm />} />
+            <Route path="proceed">
+              <Route index element={<DeliveryPageForm />} />
+              <Route path="checkout" element={<CheckoutSummary />} />
+              <Route path="success" element={<CheckoutSuccess />} />
+            </Route>
           </Route>
 
           {/* Services */}
           <Route path="services" element={<ServicesHomePage />} />
           <Route path="services/:service" element={<ServicePage />} />
+
+          <Route path="search/:keyword" element={<SearchPage />} />
 
           {/* Products */}
           <Route

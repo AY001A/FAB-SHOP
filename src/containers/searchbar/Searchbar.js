@@ -6,8 +6,10 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Searchbar = () => {
+  const navigate = useNavigate();
   const isMobile = useIsMobileScreen();
 
   const formik = useFormik({
@@ -15,37 +17,39 @@ const Searchbar = () => {
       searchTerm: "",
     },
     onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
+      navigate(`search/${values.searchTerm}`);
     },
   });
 
   return (
-    <InputGroup
-      onSubmit={formik.handleSubmit}
-      className="justify-content-between searbarInputGroup border    border-top-left-radius: 10px;
+    <form onSubmit={formik.handleSubmit}>
+      <InputGroup
+        onSubmit={formik.handleSubmit}
+        className="justify-content-between searbarInputGroup border    border-top-left-radius: 10px;
       "
-    >
-      <div className="searchbar-input  ">
-        <FiSearch
-          size={24}
-          style={{ margin: "8px" }}
-          className="d-none d-sm-block"
-        />
-        <input
-          type="text"
-          name="searchTerm"
-          id="searchTerm"
-          onChange={formik.handleChange}
-          value={formik.values.searchTerm}
-          className=" h-100 "
-          placeholder="Search for products..."
-        />
-      </div>
+      >
+        <div className="searchbar-input  ">
+          <FiSearch
+            size={24}
+            style={{ margin: "8px" }}
+            className="d-none d-sm-block"
+          />
+          <input
+            type="text"
+            name="searchTerm"
+            id="searchTerm"
+            onChange={formik.handleChange}
+            value={formik.values.searchTerm}
+            className=" h-100 "
+            placeholder="Search for products..."
+          />
+        </div>
 
-      <button type="submit" className="btn btn-primary rounded-3 search-btn">
-        Search
-      </button>
-    </InputGroup>
+        <button type="submit" className="btn btn-primary rounded-3 search-btn">
+          Search
+        </button>
+      </InputGroup>
+    </form>
   );
 };
 

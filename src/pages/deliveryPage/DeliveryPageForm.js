@@ -1,18 +1,23 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./styles.scss";
 import Delivery from "../../assets/images/delievryImage.svg";
 import { addShippingDetails } from "../../services/slices/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+import { useCreateCart } from "../../hook/useOrder";
+import { toast } from "react-toastify";
+import { Spinner } from "react-bootstrap";
 
 const DeliveryPageForm = () => {
-  // const [fullName, setFullName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [number, setNumber] = useState("");
-  // const [address, setAddress] = useState("");
-  // const [state, setState] = useState("Lagos");
-  // const [details, setDetails] = useState({});
+  const { Quantity, Items } = useSelector((state) => state.cart);
+
+  const [submitting, setSubmitting] = useState(false);
+
+  const navigate = useNavigate();
+  const mutation = useCreateCart();
 
   const formik = useFormik({
     initialValues: {
@@ -23,15 +28,32 @@ const DeliveryPageForm = () => {
       state: "Lagos",
     },
     onSubmit(values) {
+      setSubmitting(true);
       dispatch(addShippingDetails(values));
+      mutation.mutate(
+        {
+          OwnerId: values.email,
+          Items,
+        },
+        {
+          onSuccess() {
+            setSubmitting(false);
+            navigate("checkout", { replace: true });
+          },
+          onError() {
+            setSubmitting(false);
+            toast.warn("oops! something went wrong, try again.");
+          },
+        }
+      );
     },
   });
 
   const dispatch = useDispatch();
 
   return (
-    <div className="container deliveryPage mt-5">
-      <div className="row p-4">
+    <div className="container deliveryPage mt-4">
+      <div className="row p-2">
         <div className="col-md-6">
           <div className="deliveryLeftCol">
             <h1 className="deliveryHeader">Delivery Address Form</h1>
@@ -39,8 +61,8 @@ const DeliveryPageForm = () => {
               Kindly fill this form to help you get your order delivered at your
               doorstep.
             </p>
-            <form className="my-5" onSubmit={formik.handleSubmit}>
-              <div className="mb-4">
+            <form className="my-2" onSubmit={formik.handleSubmit}>
+              <div className="mb-2">
                 <label htmlFor="fullName" className="labelTitle form-label">
                   Full name
                 </label>
@@ -55,7 +77,7 @@ const DeliveryPageForm = () => {
                 />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-2">
                 <label htmlFor="email" className="labelTitle form-label">
                   Email address
                 </label>
@@ -70,7 +92,7 @@ const DeliveryPageForm = () => {
                 />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-2">
                 <label htmlFor="number" className="labelTitle form-label">
                   Phone number
                 </label>
@@ -85,7 +107,7 @@ const DeliveryPageForm = () => {
                 />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-2">
                 <label htmlFor="address" className="labelTitle form-label">
                   Address
                 </label>
@@ -100,7 +122,7 @@ const DeliveryPageForm = () => {
                 />
               </div>
 
-              <div className="mb-5">
+              <div className="mb-2">
                 <label htmlFor="state" className="labelTitle form-label">
                   State
                 </label>
@@ -122,10 +144,16 @@ const DeliveryPageForm = () => {
               <div className="mt-5">
                 <button
                   type="submit"
-                  className="btn-primary w-100 p-2 deliveryButton"
+                  className="btn btn-primary w-100 p-2 "
+                  disabled={Quantity === 0 || submitting}
+
                   // onClick={() => dispatch(addShippingDetails(details))}
                 >
-                  Proceed to Checkout
+                  {submitting ? (
+                    <Spinner animation="border" />
+                  ) : (
+                    "Proceed to Checkout"
+                  )}
                 </button>
               </div>
             </form>

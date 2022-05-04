@@ -5,19 +5,23 @@
     overflow-x: hidden;
 }
 .deliveryImageContainer{
-    height: 100vh;
+    // height: 100vh;
+    img{
+        height: 90vh;
+        border-radius: 10px;
+    }
 }
 
 .deliveryHeader{
     font-style: normal;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 24px;
 }
 
 .deliverParagrapgh{
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 22px;
     width: 80%;
 }
@@ -25,8 +29,8 @@
 .labelTitle{
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
+    font-size:12px;
+    // line-height: 19px;
 }
 
 .deliveryImageContainer{

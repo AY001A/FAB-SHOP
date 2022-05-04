@@ -1,20 +1,16 @@
-import React from 'react'
-import './style.scss';
+import "./style.scss";
 
-const DeliveryAddress = () => {
+const DeliveryAddress = ({ name, address, state, number }) => {
   return (
-    <div className='p-4 orderSummaryContainer bg-light mb-4'>
-        
-        <div className='d-flex justify-content-between'>
-            <p className='deliveryName'>Noah Abraham</p>
-        </div>
+    <div className="p-4 orderSummaryContainer bg-light mb-1">
+      <div className="d-flex justify-content-between">
+        <p className="deliveryName">{name}</p>
+      </div>
 
-        <p className='text-secondary'>10,Wole Ogunjimi, Opebi-Ikeja</p>
-        <p className='text-secondary'>09016247864</p>
-        
-
+      <p className="text-secondary ">{`${address}, ${state}`}</p>
+      <p className="text-secondary small">{number}</p>
     </div>
-  )
-}
+  );
+};
 
-export default DeliveryAddress
+export default DeliveryAddress;
