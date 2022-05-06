@@ -9,12 +9,12 @@ header {
 
 
 .logo {
-  width: 70px;
+  width: 150px;
   height: 60px;
 
   @media (min-width: $sm-breakpoint) {
-    width: 85px;
-    height: 80px;
+    width: 185px;
+    height: 60px;
   }
 }
 
@@ -126,9 +126,6 @@ header {
       display: block;
       // min-width: 300px;
 
-  
-
-      
     }
   }
 }

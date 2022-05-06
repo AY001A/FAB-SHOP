@@ -6,6 +6,7 @@ import ProductCatImageWebP from "../../assets/images/productcategory/productcate
 import "./style.scss";
 import { useGetUnpaginatedProducts } from "../../hook/useProducts";
 import Spinner from "../../components/spinner/Spinner";
+import ProductCategoryCard from "../../components/cards/product-card/ProductCategoryCard";
 
 const ProductCategoryPage = () => {
   const { category, categoryId } = useParams();
@@ -17,7 +18,7 @@ const ProductCategoryPage = () => {
 
   return (
     <div className="product-category-wrapper ">
-      <div className="product-category-image-wrapper mb-4">
+      {/* <div className="product-category-image-wrapper mb-4">
         <picture>
           <source
             srcSet={ProductCatImageWebP}
@@ -30,7 +31,7 @@ const ProductCategoryPage = () => {
             className="prodcat-image"
           />
         </picture>
-      </div>
+      </div> */}
       <h5 className="mb-4 text-capitalize">{category}</h5>
 
       <div className="prodcat-products-wrapper">
@@ -40,13 +41,14 @@ const ProductCategoryPage = () => {
         )}
         {status === "success" &&
           productsCategory.map((prod) => (
-            <ProductCard
+            <ProductCategoryCard
               id={prod.Id}
               description={prod.Description}
               title={prod.Name}
               image={prod.ImagesUrls[0]}
               price={prod.Price}
               key={prod.Id}
+              product={prod}
             />
           ))}
         {status === "error" && (

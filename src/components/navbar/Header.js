@@ -52,7 +52,7 @@ const Header = () => {
 
         {/* Navbar */}
         <Navbar expand="lg" className="bar row align-items-center shadow-sm">
-          <div className="brand col-8  col-sm-2 align-items-center">
+          <div className="brand col-8  col-sm-3 align-items-center">
             <Link to={"/"}>
               <img src={Logo} alt="fabgarage brand" className="logo" />
             </Link>
