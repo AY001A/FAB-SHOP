@@ -9,6 +9,8 @@ import {
 
 import { useSelector } from "react-redux";
 
+// const { data, status, error } = useGetProducts(1, 10)
+
 export function useGetProducts(currentPage, pageSize) {
   return useQuery("products", () => products(currentPage, pageSize));
 }
