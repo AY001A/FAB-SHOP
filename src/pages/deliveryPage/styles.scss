@@ -1,0 +1,58 @@
+.deliveryPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+.deliveryImageContainer{
+    // height: 100vh;
+    img{
+        height: 90vh;
+        border-radius: 10px;
+    }
+}
+
+.deliveryHeader{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.deliverParagrapgh{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    width: 80%;
+}
+
+.labelTitle{
+    font-style: normal;
+    font-weight: 500;
+    font-size:12px;
+    // line-height: 19px;
+}
+
+.deliveryImageContainer{
+    display: none;
+}
+
+.deliveryButton{
+    border: none;
+}
+
+
+
+@media (min-width: 768px) { 
+    .deliveryLeftCol{
+        padding-right: 60px;
+    }
+
+    
+ }
+
+ @media (min-width: 576px) { 
+    .deliveryImageContainer{
+        display: block;
+    }
+ }

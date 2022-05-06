@@ -58,3 +58,25 @@
     }
   }
 }
+
+.cart-btn{
+  // width: 100%;
+  // border-radius: 5px;
+  // background-color: inherit;
+  border-color: #fce57f;
+  font-size: 12px;
+  // padding-top: 8px;
+  // font-weight: 700;
+  // color: rgba(0, 0, 0, 0.772);
+  // padding-bottom: 8px;
+  visibility: hidden;
+}
+
+.product-card-with-btn{
+  &:hover{
+
+    .cart-btn{
+      visibility: visible;
+    }
+  }
+}

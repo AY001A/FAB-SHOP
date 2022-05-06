@@ -14,27 +14,37 @@ import Spinner from "../../components/spinner/Spinner";
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const { status, data, error } = useGetProducts(1, 10);
+  const { status, data, error } = useGetProducts(1, 18);
 
   return (
     <>
       <HeaderSlider>
         <section className="carousel_header services_ad">
           <div className="carousel_info ">
-            <p>World class proffessionals at your doorstep </p>
+            <p>World class professionals at your doorstep </p>
 
-            <button className="btn btn-primary">
-              <strong>Hire Now</strong>
-            </button>
+            <Link to={"/services"}>
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate("/services")}
+              >
+                <strong>Hire Now</strong>
+              </button>
+            </Link>
           </div>
         </section>
         <section className="carousel_header billboard_ad">
           <div className="carousel_info">
             <p>Advertise your business on bilboards in Nigeria</p>
 
-            <button className="btn btn-primary">
-              <strong>Shop Now</strong>
-            </button>
+            <Link to={"/services"}>
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate("/services")}
+              >
+                <strong>Shop Now</strong>
+              </button>
+            </Link>
           </div>
         </section>
       </HeaderSlider>
@@ -100,7 +110,7 @@ const HomePage = () => {
             <div className="row  rowball">
               <div
                 className="box p-0 col-4 text-center"
-                onClick={() => navigate("/productCategory/5/aluminium")}
+                onClick={() => navigate("/productCategory/3/aluminium")}
               ></div>
               <div
                 className="box col-4 text-center"
@@ -108,21 +118,21 @@ const HomePage = () => {
               ></div>
               <div
                 className="box col-4 text-center"
-                onClick={() => navigate("/productCategory/2/shutter")}
+                onClick={() => navigate("/productCategory/5/shutter")}
               ></div>
             </div>
             <div className="row rowball">
               <div
                 className="boxTwo col-4 text-center"
-                onClick={() => navigate("/productCategory/3/metal-iron")}
+                onClick={() => navigate("/productCategory/6/metal-iron")}
               ></div>
               <div
                 className="boxTwo col-4 text-center"
-                onClick={() => navigate("/productCategory/8/sheds")}
+                onClick={() => navigate("/productCategory/7/sheds")}
               ></div>
               <div
                 className="boxTwo col-4 text-center"
-                onClick={() => navigate("/productCategory/6/furnitures")}
+                onClick={() => navigate("/productCategory/8/furnitures")}
               ></div>
             </div>
           </div>

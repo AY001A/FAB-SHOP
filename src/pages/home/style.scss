@@ -392,7 +392,8 @@
     grid-template-columns: repeat(5, 1fr);
   }
   @media (min-width: 1250px) {
-    padding-left: 16px;
-    grid-template-columns: repeat(6, 1fr);
+    margin-left: 16px;
+    // margin-right: 16px;
+    grid-template-columns: repeat(5, 1fr);
   }
 }

@@ -16,9 +16,14 @@ import ProductPage from "./pages/product/ProductPage";
 import { lazy } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import ProductCategoryPage from "./pages/productCategory/ProductCategoryPage";
+import CheckoutSummary from "./pages/payment/Payment";
+import DeliveryPageForm from "./pages/deliveryPage/DeliveryPageForm";
+
 import AccountPage from "./pages/accountPage/AccountPage";
 
-import CheckoutSuccess from "./pages/checkout/checkoutSuccess";
+import CheckoutSuccess from "./pages/checkout/SuccessPage";
+import SearchPage from "./pages/search/SearchPage";
+
 // import Alert from "./components/Alert/Alert"
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
 // const LoginPage = lazy(() => import("./pages/auth/login/LoginPage"));
@@ -49,11 +54,22 @@ function App() {
             element={<ForgetPasswordSuccess />}
           />
 
-          <Route path="cart" element={<CartPage />} />
+          {/* Cart page  */}
+
+          <Route path="cart">
+            <Route index element={<CartPage />} />
+            <Route path="proceed">
+              <Route index element={<DeliveryPageForm />} />
+              <Route path="checkout" element={<CheckoutSummary />} />
+              <Route path="success" element={<CheckoutSuccess />} />
+            </Route>
+          </Route>
 
           {/* Services */}
           <Route path="services" element={<ServicesHomePage />} />
           <Route path="services/:service" element={<ServicePage />} />
+
+          <Route path="search/:keyword" element={<SearchPage />} />
 
           {/* Products */}
           <Route
@@ -69,7 +85,7 @@ function App() {
           <Route path="resetpassword/" element={<PasswordReset />}>
             {/* <Route path=":ownerId" element={<PasswordReset />} /> */}
           </Route>
-          <Route path="/checkout" element={<CheckoutSuccess />} />
+          {/* <Route path="/checkout" element={<CheckoutSuccess />} /> */}
 
           <Route path="/customSupport" element={<CustomerSupport />} />
 

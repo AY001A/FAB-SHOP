@@ -27,14 +27,14 @@ const registrationSchema = Yup.object().shape({
 });
 
 const RegisterPage = () => {
-  const { isAuthenticated, status, error, errorMessage, isLoading } =
+  const { isAuthenticated, status, error, registrationError, isLoading } =
     useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (error) {
-      dispatch(reset());
-    }
+    // if (error) {
+    dispatch(reset());
+    // }
   }, []);
 
   const formik = useFormik({
@@ -47,6 +47,8 @@ const RegisterPage = () => {
       Password: "",
       PhoneNumber: "",
       AcceptTerms: false,
+      ShippingAddress: "",
+      ResidentialAddress: "",
     },
 
     validationSchema: registrationSchema,
@@ -76,14 +78,13 @@ const RegisterPage = () => {
         Register with us today to access lots of fabricated product of your
         choice.{" "}
       </p>
-
       {error &&
-        errorMessage.map((err) => (
+        registrationError.length &&
+        registrationError?.map((err) => (
           <div className="alert alert-danger h-25" role="alert">
             {err}
           </div>
         ))}
-
       <Form
         noValidate
         validate="true"
@@ -189,7 +190,6 @@ const RegisterPage = () => {
           {isLoading ? "Please wait..." : "Register"}
         </button>
       </Form>
-
       <p className="small mt-4 text-center">
         {`Already have an account?  
         `}

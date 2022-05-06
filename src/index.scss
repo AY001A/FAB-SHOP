@@ -9,7 +9,17 @@ html,
 body {
   font-size: 0.9rem;
   line-height: 1.3rem;
-  // overflow-x: hidden;
+
+  .btn:active
+   {
+    box-shadow: none;
+    background-color: #e8bd00;
+  }
+
+  .btn:focus{
+    box-shadow: none;  
+  }
+
 
   @media (min-width: $sm-breakpoint) {
     // max-width: 1400px;
