@@ -1,12 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../../api/auth";
 
+import { useNavigate } from "react-router-dom";
+
 const initialState = {
   isAuthenticated: false,
   user: null,
   error: false,
-  errorMessage: "",
+  errorMessage: [],
   isLoading: false,
+  registrationError: [],
 };
 
 export const register = createAsyncThunk(
@@ -94,7 +97,7 @@ export const authSlice = createSlice({
         state.status = "failed";
         state.isLoading = false;
         state.error = true;
-        state.errorMessage = action.payload;
+        state.registrationError = action.payload;
         state.user = null;
       })
       .addCase(login.pending, (state) => {

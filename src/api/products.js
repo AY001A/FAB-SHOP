@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
-import http from "../http-common";
+import { productService } from "../http-common";
 
 export const products = async (currentPage, pageSize) => {
-  const res = await http.get(
+  const res = await productService.get(
     `/product/list?currentPage=${currentPage}&pageSize=${pageSize}`
   );
 
@@ -14,7 +14,7 @@ export const searchProduct = async (
   keyword
 ) => {
   try {
-    const res = await http.post(
+    const res = await productService.post(
       `product/searchProduct?currentPage=${currentPage}&pageSize=${pageSize}`,
       { searchKeyword: keyword }
     );
@@ -26,13 +26,13 @@ export const searchProduct = async (
 };
 
 export const productsUnpaginated = async () => {
-  const res = await http.get(`/product/listByCategory`);
+  const res = await productService.get(`/product/listByCategory`);
 
   return res.data;
 };
 
 export const productById = async (id) => {
-  const res = await http.get(`/product/${id}`);
+  const res = await productService.get(`/product/${id}`);
 
   return res.data;
 };
