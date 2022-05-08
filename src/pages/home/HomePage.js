@@ -10,6 +10,7 @@ import { HeaderSlider } from "../../components/carousel";
 import { mock_top_deals } from "../../api/products";
 import { useGetProducts } from "../../hook/useProducts";
 import Spinner from "../../components/spinner/Spinner";
+import TestimonialCard from './../testimonialsCard/TestimonialCard';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const HomePage = () => {
             </Link>
           </div>
         </section>
+
         <section className="carousel_header billboard_ad">
           <div className="carousel_info">
             <p>Advertise your business on bilboards in Nigeria</p>
@@ -157,6 +159,7 @@ const HomePage = () => {
             ))}
         </div>
       </section>
+
       <section className="top-products-section">
         <div className="section-banner">
           <p>Top Products</p> <Link to={"/"}>see more</Link>
@@ -186,6 +189,10 @@ const HomePage = () => {
             </p>
           )}
         </div>
+      </section>
+
+      <section className="testimonials px-2">
+        <TestimonialCard />
       </section>
     </>
   );
