@@ -375,6 +375,17 @@
   }
 }
 
+.pro_card{
+ 
+
+  @media (min-width: 576px) {
+    width: 100%;
+    background-color: #F8F8F8;
+    padding: 8px;
+  }
+}
+
+
 .top-products {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

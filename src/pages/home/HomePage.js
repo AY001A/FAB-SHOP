@@ -33,7 +33,7 @@ const HomePage = () => {
             </Link>
           </div>
         </section>
-        <section className="carousel_header billboard_ad">
+        <section className="carousel_header services_ad">
           <div className="carousel_info">
             <p>Advertise your business on bilboards in Nigeria</p>
 
@@ -153,6 +153,7 @@ const HomePage = () => {
                 desc={val.description}
                 url_path={`services/${val.url_path}`}
                 key={val.id}
+                // className="mx-1"
               />
             ))}
         </div>
@@ -164,7 +165,11 @@ const HomePage = () => {
         {console.log(data?.data?.data)}
         <div className="top-products p-sm-5">
           {/* <p>No product available</p> */}
-          {status === "loading" && <Spinner />}
+          {status === "loading" && (
+            <div className="text-center">
+              <Spinner />
+            </div>
+          )}
 
           {status === "success" && !data?.data.data.length ? (
             <p>Inventory is empty</p>
@@ -177,10 +182,11 @@ const HomePage = () => {
                 image={prod.ImagesUrls[0]}
                 price={prod.Price}
                 key={prod.Id}
+                className="pro_card"
               />
             ))
           )}
-          {status === "error" && (
+          {status === "error" && !data && (
             <p className="justify-self-center">
               Something went wrong, please try again after some time
             </p>
