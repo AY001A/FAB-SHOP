@@ -8,7 +8,6 @@ import { useSearchProduct } from "../../hook/useProducts";
 import "./style.scss";
 
 const SearchPage = () => {
-  const mutation = useSearchProduct();
   const [isLoading, setIsLoading] = useState(false);
   const [prods, setProds] = useState([]);
 
@@ -24,13 +23,12 @@ const SearchPage = () => {
       .then((res) => {
         setIsLoading(false);
         setProds(res.data.data);
-        // setProds(res.data.);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
     searchWord(keyword);
-    // mutation.mutate({ searchKeyword: keyword });
   }, [keyword]);
 
   return (
