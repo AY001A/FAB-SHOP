@@ -4,7 +4,7 @@ const Testimonial = ({ name, img, desc, job}) => {
   return (
     
         <div className="col-sm-4 mt-3">
-            <div className="card border-1" >
+            <div className="card cardo border-1" >
                 <div className="card-body">                                
                     <p class="card-text text-center p-4 mb-5">
                         {desc}
