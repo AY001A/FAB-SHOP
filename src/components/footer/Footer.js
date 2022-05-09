@@ -58,13 +58,13 @@ const Footer = () => {
             <h5 className="footerLinkHeader mb-3">Products</h5>
             <ul className="list-unstyled">
               <li className="mb-2">
-                <Link to={"/productCategory/shutter"} className="footerLinks">
+                <Link to={"/productCategory/5/shutter"} className="footerLinks">
                   Shutter
                 </Link>
               </li>
               <li className="mb-2">
                 <Link
-                  to={"/productCategory/metal-iron"}
+                  to={"/productCategory/6/metal-iron"}
                   className="footerLinks"
                 >
                   Metal/Iron
@@ -72,25 +72,28 @@ const Footer = () => {
               </li>
               <li className="mb-2">
                 <Link
-                  to={"/productCategory/stainless-steel"}
+                  to={"/productCategory/4/stainless-steel"}
                   className="footerLinks"
                 >
                   Stainless steel
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to={"/productCategory/aluminium"} className="footerLinks">
+                <Link
+                  to={"/productCategory/3/aluminium"}
+                  className="footerLinks"
+                >
                   Aluminium
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to={"/productCategory/shed"} className="footerLinks">
+                <Link to={"/productCategory/7/shed"} className="footerLinks">
                   Shed
                 </Link>
               </li>
               <li className="mb-2">
                 <Link
-                  to={"/productCategory/furnitures"}
+                  to={"/productCategory/8/furnitures"}
                   className="footerLinks"
                 >
                   Metal steel furniture
@@ -153,7 +156,7 @@ const Footer = () => {
               </li>
               <li className="mb-2">
                 <Link to={"/"} className="footerLinks">
-                  Fabgarage@gmail.com
+                  Info@cucumislush.com
                 </Link>
               </li>
             </ul>

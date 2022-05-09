@@ -175,7 +175,7 @@ const Header = () => {
           <div className="top-banner-contact">
             <Nav as="ul">
               <Link to="/">
-                <li>help</li>
+                <li>Help</li>
               </Link>
               <Link to="/Products">
                 <li>About us</li>

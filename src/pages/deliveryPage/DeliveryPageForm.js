@@ -196,7 +196,7 @@ const DeliveryPageForm = () => {
                   ) : (
                     "Proceed to Checkout"
                   )}
-                  {isLoading ? "Please wait..." : "proceed"}
+                 
                 </button>
               </div>
             </Form>
