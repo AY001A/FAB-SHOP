@@ -13,8 +13,15 @@ import { usePlaceOrder } from "../../hook/useOrder";
 
 const PublicKeyPaystack = "pk_test_f693e92affca9b8d3c0b18e68e26d7b714b82e90";
 const Payment = () => {
-  const { Quantity, Items, TotalAmount, UserDetails, OwnerId, Reciept } =
-    useSelector((state) => state.cart);
+  const {
+    Quantity,
+    Items,
+    TotalAmount,
+    UserDetails,
+    OwnerId,
+    Reciept,
+    CartId,
+  } = useSelector((state) => state.cart);
   const mutation = usePlaceOrder();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,7 +46,7 @@ const Payment = () => {
       dispatch(paymentReceipt(res));
       console.log(res);
       mutation.mutate({
-        CartId: 10,
+        CartId: CartId,
         OwnerId: OwnerId,
         Status: "approved",
         TotalAmount: TotalAmount,
@@ -49,7 +56,7 @@ const Payment = () => {
         AdditionalInformation: [
           {
             Name: "Paystack_Ref",
-            Value: paystackRef,
+            Value: res?.data?.reference,
           },
         ],
         OrderItems: Items,

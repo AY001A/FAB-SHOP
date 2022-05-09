@@ -9,6 +9,7 @@ import ServiceIcon from "../../assets/icons/how-it-works/service.svg";
 import CallIcon from "../../assets/icons/how-it-works/phone-call.svg";
 import RateIcon from "../../assets/icons/how-it-works/rate-review.svg";
 import "./servicePage.scss";
+import { useGetServiceList } from "../../hook/useService";
 
 const serviceSchema = Yup.object().shape({
   firstname: Yup.string().required("Firstname is required"),
@@ -23,7 +24,9 @@ const serviceSchema = Yup.object().shape({
 
 const ServicePage = () => {
   const { service } = useParams();
-  const [data, setData] = useState(null);
+  const [product, setData] = useState(null);
+
+  const { data, status } = useGetServiceList();
 
   useEffect(() => {
     const res = services.find((val) => val.url_path === service);
@@ -54,14 +57,14 @@ const ServicePage = () => {
         <div className="header-section-image row g-sm-5">
           <div className="col-sm-7 section-image-wrapper">
             <img
-              src={data?.image}
-              alt={data?.short_description}
+              src={product?.image}
+              alt={product?.short_description}
               className="rounded w-100  h-sm-75 mb-3"
             />
 
             <div className="service-header-description">
-              <h3 className="fw-bold">{data?.name}</h3>
-              <p>{data?.description}</p>
+              <h3 className="fw-bold">{product?.name}</h3>
+              <p>{product?.description}</p>
               <div className="d-flex">
                 {/* <h5 className="">Features:</h5> */}
                 {/* <p className=""> Fixing, Repair, Maintainance</p> */}

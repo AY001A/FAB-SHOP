@@ -80,7 +80,7 @@ const HomePage = () => {
 
       <section className="top-deals-section">
         <div className="section-banner">
-          <p>Top Deals</p> <Link to={"/"}>see more</Link>
+          <p>Top Deals</p>
         </div>
         <div className="top-deals-products w-100 row p-sm-5 ">
           <div className="slide-container row ">
@@ -160,7 +160,7 @@ const HomePage = () => {
       </section>
       <section className="top-products-section">
         <div className="section-banner">
-          <p>Top Products</p> <Link to={"/"}>see more</Link>
+          <p>Top Products</p>
         </div>
         {console.log(data?.data?.data)}
         <div className="top-products p-sm-5">

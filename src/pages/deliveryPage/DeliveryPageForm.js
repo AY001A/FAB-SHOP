@@ -2,7 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./styles.scss";
 import Delivery from "../../assets/images/delievryImage.svg";
-import { addShippingDetails } from "../../services/slices/cartSlice";
+import {
+  addShippingDetails,
+  updateCartId,
+} from "../../services/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
@@ -36,8 +39,10 @@ const DeliveryPageForm = () => {
           Items,
         },
         {
-          onSuccess() {
+          onSuccess(res) {
             setSubmitting(false);
+            console.log(res);
+            dispatch(updateCartId(res?.data?.message));
             navigate("checkout", { replace: true });
           },
           onError() {
