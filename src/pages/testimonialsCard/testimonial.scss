@@ -1,6 +1,16 @@
 .testimonial{
     width: 100%;
+
+    @media only screen 
+    and (min-device-width : 320px) 
+    and (max-device-width : 480px) {
+        .testimonial{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
 }
+
 
 .cardo{
     transition: 2s linear ease;
@@ -12,4 +22,19 @@
     background-color: pink;
     background: rgba(74, 91, 2, 0.16);
     
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .cardo{
+        height: 50px;
+    }
+}
+
+@media (min-width: 768px) { 
+    .testimonialRow{
+        padding-left: 300px;
+        padding-right: 300px;
+    }
 }
