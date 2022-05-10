@@ -3,7 +3,7 @@ import THUMBSUP from "../../assets/icons/thumbsup.svg";
 
 import "./checkoutSuccess.scss";
 
-const CheckoutSuccess = () => {
+const ServiceSuccess = () => {
   return (
     <div className="checkout_wrapper">
       <div className="container">
@@ -32,4 +32,4 @@ const CheckoutSuccess = () => {
   );
 };
 
-export default CheckoutSuccess;
+export default ServiceSuccess;

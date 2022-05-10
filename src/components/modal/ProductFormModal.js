@@ -30,25 +30,25 @@ const ProductFormModal = (props) => {
       aria-labelledby="example-modal-sizes-title-lg"
       backdrop="static"
       centered
-      className="service-modal"
+      className="service-modal service-modal"
     >
-      <Modal.Header closeButton>
-        {/* <Modal.Title>Place Order</Modal.Title> */}
-      </Modal.Header>
-      <Modal.Body>
-        <Form
-          noValidate
-          className="requires-validation"
-          onSubmit={formik.handleSubmit}
-        >
+      <Form
+        noValidate
+        className="requires-validation"
+        onSubmit={formik.handleSubmit}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Place order</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
           <div className="row g-3">
             <div className="form-group col-6">
               <Form.Control
                 type="text"
-                className="form-control"
+                className="form-control service-modal-input"
                 id="firstname"
                 name="firstname"
-                size="lg"
+                size="md"
                 placeholder="First name"
                 onChange={formik.handleChange}
                 value={formik.values.firstname}
@@ -61,7 +61,7 @@ const ProductFormModal = (props) => {
                 type="text"
                 className="form-control"
                 id="lastname"
-                size="lg"
+                size="md"
                 placeholder="Last name"
                 name="lastname"
                 onChange={formik.handleChange}
@@ -77,7 +77,7 @@ const ProductFormModal = (props) => {
                 type="email"
                 className="form-control"
                 id="email"
-                size="lg"
+                size="md"
                 placeholder="Email Address"
                 name="email"
                 onChange={formik.handleChange}
@@ -93,7 +93,7 @@ const ProductFormModal = (props) => {
                 className="form-control"
                 id="phone"
                 name="phone"
-                size="lg"
+                size="md"
                 placeholder="Phone Number"
                 onChange={formik.handleChange}
                 value={formik.values.phone}
@@ -106,7 +106,7 @@ const ProductFormModal = (props) => {
                 type="text"
                 className="form-control"
                 id="address"
-                size="lg"
+                size="md"
                 name="address"
                 placeholder="Address"
                 onChange={formik.handleChange}
@@ -115,13 +115,15 @@ const ProductFormModal = (props) => {
               />
               <div className="invalid-feedback">{formik.errors.address}</div>
             </div>
-
-            <button type="submit" className="btn btn-primary btn-lg mt-5 mb-4">
-              Request Service Quote
-            </button>
           </div>
-        </Form>
-      </Modal.Body>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <button type="submit" className="btn btn-primary p-2">
+            Request Service Quote
+          </button>
+        </Modal.Footer>
+      </Form>
     </Modal>
   );
 };

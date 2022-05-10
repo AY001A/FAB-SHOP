@@ -4,12 +4,8 @@ import { toast } from "react-toastify";
 import { bookService, listServices } from "../api/services";
 
 export function useCreateServiceBooking() {
-  const navigate = useNavigate();
-
   return useMutation((service) => bookService(service), {
-    onSuccess: () => {
-      navigate("/cart/proceed/checkout");
-    },
+    onSuccess: () => {},
     onError: (error) => {
       toast.error("oops! please try again later: ", error);
     },

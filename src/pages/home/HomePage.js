@@ -9,7 +9,8 @@ import Slider from "../../components/slider/Slider";
 import { HeaderSlider } from "../../components/carousel";
 import { mock_top_deals } from "../../api/products";
 import { useGetProducts } from "../../hook/useProducts";
-import Spinner from "../../components/spinner/Spinner";
+import { serviceHomepageList } from "../../api/services";
+import { Spinner } from "react-bootstrap";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -144,15 +145,15 @@ const HomePage = () => {
           <p>Top Services</p> <Link to={"/services"}>see more</Link>
         </div>
         <div className="service-cards-wrapper p-sm-5">
-          {services
-            .filter((serv) => serv.category === "Home")
+          {serviceHomepageList
+            .filter((serv) => serv.CategoryId === 9)
             .map((val) => (
               <ServiceCard
-                title={val.name}
-                image={val.image}
-                desc={val.description}
-                url_path={`services/${val.url_path}`}
-                key={val.id}
+                title={val.Name}
+                image={val.MetaData[0].Value}
+                desc={val.Description}
+                url_path={`services/${val.Id}/${val.Name}`}
+                key={val.Id}
                 // className="mx-1"
               />
             ))}
@@ -162,12 +163,11 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Products</p>
         </div>
-        {console.log(data?.data?.data)}
         <div className="top-products p-sm-5">
           {/* <p>No product available</p> */}
           {status === "loading" && (
             <div className="text-center">
-              <Spinner />
+              <Spinner animation="border" className="text-primary" />
             </div>
           )}
 

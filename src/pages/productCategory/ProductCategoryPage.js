@@ -36,7 +36,7 @@ const ProductCategoryPage = () => {
 
       <div className="prodcat-products-wrapper">
         {status === "loading" && <Spinner />}
-        {!productsCategory?.length && (
+        {status === "success" && !productsCategory?.length && (
           <p className="text-center w-100">Products unavailable...</p>
         )}
         {status === "success" &&

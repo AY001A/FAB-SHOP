@@ -45,9 +45,9 @@ const Header = () => {
               <Link to="/register">Register</Link>
             </span>
           )}
-          <div className="top-banner-contact">
+          {/* <div className="top-banner-contact">
             <div>Contact us</div>
-          </div>
+          </div> */}
         </div>
 
         {/* Navbar */}
@@ -175,7 +175,7 @@ const Header = () => {
           <div className="top-banner-contact">
             <Nav as="ul">
               <Link to="/">
-                <li>help</li>
+                <li>Help</li>
               </Link>
               <Link to="/Products">
                 <li>About us</li>

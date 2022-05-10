@@ -25,7 +25,6 @@ const Payment = () => {
   const mutation = usePlaceOrder();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [paystackRef, setPaystackRef] = useState();
 
   useEffect(() => {
     if (Quantity === 0) navigate("/");
@@ -41,7 +40,7 @@ const Payment = () => {
     publicKey: PublicKeyPaystack,
     text: "Make Payment",
     onSuccess: (res) => {
-      setPaystackRef(res.reference);
+      // setPaystackRef(res.reference);
       //   toast.success("paid");
       dispatch(paymentReceipt(res));
       console.log(res);

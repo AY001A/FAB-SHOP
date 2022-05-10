@@ -31,10 +31,10 @@ const ProductCard = ({ className, id, title, image, description, price }) => {
           </p>
         </div>
 
-        {/* <div className="d-flex">
+        <div className="d-flex">
           <RatingsViewOnly value={4} />
           <ReviewCount count={15} />
-        </div> */}
+        </div>
         <div className="product-description card-text small d-none d-sm-block mt-2">
           <p>{description}</p>
         </div>

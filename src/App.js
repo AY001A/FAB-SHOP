@@ -23,6 +23,7 @@ import AccountPage from "./pages/accountPage/AccountPage";
 
 import CheckoutSuccess from "./pages/checkout/SuccessPage";
 import SearchPage from "./pages/search/SearchPage";
+import ServiceSuccess from "./pages/checkout/ServiceSuccess";
 
 // import Alert from "./components/Alert/Alert"
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
@@ -66,8 +67,12 @@ function App() {
           </Route>
 
           {/* Services */}
-          <Route path="services" element={<ServicesHomePage />} />
-          <Route path="services/:service" element={<ServicePage />} />
+          <Route path="services">
+            <Route index element={<ServicesHomePage />} />
+            <Route path=":serviceId/:service" element={<ServicePage />} />
+          </Route>
+
+          {/* <Route path="bookedservice" element={<ServiceSuccess />} /> */}
 
           <Route path="search/:keyword" element={<SearchPage />} />
 

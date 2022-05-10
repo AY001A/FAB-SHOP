@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { services } from "./services";
 import Wielder from "../../assets/images/welder.jpg";
 import { useFormik } from "formik";
@@ -9,7 +9,12 @@ import ServiceIcon from "../../assets/icons/how-it-works/service.svg";
 import CallIcon from "../../assets/icons/how-it-works/phone-call.svg";
 import RateIcon from "../../assets/icons/how-it-works/rate-review.svg";
 import "./servicePage.scss";
-import { useGetServiceList } from "../../hook/useService";
+import {
+  useCreateServiceBooking,
+  useGetServiceList,
+} from "../../hook/useService";
+import { toast } from "react-toastify";
+import { Button, Modal, Spinner } from "react-bootstrap";
 
 const serviceSchema = Yup.object().shape({
   firstname: Yup.string().required("Firstname is required"),
@@ -22,16 +27,44 @@ const serviceSchema = Yup.object().shape({
   description: Yup.string(),
 });
 
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton></Modal.Header>
+      <Modal.Body>
+        <div className="text-center">
+          <Modal.Title id="contained-modal-title-vcenter" className="mb-4">
+            Your Service has been booked successfully.
+          </Modal.Title>
+          {/* <p className="text-bold ">Thank you for your Service Order</p> */}
+
+          <p className="">One of our agents will reach out to you shortly.</p>
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
 const ServicePage = () => {
-  const { service } = useParams();
-  const [product, setData] = useState(null);
+  const { serviceId, service } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
-  const { data, status } = useGetServiceList();
+  const { data } = useGetServiceList();
 
-  useEffect(() => {
-    const res = services.find((val) => val.url_path === service);
-    setData(res);
-  }, [service]);
+  const currentService = data?.data?.data.find(
+    (val) => val.Id === Number(serviceId)
+  );
+
+  const mutation = useCreateServiceBooking();
 
   const formik = useFormik({
     initialValues: {
@@ -41,13 +74,35 @@ const ServicePage = () => {
       phone: "",
       address: "",
       description: "",
+      serviceId: "",
+      categoryId: "",
     },
 
     validationSchema: serviceSchema,
 
-    onSubmit: async (values, { setSubmitting }) => {
-      // dispatch(login(values));
-      console.log(values);
+    onSubmit: async (values) => {
+      setIsLoading(true);
+      mutation.mutate(
+        {
+          fullname: `${values.firstname} ${values.lastname}`,
+          emailAddress: values.email,
+          subject: currentService?.Name,
+          description: values.description,
+          phoneNumber: values.phone,
+          categoryId: currentService?.Category?.Id,
+          serviceId: currentService?.Id,
+        },
+        {
+          onSuccess() {
+            setIsLoading(false);
+            setModalShow(true);
+          },
+          onError() {
+            toast.warn("oops! something went wrong, try again later");
+            setIsLoading(false);
+          },
+        }
+      );
     },
   });
 
@@ -57,14 +112,14 @@ const ServicePage = () => {
         <div className="header-section-image row g-sm-5">
           <div className="col-sm-7 section-image-wrapper">
             <img
-              src={product?.image}
-              alt={product?.short_description}
+              src={currentService?.MetaData[0].Value}
+              alt={currentService?.Name}
               className="rounded w-100  h-sm-75 mb-3"
             />
 
             <div className="service-header-description">
-              <h3 className="fw-bold">{product?.name}</h3>
-              <p>{product?.description}</p>
+              <h3 className="fw-bold">{currentService?.Name}</h3>
+              <p>{currentService?.description}</p>
               <div className="d-flex">
                 {/* <h5 className="">Features:</h5> */}
                 {/* <p className=""> Fixing, Repair, Maintainance</p> */}
@@ -181,14 +236,26 @@ const ServicePage = () => {
                   ></textarea>
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-lg">
-                  <strong>Request Service Quote</strong>
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="btn btn-primary btn-lg"
+                >
+                  {isLoading ? (
+                    <strong>Submitting...</strong>
+                  ) : (
+                    <strong>Request Service Quote</strong>
+                  )}
                 </button>
               </div>
             </Form>
           </div>
         </div>
       </section>
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
       <div className="howItWorks mt-5">
         <h3 className="mb-4">HOW IT WORKS</h3>
 
@@ -231,46 +298,6 @@ const ServicePage = () => {
             </div>
           </div>
         </div>
-        {/* <div className="row">
-          <div className="col-lg-4">
-            <div className="card p-5 ">
-              <div className="howItWorksIcon">
-                <img src={ServiceIcon} alt="" className="howItWorksIcons" />
-              </div>
-              <h5 className="card-title  ">Select the service</h5>
-              <p className="card-text text-muted">
-                Tell us what service you want, shutter work, steel work
-                weldering work and others.
-              </p>
-            </div>
-          </div>
-
-          <div className="col-lg-4">
-            <div className="card p-5">
-              <div className="howItWorksIcon">
-                <img src={CallIcon} alt="" className="howItWorksIcons" />
-              </div>
-              <h5 className="card-title mb-2 ">Provide Contact </h5>
-              <p className="card-text text-muted">
-                Share your contact details including correct email and mobile
-                phone number.
-              </p>
-            </div>
-          </div>
-
-          <div className="col-lg-4">
-            <div className="card p-5">
-              <div className="howItWorksIcon">
-                <img src={RateIcon} alt="" className="howItWorksIcons" />
-              </div>
-              <h5 className="card-title mb-2 ">Get quote and hire</h5>
-              <p className="card-text text-muted">
-                Share your requirements and get the best price in the the
-                industry.
-              </p>
-            </div>
-          </div> */}
-        {/* </div> */}
       </div>
     </div>
   );
