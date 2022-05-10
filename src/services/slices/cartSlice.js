@@ -6,6 +6,7 @@ const initialState = local_cart
   ? JSON.parse(local_cart)
   : {
       OwnerId: "",
+      CartId: null,
       Quantity: 0,
       TotalAmount: 0,
       Items: [],
@@ -111,6 +112,11 @@ const cartSlice = createSlice({
       state.UserDetails = null;
       state.Receipt = null;
     },
+
+    updateCartId(state, action) {
+      state.CartId = action.payload;
+      window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
+    },
   },
 });
 
@@ -122,6 +128,7 @@ export const {
   addShippingDetails,
   paymentReceipt,
   refreshCart,
+  updateCartId,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

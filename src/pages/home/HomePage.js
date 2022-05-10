@@ -9,8 +9,9 @@ import Slider from "../../components/slider/Slider";
 import { HeaderSlider } from "../../components/carousel";
 import { mock_top_deals } from "../../api/products";
 import { useGetProducts } from "../../hook/useProducts";
-import Spinner from "../../components/spinner/Spinner";
 import TestimonialCard from './../testimonialsCard/TestimonialCard';
+import { serviceHomepageList } from "../../api/services";
+import { Spinner } from "react-bootstrap";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -35,7 +36,8 @@ const HomePage = () => {
           </div>
         </section>
 
-        <section className="carousel_header billboard_ad">
+
+        <section className="carousel_header services_ad">
           <div className="carousel_info">
             <p>Advertise your business on bilboards in Nigeria</p>
 
@@ -82,7 +84,7 @@ const HomePage = () => {
 
       <section className="top-deals-section">
         <div className="section-banner">
-          <p>Top Deals</p> <Link to={"/"}>see more</Link>
+          <p>Top Deals</p>
         </div>
         <div className="top-deals-products w-100 row p-sm-5 ">
           <div className="slide-container row ">
@@ -146,15 +148,16 @@ const HomePage = () => {
           <p>Top Services</p> <Link to={"/services"}>see more</Link>
         </div>
         <div className="service-cards-wrapper p-sm-5">
-          {services
-            .filter((serv) => serv.category === "Home")
+          {serviceHomepageList
+            .filter((serv) => serv.CategoryId === 9)
             .map((val) => (
               <ServiceCard
-                title={val.name}
-                image={val.image}
-                desc={val.description}
-                url_path={`services/${val.url_path}`}
-                key={val.id}
+                title={val.Name}
+                image={val.MetaData[0].Value}
+                desc={val.Description}
+                url_path={`services/${val.Id}/${val.Name}`}
+                key={val.Id}
+                // className="mx-1"
               />
             ))}
         </div>
@@ -162,12 +165,15 @@ const HomePage = () => {
 
       <section className="top-products-section">
         <div className="section-banner">
-          <p>Top Products</p> <Link to={"/"}>see more</Link>
+          <p>Top Products</p>
         </div>
-        {console.log(data?.data?.data)}
         <div className="top-products p-sm-5">
           {/* <p>No product available</p> */}
-          {status === "loading" && <Spinner />}
+          {status === "loading" && (
+            <div className="text-center">
+              <Spinner animation="border" className="text-primary" />
+            </div>
+          )}
 
           {status === "success" && !data?.data.data.length ? (
             <p>Inventory is empty</p>
@@ -180,10 +186,11 @@ const HomePage = () => {
                 image={prod.ImagesUrls[0]}
                 price={prod.Price}
                 key={prod.Id}
+                className="pro_card"
               />
             ))
           )}
-          {status === "error" && (
+          {status === "error" && !data && (
             <p className="justify-self-center">
               Something went wrong, please try again after some time
             </p>

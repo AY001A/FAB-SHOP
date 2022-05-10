@@ -1,14 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { searchProduct } from "../../api/products";
 import ProductCard from "../../components/cards/product-card/ProductCard";
-import Spinner from "../../components/spinner/Spinner";
 import { useSearchProduct } from "../../hook/useProducts";
 import "./style.scss";
 
 const SearchPage = () => {
-  const mutation = useSearchProduct();
   const [isLoading, setIsLoading] = useState(false);
   const [prods, setProds] = useState([]);
 
@@ -24,13 +23,12 @@ const SearchPage = () => {
       .then((res) => {
         setIsLoading(false);
         setProds(res.data.data);
-        // setProds(res.data.);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
     searchWord(keyword);
-    // mutation.mutate({ searchKeyword: keyword });
   }, [keyword]);
 
   return (
@@ -39,9 +37,9 @@ const SearchPage = () => {
         {prods.length} Items found for <strong>{keyword}</strong>
       </h4>
 
-      <div className="top-products p-sm-5">
+      <div className="top-products search-products p-sm-5">
         {/* <p>No product available</p> */}
-        {isLoading && <Spinner />}
+        {isLoading && <Spinner animation="border" className="text-primary" />}
 
         {!isLoading &&
           prods?.map((prod) => (

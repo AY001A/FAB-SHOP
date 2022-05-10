@@ -7,16 +7,25 @@
       width: 35px;
       height: 35px;
       border-radius: 50%;
+      border: 1px solid black;
       display: block;
       z-index: 100;
       position: absolute;
       top: 50%;
       opacity: 0.7;
-      background-color: white;
+      background-color: transparent;
 
       svg {
-        width: 18px;
-        height: 18px;
+        width: 14px;
+        height: 14px;
+      }
+
+      &:hover{
+        background-color: rgb(23, 23, 23);
+        svg{
+          fill: white;
+        }
+        
       }
     }
   }
