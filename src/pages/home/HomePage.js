@@ -9,14 +9,14 @@ import Slider from "../../components/slider/Slider";
 import { HeaderSlider } from "../../components/carousel";
 import { mock_top_deals } from "../../api/products";
 import { useGetProducts } from "../../hook/useProducts";
-import TestimonialCard from './../testimonialsCard/TestimonialCard';
+import TestimonialCard from "./../testimonialsCard/TestimonialCard";
 import { serviceHomepageList } from "../../api/services";
 import { Spinner } from "react-bootstrap";
 
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const { status, data, error } = useGetProducts(1, 18);
+  const { status, data, error } = useGetProducts(1, 20);
 
   return (
     <>
@@ -35,7 +35,6 @@ const HomePage = () => {
             </Link>
           </div>
         </section>
-
 
         <section className="carousel_header services_ad">
           <div className="carousel_info">
