@@ -37,38 +37,47 @@ const Searchbar = () => {
 
 
   return (
-    <form >
-      <InputGroup
-        
-        className="justify-content-between searbarInputGroup border    border-top-left-radius: 10px;
-      "
-      >
-        <div className="searchbar-input  ">
-          <FiSearch
-            size={24}
-            style={{ margin: "8px" }}
-            className="d-none d-sm-block"
-          />
-          <input
-            type="text"
-            name="searchTerm"
-            id="searchTerm"
-            onChange={e => onChangeHandler(e.target.value)}
-            value={text}
-            className=" h-100 "
-            placeholder="Search for products..."
-          />
+    <>
+      <form >
+        <div classname='inputGroup'>
+        <InputGroup
+          
+          className="justify-content-between absolute searbarInputGroup border border-top-left-radius: 10px;">
+          <div className="searchbar-input  ">
+            <FiSearch
+              size={24}
+              style={{ margin: "8px" }}
+              className="d-none d-sm-block"
+            />
+            <input
+              type="text"
+              name="searchTerm"
+              id="searchTerm"
+              onChange={e => onChangeHandler(e.target.value)}
+              value={text}
+              className=" h-100 "
+              placeholder="Search for products..."
+            />
+          </div>
+          
+
+          <button type="submit" className="btn btn-primary rounded-3 search-btn">
+            Search
+          </button>
+        </InputGroup>
+
         </div>
         
+      </form>
 
-        <button type="submit" className="btn btn-primary rounded-3 search-btn">
-          Search
-        </button>
-      </InputGroup>
       {suggestions && suggestions.map((suggestion, i) => (
-        <div key={i}>{suggestion.Name}</div>
+          <div className='suggestionContainer bg-light py-1 px-2 ' style={{ height: 'auto' }}>
+            <div className='' role="button" key={i}>{suggestion.Name}</div>
+          </div>
       ))}
-    </form>
+    
+    </>
+    
     
   );
 };
