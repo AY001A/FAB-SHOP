@@ -36,6 +36,7 @@ const HomePage = () => {
           </div>
         </section> */}
 
+
         <section className="carousel_header services_ad">
           <div className="carousel_info">
             <p>Advertise your business on bilboards in Nigeria</p>
@@ -157,6 +158,7 @@ const HomePage = () => {
                 url_path={`services/${val.Id}/${val.Name}`}
                 key={val.Id}
                 className="mx-3"
+
               />
             ))}
         </div>
@@ -171,6 +173,7 @@ const HomePage = () => {
           {status === "loading" && (
             <div className="text-center">
               <Spinner animation="border" className="text-primary" />
+
             </div>
           )}
 
@@ -186,6 +189,7 @@ const HomePage = () => {
                 price={prod.Price}
                 key={prod.Id}
                 className="pro_card mx-2"
+
               />
             ))
           )}
