@@ -7,6 +7,7 @@ import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useGetProducts } from '../../hook/useProducts'
+import { Link } from "react-router-dom";
 
 const Searchbar = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const Searchbar = () => {
 
 
   return (
-    <>
+    <div className="inputDiv">
       <form >
         <div classname='inputGroup'>
         <InputGroup
@@ -69,14 +70,15 @@ const Searchbar = () => {
         </div>
         
       </form>
+       <div style={{position: "absolute"}}>
 
       {suggestions && suggestions.map((suggestion, i) => (
-          <div className='suggestionContainer bg-light py-1 px-2 ' style={{ height: 'auto' }}>
-            <div className='' role="button" key={i}>{suggestion.Name}</div>
+        <div className='suggestionContainer bg-light py-1 px-2'>
+            <Link className='suggestions' key={i} to={`/products/${suggestion.Id}/${suggestion.Name}`}>{suggestion.Name}</Link>
           </div>
       ))}
-    
-    </>
+      </div>
+    </div>
     
     
   );
