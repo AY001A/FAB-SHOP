@@ -11,6 +11,10 @@ const initialState = local_cart
       TotalAmount: 0,
       Items: [],
       UserDetails: null,
+      customer_name: "",
+      customer_phone: "",
+      customer_address: "",
+
       Receipt: null,
     };
 
@@ -69,7 +73,6 @@ const cartSlice = createSlice({
       );
 
       state.TotalAmount = newTotal;
-      toast.info("increased quantity");
       window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
     },
 
@@ -85,7 +88,6 @@ const cartSlice = createSlice({
       );
 
       state.TotalAmount = newTotal;
-      toast.info("decreased quantity");
       window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
     },
     addShippingDetails(state, action) {
@@ -96,6 +98,9 @@ const cartSlice = createSlice({
         Address: action.payload.address,
         State: action.payload.state,
       };
+      state.customer_name = action.payload.fullName;
+      state.customer_address = action.payload.address;
+      state.customer_phone = action.payload.number;
       state.OwnerId = action.payload.email;
       window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
     },

@@ -14,7 +14,7 @@ const login = async (userDetails) => {
 };
 
 const logout = () => {
-  setTimeout(() => localStorage.clear(), 3000);
+  localStorage.removeItem("fabUser");
 };
 
 const resetPassword = async (email) => {
@@ -30,12 +30,22 @@ const processPasswordReset = async (cred) => {
   );
 };
 
+const changePassword = async (data) => {
+  try {
+    const res = await authservice.post("account/changePassword", data);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const authService = {
   register,
   login,
   logout,
   resetPassword,
   processPasswordReset,
+  changePassword,
 };
 
 export default authService;

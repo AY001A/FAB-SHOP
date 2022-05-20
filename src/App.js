@@ -24,6 +24,7 @@ import AccountPage from "./pages/accountPage/AccountPage";
 import CheckoutSuccess from "./pages/checkout/SuccessPage";
 import SearchPage from "./pages/search/SearchPage";
 import ServiceSuccess from "./pages/checkout/ServiceSuccess";
+import ProfilePage from "./pages/profile/ProfilePage";
 
 // import Alert from "./components/Alert/Alert"
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
@@ -84,7 +85,8 @@ function App() {
           <Route path="products/:productId/:title" element={<ProductPage />} />
 
           {/* Account Page */}
-          <Route path="account" element={<AccountPage />} />
+          {/* <Route path="profile" element={<ProfilePage />} /> */}
+          <Route path="profile" element={<AccountPage />} />
 
           {/* todo make work */}
           <Route path="resetpassword/" element={<PasswordReset />}>

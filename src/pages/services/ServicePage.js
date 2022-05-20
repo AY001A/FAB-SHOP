@@ -16,13 +16,20 @@ import {
 import { toast } from "react-toastify";
 import { Button, Modal, Spinner } from "react-bootstrap";
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 const serviceSchema = Yup.object().shape({
   firstname: Yup.string().required("Firstname is required"),
   lastname: Yup.string().required("Lastname is required"),
   email: Yup.string()
     .email("must be a valid email")
     .required("email is required"),
-  phone: Yup.string().required("phone number is required"),
+  phone: Yup.string()
+    .required("phone number is required")
+    .matches(phoneRegExp, "Phone number is not valid")
+    .min(11, "phone number not valid")
+    .max(14, "phone number not valid"),
   address: Yup.string().required("address is required"),
   description: Yup.string(),
 });
