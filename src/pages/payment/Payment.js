@@ -13,12 +13,21 @@ import { usePlaceOrder } from "../../hook/useOrder";
 
 const PublicKeyPaystack = "pk_test_f693e92affca9b8d3c0b18e68e26d7b714b82e90";
 const Payment = () => {
-  const { Quantity, Items, TotalAmount, UserDetails, OwnerId, Reciept } =
-    useSelector((state) => state.cart);
+  const {
+    Quantity,
+    Items,
+    TotalAmount,
+    UserDetails,
+    customer_address,
+    customer_phone,
+    customer_name,
+    OwnerId,
+    Reciept,
+    CartId,
+  } = useSelector((state) => state.cart);
   const mutation = usePlaceOrder();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [paystackRef, setPaystackRef] = useState();
 
   useEffect(() => {
     if (Quantity === 0) navigate("/");
@@ -28,28 +37,36 @@ const Payment = () => {
     email: OwnerId,
     amount: TotalAmount * 100,
     metadata: {
-      name: UserDetails?.FullName,
-      phone: UserDetails?.Phone,
+      name: customer_name,
+      phone: customer_phone,
     },
     publicKey: PublicKeyPaystack,
     text: "Make Payment",
     onSuccess: (res) => {
-      setPaystackRef(res.reference);
+      // setPaystackRef(res.reference);
       //   toast.success("paid");
       dispatch(paymentReceipt(res));
       console.log(res);
       mutation.mutate({
-        CartId: 10,
+        CartId: CartId,
         OwnerId: OwnerId,
         Status: "approved",
         TotalAmount: TotalAmount,
-        DeliveryAddress: UserDetails?.Address,
+        DeliveryAddress: customer_address,
         PaymentMethod: "paystack",
-        PaymentDetails: "",
+        PaymentDetails: res?.reference,
         AdditionalInformation: [
           {
-            Name: "Paystack_Ref",
-            Value: paystackRef,
+            Name: "ShippingAddress",
+            Value: customer_address,
+          },
+          {
+            Name: "CustomerName",
+            Value: customer_name,
+          },
+          {
+            Name: "PhoneNumber",
+            Value: customer_phone,
           },
         ],
         OrderItems: Items,

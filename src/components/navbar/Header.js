@@ -45,9 +45,6 @@ const Header = () => {
               <Link to="/register">Register</Link>
             </span>
           )}
-          <div className="top-banner-contact">
-            <div>Contact us</div>
-          </div>
         </div>
 
         {/* Navbar */}
@@ -63,7 +60,7 @@ const Header = () => {
           <IconContext.Provider value={{ size: "24px" }}>
             <div className="col-4 col-sm-3 nav-icons ">
               <Link
-                to={"/"}
+                to={profile.isAuthenticated ? "/profile" : "/login"}
                 className="account_btn "
                 style={{ textDecoration: "none" }}
               >
@@ -79,20 +76,22 @@ const Header = () => {
 
                   {profile.isAuthenticated ? (
                     <>
-                      <NavDropdown.Item
-                        href="#action/3.2"
-                        className="mt-4"
-                        style={{ fontSize: "14px" }}
-                      >
-                        My Account
-                      </NavDropdown.Item>
-                      <NavDropdown.Item
-                        href="#action/3.2"
-                        className="mt-2 text-center"
-                        style={{ fontSize: "14px" }}
-                      >
-                        My Orders
-                      </NavDropdown.Item>
+                      <Link to={"/profile"} className={"text-decoration-none"}>
+                        <li
+                          className="mt-2 text-center p-2  navdropli"
+                          style={{ fontSize: "14px" }}
+                        >
+                          My Account
+                        </li>
+                      </Link>
+                      <Link to={"/orders"} className={"text-decoration-none"}>
+                        <li
+                          className="mt-2 text-center p-2  navdropli"
+                          style={{ fontSize: "14px" }}
+                        >
+                          My Orders
+                        </li>
+                      </Link>
 
                       <button
                         className="btn btn-outline-primary border-0 btn-sm dropdown_btn mt-4"
@@ -175,7 +174,7 @@ const Header = () => {
           <div className="top-banner-contact">
             <Nav as="ul">
               <Link to="/">
-                <li>help</li>
+                <li>Help</li>
               </Link>
               <Link to="/Products">
                 <li>About us</li>

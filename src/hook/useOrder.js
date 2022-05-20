@@ -19,7 +19,8 @@ export function usePlaceOrder() {
   const navigate = useNavigate();
 
   return useMutation((order) => placeOrder(order), {
-    onSuccess: () => {
+    onSuccess: (res) => {
+      console.log(res);
       window.localStorage.removeItem("cucumislush-cart");
       navigate("/cart/proceed/success");
     },

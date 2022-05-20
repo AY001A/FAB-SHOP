@@ -9,17 +9,19 @@ import Slider from "../../components/slider/Slider";
 import { HeaderSlider } from "../../components/carousel";
 import { mock_top_deals } from "../../api/products";
 import { useGetProducts } from "../../hook/useProducts";
-import Spinner from "../../components/spinner/Spinner";
+import TestimonialCard from "./../testimonialsCard/TestimonialCard";
+import { serviceHomepageList } from "../../api/services";
+import { Spinner } from "react-bootstrap";
 
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const { status, data, error } = useGetProducts(1, 18);
+  const { status, data, error } = useGetProducts(1, 20);
 
   return (
     <>
       <HeaderSlider>
-        <section className="carousel_header services_ad">
+        {/* <section className="carousel_header services_ad">
           <div className="carousel_info ">
             <p>World class professionals at your doorstep </p>
 
@@ -32,7 +34,9 @@ const HomePage = () => {
               </button>
             </Link>
           </div>
-        </section>
+        </section> */}
+
+
         <section className="carousel_header services_ad">
           <div className="carousel_info">
             <p>Advertise your business on bilboards in Nigeria</p>
@@ -42,7 +46,7 @@ const HomePage = () => {
                 className="btn btn-primary"
                 onClick={() => navigate("/services")}
               >
-                <strong>Shop Now</strong>
+                <strong>Hire Now</strong>
               </button>
             </Link>
           </div>
@@ -80,7 +84,7 @@ const HomePage = () => {
 
       <section className="top-deals-section">
         <div className="section-banner">
-          <p>Top Deals</p> <Link to={"/"}>see more</Link>
+          <p>Top Deals</p>
         </div>
         <div className="top-deals-products w-100 row p-sm-5 ">
           <div className="slide-container row ">
@@ -143,31 +147,33 @@ const HomePage = () => {
         <div className="section-banner">
           <p>Top Services</p> <Link to={"/services"}>see more</Link>
         </div>
-        <div className="service-cards-wrapper p-sm-5">
-          {services
-            .filter((serv) => serv.category === "Home")
+        <div className="service-cards-wrapper p-sm-5 ">
+          {serviceHomepageList
+            .filter((serv) => serv.CategoryId === 9)
             .map((val) => (
               <ServiceCard
-                title={val.name}
-                image={val.image}
-                desc={val.description}
-                url_path={`services/${val.url_path}`}
-                key={val.id}
-                // className="mx-1"
+                title={val.Name}
+                image={val.MetaData[0].Value}
+                desc={val.Description}
+                url_path={`services/${val.Id}/${val.Name}`}
+                key={val.Id}
+                className="mx-3"
+
               />
             ))}
         </div>
       </section>
+
       <section className="top-products-section">
         <div className="section-banner">
-          <p>Top Products</p> <Link to={"/"}>see more</Link>
+          <p>Top Products</p>
         </div>
-        {console.log(data?.data?.data)}
         <div className="top-products p-sm-5">
           {/* <p>No product available</p> */}
           {status === "loading" && (
             <div className="text-center">
-              <Spinner />
+              <Spinner animation="border" className="text-primary" />
+
             </div>
           )}
 
@@ -182,7 +188,8 @@ const HomePage = () => {
                 image={prod.ImagesUrls[0]}
                 price={prod.Price}
                 key={prod.Id}
-                className="pro_card"
+                className="pro_card mx-2"
+
               />
             ))
           )}
@@ -192,6 +199,10 @@ const HomePage = () => {
             </p>
           )}
         </div>
+      </section>
+
+      <section className="testimonials px-2">
+        <TestimonialCard />
       </section>
     </>
   );

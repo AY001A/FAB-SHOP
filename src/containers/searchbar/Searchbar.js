@@ -18,6 +18,7 @@ const Searchbar = () => {
     },
     onSubmit: (values) => {
       navigate(`search/${values.searchTerm}`);
+      // formik.resetForm();
     },
   });
 

@@ -1,32 +1,73 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./styles.scss";
 import Delivery from "../../assets/images/delievryImage.svg";
-import { addShippingDetails } from "../../services/slices/cartSlice";
+import {
+  addShippingDetails,
+  updateCartId,
+} from "../../services/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
-import { useMutation } from "react-query";
+import { useNavigate, Navigate } from "react-router-dom";
+// import { useMutation } from "react-query";
 import { useCreateCart } from "../../hook/useOrder";
 import { toast } from "react-toastify";
 import { Spinner } from "react-bootstrap";
+import * as Yup from "yup";
+import Form from "react-bootstrap/Form";
+import { useGetUserById } from "../../hook/useUser";
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+const deliverySchema = Yup.object().shape({
+  fullName: Yup.string()
+    .required("Full name field must not be empty")
+    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+  email: Yup.string()
+    .email("Please provide a valid email address")
+    .required("Email address field must not be empty."),
+  number: Yup.string()
+    .required("Phone number must be included")
+    .matches(phoneRegExp, "Phone number is not valid")
+    .min(11, "phone number not valid")
+    .max(14, "phone number not valid"),
+  address: Yup.string().required("Address field must not be empty"),
+  state: Yup.string().required("State field must not be empty"),
+});
 
 const DeliveryPageForm = () => {
-  const { Quantity, Items } = useSelector((state) => state.cart);
-
+  const { isAuthenticated, user, error, errorMessage, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  const { Quantity, Items, UserDetails } = useSelector((state) => state.cart);
   const [submitting, setSubmitting] = useState(false);
+  const { data, status } = useGetUserById(
+    user?.data?.data?.fabAccountDetails?.Id
+  );
 
+  let userProfile;
+
+  if (isAuthenticated) {
+    userProfile = user?.data?.data?.fabAccountDetails;
+  }
   const navigate = useNavigate();
   const mutation = useCreateCart();
 
   const formik = useFormik({
     initialValues: {
-      fullName: "",
-      email: "",
-      number: "",
-      address: "",
-      state: "Lagos",
+      fullName: isAuthenticated
+        ? `${data?.FirstName} ${data?.LastName}`
+        : UserDetails?.FullName,
+      email: isAuthenticated ? `${data?.EmailAddress}` : UserDetails?.Email,
+      number: isAuthenticated ? data?.PhoneNumber : UserDetails?.Phone,
+      address: isAuthenticated ? data?.ShippingAddress : UserDetails?.Address,
+      state: UserDetails?.State || "Lagos",
     },
+    enableReinitialize: true,
+
+    validationSchema: deliverySchema,
+
     onSubmit(values) {
       setSubmitting(true);
       dispatch(addShippingDetails(values));
@@ -36,8 +77,9 @@ const DeliveryPageForm = () => {
           Items,
         },
         {
-          onSuccess() {
+          onSuccess(res) {
             setSubmitting(false);
+            dispatch(updateCartId(res?.data?.message));
             navigate("checkout", { replace: true });
           },
           onError() {
@@ -48,7 +90,6 @@ const DeliveryPageForm = () => {
       );
     },
   });
-
   const dispatch = useDispatch();
 
   return (
@@ -61,12 +102,26 @@ const DeliveryPageForm = () => {
               Kindly fill this form to help you get your order delivered at your
               doorstep.
             </p>
-            <form className="my-2" onSubmit={formik.handleSubmit}>
+
+            {error &&
+              errorMessage.map((err) => (
+                <div className="alert alert-danger h-25" role="alert">
+                  {err}
+                </div>
+              ))}
+
+            <Form
+              noValidate
+              validate="true"
+              autoComplete="off"
+              className="my-2"
+              onSubmit={formik.handleSubmit}
+            >
               <div className="mb-2">
                 <label htmlFor="fullName" className="labelTitle form-label">
                   Full name
                 </label>
-                <input
+                <Form.Control
                   id="fullName"
                   value={formik.values.fullName}
                   onChange={formik.handleChange}
@@ -74,44 +129,51 @@ const DeliveryPageForm = () => {
                   className=" p-2 form-control"
                   name="fullName"
                   aria-describedby="emailHelp"
+                  isInvalid={formik.touched.fullName && formik.errors.fullName}
                 />
+                <div className="invalid-feedback">{formik.errors.fullName}</div>
               </div>
 
               <div className="mb-2">
                 <label htmlFor="email" className="labelTitle form-label">
                   Email address
                 </label>
-                <input
+                <Form.Control
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   type="email"
                   className=" p-2 form-control"
                   id="email"
                   name="email"
+                  disabled={isAuthenticated}
                   aria-describedby="emailHelp"
+                  isInvalid={formik.touched.email && formik.errors.email}
                 />
+                <div className="invalid-feedback">{formik.errors.email}</div>
               </div>
 
               <div className="mb-2">
                 <label htmlFor="number" className="labelTitle form-label">
                   Phone number
                 </label>
-                <input
-                  type="number"
+                <Form.Control
+                  type="text"
                   name="number"
                   value={formik.values.number}
                   onChange={formik.handleChange}
-                  className=" p-2 form-control"
+                  className=" p-2 form-control numberinput"
                   id="number"
                   aria-describedby="emailHelp"
+                  isInvalid={formik.touched.number && formik.errors.number}
                 />
+                <div className="invalid-feedback">{formik.errors.number}</div>
               </div>
 
               <div className="mb-2">
                 <label htmlFor="address" className="labelTitle form-label">
                   Address
                 </label>
-                <input
+                <Form.Control
                   type="text"
                   name="address"
                   value={formik.values.address}
@@ -119,7 +181,9 @@ const DeliveryPageForm = () => {
                   className=" p-2 form-control"
                   id="address"
                   aria-describedby="emailHelp"
+                  isInvalid={formik.touched.address && formik.errors.address}
                 />
+                <div className="invalid-feedback">{formik.errors.address}</div>
               </div>
 
               <div className="mb-2">
@@ -132,6 +196,7 @@ const DeliveryPageForm = () => {
                   className="form-select p-2 "
                   value={formik.values.state}
                   onChange={formik.handleChange}
+                  // isInvalid={formik.touched.state && formik.errors.state}
                 >
                   <option>Lagos</option>
                   <option>Abuja</option>
@@ -156,7 +221,7 @@ const DeliveryPageForm = () => {
                   )}
                 </button>
               </div>
-            </form>
+            </Form>
           </div>
         </div>
 
