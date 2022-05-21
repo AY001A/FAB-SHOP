@@ -24,6 +24,8 @@ import AccountPage from "./pages/accountPage/AccountPage";
 import CheckoutSuccess from "./pages/checkout/SuccessPage";
 import SearchPage from "./pages/search/SearchPage";
 import ServiceSuccess from "./pages/checkout/ServiceSuccess";
+import PolicyPage from "./pages/policyPage/PolicyPage";
+
 
 // import Alert from "./components/Alert/Alert"
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
@@ -54,6 +56,11 @@ function App() {
             path="forget-password/success"
             element={<ForgetPasswordSuccess />}
           />
+          <Route
+            path="policy"
+            element={<PolicyPage />}
+          />
+          
 
           {/* Cart page  */}
 
@@ -63,6 +70,7 @@ function App() {
               <Route index element={<DeliveryPageForm />} />
               <Route path="checkout" element={<CheckoutSummary />} />
               <Route path="success" element={<CheckoutSuccess />} />
+              
             </Route>
           </Route>
 
@@ -85,6 +93,7 @@ function App() {
 
           {/* Account Page */}
           <Route path="account" element={<AccountPage />} />
+          
 
           {/* todo make work */}
           <Route path="resetpassword/" element={<PasswordReset />}>
@@ -109,6 +118,8 @@ function App() {
           path="/register"
           element={<AuthLayout Children={<RegisterPage />} />}
         />
+        
+        
       </Routes>
     </ScrollToTop>
     // </Suspense>
