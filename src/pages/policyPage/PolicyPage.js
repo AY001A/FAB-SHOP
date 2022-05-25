@@ -515,13 +515,13 @@ const policyPage = () => {
         that information, or delete it in some circumstances. To request to
         review, update, or delete your personal information, please visit:
         __________.
-        <p className="fw-lighter">
+        {/* <p className="fw-lighter">
           This privacy policy was created using Termly's{" "}
           <a href="#" class="card-link">
             {" "}
             Privacy Policy Generator.
           </a>
-        </p>
+        </p> */}
       </p>
     </div>
   );
