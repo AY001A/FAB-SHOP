@@ -15,6 +15,10 @@ import { toast } from "react-toastify";
 import { Spinner } from "react-bootstrap";
 import * as Yup from "yup";
 import Form from "react-bootstrap/Form";
+import { useGetUserById } from "../../hook/useUser";
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const deliverySchema = Yup.object().shape({
   fullName: Yup.string()
@@ -23,29 +27,44 @@ const deliverySchema = Yup.object().shape({
   email: Yup.string()
     .email("Please provide a valid email address")
     .required("Email address field must not be empty."),
-  number: Yup.number().required("Phone number must be included"),
+  number: Yup.string()
+    .required("Phone number must be included")
+    .matches(phoneRegExp, "Phone number is not valid")
+    .min(11, "phone number not valid")
+    .max(14, "phone number not valid"),
   address: Yup.string().required("Address field must not be empty"),
   state: Yup.string().required("State field must not be empty"),
 });
 
 const DeliveryPageForm = () => {
-  const { isAuthenticated, status, error, errorMessage, isLoading } =
-    useSelector((state) => state.auth);
-  const { Quantity, Items } = useSelector((state) => state.cart);
-
+  const { isAuthenticated, user, error, errorMessage, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  const { Quantity, Items, UserDetails } = useSelector((state) => state.cart);
   const [submitting, setSubmitting] = useState(false);
+  const { data, status } = useGetUserById(
+    user?.data?.data?.fabAccountDetails?.Id
+  );
 
+  let userProfile;
+
+  if (isAuthenticated) {
+    userProfile = user?.data?.data?.fabAccountDetails;
+  }
   const navigate = useNavigate();
   const mutation = useCreateCart();
 
   const formik = useFormik({
     initialValues: {
-      fullName: "",
-      email: "",
-      number: "",
-      address: "",
-      state: "Lagos",
+      fullName: isAuthenticated
+        ? `${data?.FirstName} ${data?.LastName}`
+        : UserDetails?.FullName,
+      email: isAuthenticated ? `${data?.EmailAddress}` : UserDetails?.Email,
+      number: isAuthenticated ? data?.PhoneNumber : UserDetails?.Phone,
+      address: isAuthenticated ? data?.ShippingAddress : UserDetails?.Address,
+      state: UserDetails?.State || "Lagos",
     },
+    enableReinitialize: true,
 
     validationSchema: deliverySchema,
 
@@ -60,7 +79,6 @@ const DeliveryPageForm = () => {
         {
           onSuccess(res) {
             setSubmitting(false);
-            console.log(res);
             dispatch(updateCartId(res?.data?.message));
             navigate("checkout", { replace: true });
           },
@@ -72,7 +90,6 @@ const DeliveryPageForm = () => {
       );
     },
   });
-
   const dispatch = useDispatch();
 
   return (
@@ -128,6 +145,7 @@ const DeliveryPageForm = () => {
                   className=" p-2 form-control"
                   id="email"
                   name="email"
+                  disabled={isAuthenticated}
                   aria-describedby="emailHelp"
                   isInvalid={formik.touched.email && formik.errors.email}
                 />
@@ -139,7 +157,7 @@ const DeliveryPageForm = () => {
                   Phone number
                 </label>
                 <Form.Control
-                  type="number"
+                  type="text"
                   name="number"
                   value={formik.values.number}
                   onChange={formik.handleChange}
@@ -201,7 +219,6 @@ const DeliveryPageForm = () => {
                   ) : (
                     "Proceed to Checkout"
                   )}
-                 
                 </button>
               </div>
             </Form>

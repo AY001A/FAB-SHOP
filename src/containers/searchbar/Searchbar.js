@@ -18,6 +18,7 @@ const Searchbar = () => {
     },
     onSubmit: (values) => {
       navigate(`search/${values.searchTerm}`);
+      // formik.resetForm();
     },
   });
 
@@ -38,6 +39,7 @@ const Searchbar = () => {
             type="text"
             name="searchTerm"
             id="searchTerm"
+            autocomplete="off"
             onChange={formik.handleChange}
             value={formik.values.searchTerm}
             className=" h-100 "

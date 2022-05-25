@@ -3,14 +3,17 @@ import authService from "../../api/auth";
 
 import { useNavigate } from "react-router-dom";
 
-const initialState = {
-  isAuthenticated: false,
-  user: null,
-  error: false,
-  errorMessage: [],
-  isLoading: false,
-  registrationError: [],
-};
+const local_cart = window.localStorage.getItem("fabUser");
+const initialState = local_cart
+  ? JSON.parse(local_cart)
+  : {
+      isAuthenticated: false,
+      user: null,
+      error: false,
+      errorMessage: [],
+      isLoading: false,
+      registrationError: [],
+    };
 
 export const register = createAsyncThunk(
   "auth/register",
@@ -128,6 +131,7 @@ export const authSlice = createSlice({
         state.user = null;
         state.isAuthenticated = false;
         state.isLoading = false;
+        localStorage.removeItem("fabUser");
       })
 
       .addCase(resetPassword.pending, (state) => {

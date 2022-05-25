@@ -6,6 +6,9 @@ import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { register, login, reset } from "../../../services/slices/authSlice";
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 const registrationSchema = Yup.object().shape({
   FirstName: Yup.string()
     .required("First name field must not be empty")
@@ -19,7 +22,11 @@ const registrationSchema = Yup.object().shape({
   Password: Yup.string()
     .required("Password field must not be empty")
     .min(5, "Password must not be less than 5 characters"),
-  PhoneNumber: Yup.number().required("Phone number must be included"),
+  PhoneNumber: Yup.string()
+    .required("Phone number must be included")
+    .matches(phoneRegExp, "Phone number is not valid")
+    .min(11, "phone number not valid")
+    .max(14, "phone number not valid"),
   AcceptTerms: Yup.bool().oneOf(
     [true],
     "Accept our terms and conditions to continue"
@@ -157,7 +164,7 @@ const RegisterPage = () => {
         <div className="form-group mb-3">
           <label htmlFor="phone">Phone</label>
           <Form.Control
-            type="tel"
+            type="text"
             className="form-control"
             id="phone"
             name="PhoneNumber"

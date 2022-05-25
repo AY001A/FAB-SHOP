@@ -24,8 +24,12 @@ import AccountPage from "./pages/accountPage/AccountPage";
 import CheckoutSuccess from "./pages/checkout/SuccessPage";
 import SearchPage from "./pages/search/SearchPage";
 import ServiceSuccess from "./pages/checkout/ServiceSuccess";
+<<<<<<< HEAD
 import PolicyPage from "./pages/policyPage/PolicyPage";
 
+=======
+import ProfilePage from "./pages/profile/ProfilePage";
+>>>>>>> 209bbb459555d98244f016030273dbc071cbf699
 
 // import Alert from "./components/Alert/Alert"
 // const HomePage = lazy(() => import("./pages/home/HomePage"));
@@ -92,8 +96,13 @@ function App() {
           <Route path="products/:productId/:title" element={<ProductPage />} />
 
           {/* Account Page */}
+<<<<<<< HEAD
           <Route path="account" element={<AccountPage />} />
           
+=======
+          {/* <Route path="profile" element={<ProfilePage />} /> */}
+          <Route path="profile" element={<AccountPage />} />
+>>>>>>> 209bbb459555d98244f016030273dbc071cbf699
 
           {/* todo make work */}
           <Route path="resetpassword/" element={<PasswordReset />}>
