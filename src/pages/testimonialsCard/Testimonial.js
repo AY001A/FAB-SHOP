@@ -3,7 +3,7 @@ const Testimonial = ({ name, img, desc, job }) => {
     <div className=" col col-sm-4 mt-3 ">
       <div className="card cardo border-1">
         <div className="card-body">
-          <p class="card-text text-center p-4 mb-5">{desc}</p>
+          <p className="card-text text-center p-4 mb-5">{desc}</p>
 
           <div className="img-Container d-flex justify-content-center my-4">
             <img

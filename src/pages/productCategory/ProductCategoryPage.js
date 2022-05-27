@@ -5,8 +5,8 @@ import ProductCatImage from "../../assets/images/productcategory/productcategory
 import ProductCatImageWebP from "../../assets/images/productcategory/productcategory.webp";
 import "./style.scss";
 import { useGetUnpaginatedProducts } from "../../hook/useProducts";
-import Spinner from "../../components/spinner/Spinner";
 import ProductCategoryCard from "../../components/cards/product-card/ProductCategoryCard";
+import { Spinner } from "react-bootstrap";
 
 const ProductCategoryPage = () => {
   const { category, categoryId } = useParams();
@@ -35,7 +35,11 @@ const ProductCategoryPage = () => {
       <h5 className="mb-4 text-capitalize">{category}</h5>
 
       <div className="prodcat-products-wrapper">
-        {status === "loading" && <Spinner />}
+        {status === "loading" && (
+          <div className="text-center m-5 w-100 ">
+            <Spinner className="text-primary" animation="border" />
+          </div>
+        )}
         {status === "success" && !productsCategory?.length && (
           <p className="text-center w-100">Products unavailable...</p>
         )}

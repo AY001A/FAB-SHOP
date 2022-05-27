@@ -215,7 +215,7 @@ const DeliveryPageForm = () => {
                   // onClick={() => dispatch(addShippingDetails(details))}
                 >
                   {submitting ? (
-                    <Spinner animation="border" />
+                    <Spinner className="text-white" animation="border" />
                   ) : (
                     "Proceed to Checkout"
                   )}

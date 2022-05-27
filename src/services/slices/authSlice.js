@@ -31,7 +31,9 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
-    return await authService.login(user);
+    const res = await authService.login(user);
+    window.localStorage.setItem("session", res?.data?.data?.fabAccessToken);
+    return res;
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -132,6 +134,7 @@ export const authSlice = createSlice({
         state.isAuthenticated = false;
         state.isLoading = false;
         localStorage.removeItem("fabUser");
+        localStorage.removeItem("cucumislush-cart");
       })
 
       .addCase(resetPassword.pending, (state) => {

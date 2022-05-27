@@ -32,14 +32,18 @@ const SearchPage = () => {
   }, [keyword]);
 
   return (
-    <div className="searchpage-wrapper container">
+    <div className="searchpage-wrapper w-100 container">
       <h4 className="mt-4">
         {prods.length} Items found for <strong>{keyword}</strong>
       </h4>
 
-      <div className="top-products search-products p-sm-5">
+      <div className="top-products w-100 search-products p-sm-5">
         {/* <p>No product available</p> */}
-        {isLoading && <Spinner animation="border" className="text-primary" />}
+        {isLoading && (
+          <div className="text-center w-100 m-5 p-4 ">
+            <Spinner className="text-primary" animation="border" />
+          </div>
+        )}
 
         {!isLoading &&
           prods?.map((prod) => (
@@ -53,6 +57,10 @@ const SearchPage = () => {
               />
             </div>
           ))}
+
+        {!isLoading && prods?.length === 0 && (
+          <div className="text-center w-100"> Product not found </div>
+        )}
       </div>
     </div>
   );

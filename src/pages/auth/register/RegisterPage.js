@@ -137,6 +137,7 @@ const RegisterPage = () => {
             className="form-control"
             id="EmailAddress"
             name="EmailAddress"
+            // autocomplete="off"
             aria-describedby="EmailAddress"
             onChange={formik.handleChange}
             isInvalid={
