@@ -8,10 +8,10 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../services/slices/cartSlice";
 import { useGetProductById } from "../../hook/useProducts";
 import Currency from "../../components/currency/Currency";
-import Spinner from "../../components/spinner/Spinner";
 import { mock_top_deals } from "../../api/products";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import { Spinner } from "react-bootstrap";
 
 const ProductPage = ({ product }) => {
   const { productId, title } = useParams();
@@ -40,7 +40,12 @@ const ProductPage = ({ product }) => {
   };
   const [openModal, setOpenModal] = useState(false);
 
-  if (status === "loading") return <Spinner />;
+  if (status === "loading")
+    return (
+      <div className="text-center w-100 m-5 p-4 ">
+        <Spinner className="text-primary" animation="border" />
+      </div>
+    );
 
   if (status === "success")
     return (

@@ -9,9 +9,10 @@ import {
   useGetUserById,
   useUpdateUserAccount,
 } from "../../hook/useUser";
-import Spinner from "../../components/spinner/Spinner";
+
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
+import { Spinner } from "react-bootstrap";
 
 const AccountPage = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
@@ -49,7 +50,8 @@ const AccountPage = () => {
 
     onSubmit(values, { setSubmitting }) {
       changePassword.mutate(values, {
-        onSuccess() {
+        onSuccess(res) {
+          console.log(res);
           setSubmitting(false);
           passwordForm.resetForm();
         },
@@ -65,7 +67,11 @@ const AccountPage = () => {
 
   return (
     <div className="account container">
-      {status === "loading" && <Spinner />}
+      {status === "loading" && (
+        <div className="text-center w-100 m-5 p-4 ">
+          <Spinner className="text-primary" animation="border" />
+        </div>
+      )}
       {status === "success" && (
         <>
           <div className="py-3">

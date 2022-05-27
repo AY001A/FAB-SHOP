@@ -3,8 +3,8 @@ import "./style.scss";
 import { Outlet } from "react-router-dom";
 import Footer from "../../../components/footer/Footer";
 import Header from "../../../components/navbar/Header";
-import Spinner from "../../../components/spinner/Spinner";
 import { ToastContainer } from "react-toastify";
+import { Spinner } from "react-bootstrap";
 
 const AppLayout = () => {
   return (
@@ -18,7 +18,13 @@ const AppLayout = () => {
             autoClose={2000}
           />
 
-          <Suspense fallback={<Spinner />}>
+          <Suspense
+            fallback={
+              <div className="text-center w-100 m-5 p-4 ">
+                <Spinner className="text-primary" animation="border" />
+              </div>
+            }
+          >
             <Outlet />
           </Suspense>
         </main>

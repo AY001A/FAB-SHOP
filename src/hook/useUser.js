@@ -19,13 +19,5 @@ export function useUpdateUserAccount() {
 }
 
 export function useChangePassword() {
-  return useMutation((details) => authService.changePassword(details), {
-    onSuccess: (res) => {
-      console.log(res);
-      toast.success("Password changed successfully");
-    },
-    onError: () => {
-      toast.error("something went wrong, try again");
-    },
-  });
+  return useMutation((details) => authService.changePassword(details));
 }
