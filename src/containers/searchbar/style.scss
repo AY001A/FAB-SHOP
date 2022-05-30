@@ -59,15 +59,21 @@
   background-color: transparent;
 }
 
-@media (max-width: 576px) {
+@media (min-width: 320px) {
   .suggestionContainer{
     width: 300px;
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 576px) {
   .suggestionContainer{
     width: 420px;
+  }
+}
+
+@media (min-width: 992px) {
+  .suggestionContainer{
+    width: 550px;
   }
 }
 

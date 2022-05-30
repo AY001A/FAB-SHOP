@@ -36,6 +36,11 @@ const Searchbar = () => {
    setText(text)
  }
 
+ const handleClick = () => {
+  setSuggestions([])
+  setText('')
+ }
+
 
   return (
     <div className="inputDiv">
@@ -74,7 +79,7 @@ const Searchbar = () => {
 
       {suggestions && suggestions.map((suggestion, i) => (
         <div className='suggestionContainer bg-light py-1 px-2'>
-            <Link className='suggestions' key={i} to={`/products/${suggestion.Id}/${suggestion.Name}`}>{suggestion.Name}</Link>
+            <Link className='suggestions' key={i} to={`/products/${suggestion.Id}/${suggestion.Name}`} onClick={handleClick}>{suggestion.Name}</Link>
           </div>
       ))}
       </div>
