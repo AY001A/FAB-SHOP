@@ -129,7 +129,7 @@ const AccountPage = () => {
                     />
                   </div>
                 </div>
-                5
+
                 <div className="w-100 bg-light border p-4 ">
                   <div className="ps-4 pt-2">
                     <p>Email:</p>
