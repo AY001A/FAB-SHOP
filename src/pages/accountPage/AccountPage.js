@@ -14,6 +14,30 @@ import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { Spinner } from "react-bootstrap";
 
+const AccountPageSchema = Yup.object().shape({
+  FirstName: Yup.string()
+    .required("First name field must not be empty")
+    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+  LastName: Yup.string()
+    .required("Last name field must not be empty")
+    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+  EmailAddress: Yup.string()
+    .email("Please provide a valid email address")
+    .required("Email field must not be empty."),
+  Password: Yup.string()
+    .required("Password field must not be empty")
+    .min(5, "Password must not be less than 5 characters"),
+  PhoneNumber: Yup.string()
+    .required("Phone number must be included")
+    .matches(phoneRegExp, "Phone number is not valid")
+    .min(11, "phone number not valid")
+    .max(14, "phone number not valid"),
+  AcceptTerms: Yup.bool().oneOf(
+    [true],
+    "Accept our terms and conditions to continue"
+  ),
+});
+
 const AccountPage = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   let usr = isAuthenticated ? user?.data?.data?.fabAccountDetails : null;

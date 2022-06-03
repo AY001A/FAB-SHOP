@@ -3,7 +3,7 @@ import "./styles.scss";
 
 const policyPage = () => {
   return (
-    <div>
+    <div className="policy">
       <h2 className="fw-bold">PRIVACY NOTICE</h2>
       <p className="text-uppercase">Last updated April 22, 2022</p>
       <p className="fw-lighter">

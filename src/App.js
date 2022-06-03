@@ -13,14 +13,13 @@ import { lazy } from "react";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 
 import SearchPage from "./pages/search/SearchPage";
-<<<<<<< HEAD
+
 import ServiceSuccess from "./pages/checkout/ServiceSuccess";
 
 import PolicyPage from "./pages/policyPage/PolicyPage";
 
 import ProfilePage from "./pages/profile/ProfilePage";
-=======
->>>>>>> 92aa83b3da51b46bf02ac003f2fc1cb36f48fb1a
+
 
 const OrderPage = lazy(() => import("./pages/orderPage/OrderPage"));
 const CustomerSupport = lazy(() =>
