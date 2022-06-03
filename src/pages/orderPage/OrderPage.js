@@ -15,36 +15,11 @@ const OrderPage = () => {
 
   const { data, status } = useGetOrdersByOwnerId(ownerId);
 
-  const test = [
-    {
-      name: "one",
-      data: [
-        {
-          num: 1,
-        },
-        {
-          num: 2,
-        },
-        {
-          num: 3,
-        },
-      ],
-    },
-    {
-      name: "two",
-      data: [
-        {
-          num: 1,
-        },
-        {
-          num: 2,
-        },
-        {
-          num: 3,
-        },
-      ],
-    },
-  ];
+  // let reversedOrderList =
+  //   status === "success" ? Object.assign({}, data?.data?.data) : [];
+
+  // console.log(reversedOrderList);
+
   return (
     <div className="container mt-4 ">
       <h5>My Orders</h5>

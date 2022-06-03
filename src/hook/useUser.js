@@ -4,7 +4,7 @@ import authService from "../api/auth";
 import { getUserById, updateUserAccount } from "../api/user";
 
 export function useGetUserById(id) {
-  return useQuery(["products", id], () => getUserById(id));
+  return useQuery(["user"], () => getUserById(id));
 }
 
 export function useUpdateUserAccount() {

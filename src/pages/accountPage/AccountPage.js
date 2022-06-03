@@ -22,22 +22,30 @@ const AccountPage = () => {
   const changePassword = useChangePassword();
   const formik = useFormik({
     initialValues: {
-      Id: data ? data.Id : "",
-      PhoneNumber: data ? data?.PhoneNumber : "",
+      Id: data ? data.Id : usr.Id,
+      Phone: data && data?.PhoneNumber,
 
-      ShippingAddress: data ? data?.ShippingAddress : "",
+      ShippingAddress: data && data?.ShippingAddress,
     },
     enableReinitialize: true,
 
     onSubmit: (values, { setSubmitting }) => {
-      mutation.mutate(values, {
-        onSuccess() {
-          setSubmitting(false);
+      console.log(values);
+      mutation.mutate(
+        {
+          Id: values.Id,
+          Phone: values.Phone,
+          ShippingAddress: values.ShippingAddress,
         },
-        onError() {
-          setSubmitting(false);
-        },
-      });
+        {
+          onSuccess() {
+            setSubmitting(false);
+          },
+          onError() {
+            setSubmitting(false);
+          },
+        }
+      );
     },
   });
 
@@ -110,11 +118,11 @@ const AccountPage = () => {
                 <div className="ps-4 pt-2">
                   <p>Phone number:</p>
                   <input
-                    type="number"
-                    id="PhoneNumber"
-                    name="PhoneNumber"
+                    type="text"
+                    id="Phone"
+                    name="Phone"
                     onChange={formik.handleChange}
-                    value={formik.values.PhoneNumber}
+                    value={formik.values.Phone}
                     className="form-control rounded-0 bg-white w-100 "
                   />
                 </div>
