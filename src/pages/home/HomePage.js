@@ -12,11 +12,14 @@ import { useGetProducts } from "../../hook/useProducts";
 import TestimonialCard from "./../testimonialsCard/TestimonialCard";
 import { serviceHomepageList } from "../../api/services";
 import { Spinner } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const navigate = useNavigate();
 
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const { status, data, error } = useGetProducts(1, 20);
+  // const {} = useGetCartItems();
 
   return (
     <>
