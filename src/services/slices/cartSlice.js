@@ -14,6 +14,9 @@ const initialState = local_cart
       customer_name: "",
       customer_phone: "",
       customer_address: "",
+      payment_reference: "",
+      payment_successful: false,
+      payment_status: "",
 
       Receipt: null,
     };
@@ -105,7 +108,9 @@ const cartSlice = createSlice({
       window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
     },
     paymentReceipt(state, action) {
-      state.Receipt = action.payload;
+      state.payment_reference = action.payload.reference;
+      state.payment_successful = action.payload.isSuccessful;
+      state.payment_status = action.payload.status;
       window.localStorage.setItem("cucumislush-cart", JSON.stringify(state));
     },
     refreshCart(state) {
