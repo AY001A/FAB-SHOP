@@ -9,10 +9,33 @@ import {
   useGetUserById,
   useUpdateUserAccount,
 } from "../../hook/useUser";
-
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { Spinner } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+const accountSchema = Yup.object().shape({
+  PhoneNumber: Yup.string()
+    .required("Phone number must be included")
+    .matches(phoneRegExp, "Phone number is not valid")
+    .min(11, "Should not be less than 11")
+    .max(14, "phone number not valid"),
+
+  // ShippingAddress: Yup.string()
+});
+
+const passwordSchema = Yup.object().shape({
+  currentPassword: Yup.string().required("input old password "),
+  newPassword: Yup.string()
+    .required("Password is required")
+    .min(5, "Password must be longer than 5 letters"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("newPassword"), null], "Passwords must match")
+    .required("Confirm password"),
+});
 
 const AccountPage = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
@@ -20,21 +43,21 @@ const AccountPage = () => {
   const { data, status } = useGetUserById(usr?.Id);
   const mutation = useUpdateUserAccount();
   const changePassword = useChangePassword();
+  // console.log(data.Id);
   const formik = useFormik({
     initialValues: {
-      Id: data ? data.Id : usr.Id,
-      Phone: data && data?.PhoneNumber,
+      Id: data?.Id || "",
+      Phone: data?.PhoneNumber || "",
 
-      ShippingAddress: data && data?.ShippingAddress,
+      ShippingAddress: status === "success" ? data?.ShippingAddress : " ",
     },
     enableReinitialize: true,
-
+    validationSchema: accountSchema,
     onSubmit: (values, { setSubmitting }) => {
-      console.log(values);
       mutation.mutate(
         {
           Id: values.Id,
-          Phone: values.Phone,
+          Phone: values.PhoneNumber,
           ShippingAddress: values.ShippingAddress,
         },
         {
@@ -55,11 +78,11 @@ const AccountPage = () => {
       newPassword: "",
       confirmPassword: "",
     },
+    validationSchema: passwordSchema,
 
     onSubmit(values, { setSubmitting }) {
       changePassword.mutate(values, {
         onSuccess(res) {
-          console.log(res);
           setSubmitting(false);
           passwordForm.resetForm();
         },
@@ -113,18 +136,24 @@ const AccountPage = () => {
               </div>
             </div>
 
-            <form onSubmit={formik.handleSubmit}>
+            <Form noValidate validate="true" onSubmit={formik.handleSubmit}>
               <div className=" bg-light border p-4 ">
                 <div className="ps-4 pt-2">
                   <p>Phone number:</p>
-                  <input
+                  <Form.Control
                     type="text"
-                    id="Phone"
-                    name="Phone"
+                    id="PhoneNumber"
+                    name="PhoneNumber"
+                    isInvalid={
+                      formik.touched.PhoneNumber && formik.errors.PhoneNumber
+                    }
                     onChange={formik.handleChange}
-                    value={formik.values.Phone}
+                    value={formik.values.PhoneNumber}
                     className="form-control rounded-0 bg-white w-100 "
                   />
+                  <div className="invalid-feedback">
+                    {formik.errors.PhoneNumber}
+                  </div>
                 </div>
               </div>
 
@@ -149,52 +178,77 @@ const AccountPage = () => {
               >
                 {formik.isSubmitting ? "updating..." : "Save Changes"}
               </button>
-            </form>
+            </Form>
           </div>
 
           <div className="py-3 mt-5">
             <div className="p-2 ps-4 pt-4 bg-light border rounded-top">
               <h5 className="text-muted">CHANGE PASSWORD</h5>
             </div>
-            <form onSubmit={passwordForm.handleSubmit}>
+            <Form
+              noValidate
+              validate="true"
+              onSubmit={passwordForm.handleSubmit}
+            >
               <div className=" w-100 bg-light border p-4 ">
                 <div className="ps-4 pt-2">
                   <p>Old Password</p>
-                  <input
+                  <Form.Control
                     id="currentPassword"
                     type={"password"}
                     onChange={passwordForm.handleChange}
+                    isInvalid={
+                      passwordForm.touched.currentPassword &&
+                      passwordForm.errors.currentPassword
+                    }
                     value={passwordForm.values.currentPassword}
                     className="form-control rounded-0 bg-white w-100"
                   />
+                  <div className="invalid-feedback">
+                    {passwordForm.errors.currentPassword}
+                  </div>
                 </div>
               </div>
 
               <div className="w-100 bg-light border p-4 ">
                 <div className="ps-4 pt-2">
                   <p>New Password</p>
-                  <input
+                  <Form.Control
                     id="newPassword"
                     type={"password"}
+                    isInvalid={
+                      passwordForm.touched.newPassword &&
+                      passwordForm.errors.newPassword
+                    }
                     onChange={passwordForm.handleChange}
                     value={passwordForm.values.newPassword}
                     // value={data.EmailAddress}
                     className="form-control rounded-0 bg-white w-100"
                   />
+                  <div className="invalid-feedback">
+                    {passwordForm.errors.newPassword}
+                  </div>
                 </div>
               </div>
 
               <div className=" bg-light border p-4 ">
                 <div className="ps-4 pt-2">
                   <p>Confirm Password</p>
-                  <input
+                  <Form.Control
                     id="confirmPassword"
                     type={"password"}
                     onChange={passwordForm.handleChange}
                     value={passwordForm.values.confirmPassword}
+                    isInvalid={
+                      passwordForm.touched.confirmPassword &&
+                      passwordForm.errors.confirmPassword
+                    }
                     // value={data.PhoneNumber}
                     className="form-control rounded-0 bg-white w-100 "
                   />
+                  <div className="invalid-feedback">
+                    {passwordForm.errors.confirmPassword}
+                  </div>
                 </div>
               </div>
               <button
@@ -204,7 +258,7 @@ const AccountPage = () => {
               >
                 {passwordForm.isSubmitting ? "updating..." : "Change Password"}
               </button>
-            </form>
+            </Form>
           </div>
         </>
       )}
