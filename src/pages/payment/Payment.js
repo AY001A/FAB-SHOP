@@ -55,6 +55,7 @@ const Payment = () => {
         DeliveryAddress: customer_address,
         PaymentMethod: "paystack",
         PaymentDetails: res?.reference,
+        PaymentReference: res?.reference,
         AdditionalInformation: [
           {
             Name: "ShippingAddress",

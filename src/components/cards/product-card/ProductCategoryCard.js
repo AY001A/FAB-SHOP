@@ -20,7 +20,6 @@ const ProductCategoryCard = ({
 
   const handleAddtocart = () => {
     const inCart = Items.filter((prod) => prod.ProductId === id);
-    console.log(product);
     !inCart.length
       ? dispatch(
           addToCart({

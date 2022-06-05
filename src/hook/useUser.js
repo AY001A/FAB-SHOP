@@ -4,7 +4,7 @@ import authService from "../api/auth";
 import { getUserById, updateUserAccount } from "../api/user";
 
 export function useGetUserById(id) {
-  return useQuery(["products", id], () => getUserById(id));
+  return useQuery(["user"], () => getUserById(id));
 }
 
 export function useUpdateUserAccount() {
@@ -19,13 +19,5 @@ export function useUpdateUserAccount() {
 }
 
 export function useChangePassword() {
-  return useMutation((details) => authService.changePassword(details), {
-    onSuccess: (res) => {
-      console.log(res);
-      toast.success("Password changed successfully");
-    },
-    onError: () => {
-      toast.error("something went wrong, try again");
-    },
-  });
+  return useMutation((details) => authService.changePassword(details));
 }

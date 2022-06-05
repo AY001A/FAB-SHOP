@@ -12,11 +12,14 @@ import { useGetProducts } from "../../hook/useProducts";
 import TestimonialCard from "./../testimonialsCard/TestimonialCard";
 import { serviceHomepageList } from "../../api/services";
 import { Spinner } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const navigate = useNavigate();
 
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const { status, data, error } = useGetProducts(1, 20);
+  // const {} = useGetCartItems();
 
   return (
     <>
@@ -35,7 +38,6 @@ const HomePage = () => {
             </Link>
           </div>
         </section> */}
-
 
         <section className="carousel_header services_ad">
           <div className="carousel_info">
@@ -158,7 +160,6 @@ const HomePage = () => {
                 url_path={`services/${val.Id}/${val.Name}`}
                 key={val.Id}
                 className="mx-3"
-
               />
             ))}
         </div>
@@ -171,9 +172,8 @@ const HomePage = () => {
         <div className="top-products p-sm-5">
           {/* <p>No product available</p> */}
           {status === "loading" && (
-            <div className="text-center">
-              <Spinner animation="border" className="text-primary" />
-
+            <div className="text-center w-100 m-5 p-4 ">
+              <Spinner className="text-primary" animation="border" />
             </div>
           )}
 
@@ -189,7 +189,6 @@ const HomePage = () => {
                 price={prod.Price}
                 key={prod.Id}
                 className="pro_card mx-2"
-
               />
             ))
           )}
