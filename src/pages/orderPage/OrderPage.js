@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import OrderCard from "../../components/cards/order-card/OrderCard";
 import { useGetOrdersByOwnerId } from "../../hook/useOrder";
-
+import { Spinner } from "react-bootstrap";
 const OrderPage = () => {
   const [orders, setOrders] = useState([]);
 
@@ -15,41 +15,21 @@ const OrderPage = () => {
 
   const { data, status } = useGetOrdersByOwnerId(ownerId);
 
-  const test = [
-    {
-      name: "one",
-      data: [
-        {
-          num: 1,
-        },
-        {
-          num: 2,
-        },
-        {
-          num: 3,
-        },
-      ],
-    },
-    {
-      name: "two",
-      data: [
-        {
-          num: 1,
-        },
-        {
-          num: 2,
-        },
-        {
-          num: 3,
-        },
-      ],
-    },
-  ];
+  // let reversedOrderList =
+  //   status === "success" ? Object.assign({}, data?.data?.data) : [];
+
+  // console.log(reversedOrderList);
+
   return (
     <div className="container mt-4 ">
       <h5>My Orders</h5>
 
       <div className="w-100">
+        {status === "loading" && (
+          <div className="text-center w-100 m-5 p-4 ">
+            <Spinner className="text-primary" animation="border" />
+          </div>
+        )}
         {status === "success" &&
           data?.data?.data.map((order) =>
             order.OrderItem.map((prod) => (
