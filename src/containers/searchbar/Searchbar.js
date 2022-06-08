@@ -29,7 +29,7 @@ const Searchbar = () => {
       }
     }
   }
-  const { status, data } = useGetProducts(1,200);
+  const { status, data, error } = useGetProducts(1,200);
   // console.log(data?.data?.data);
 
   // const closeModal= () => {
