@@ -7,9 +7,16 @@ import Spinner from "../../../components/spinner/Spinner";
 import { ToastContainer } from "react-toastify";
 
 const AppLayout = () => {
+  
+  
+  // const handleDismiss = () => {
+  //   return true
+  //  }
+
   return (
-    <div className="wrapper">
-      <Header />
+    
+    <div className="wrapper" >
+      <Header  />
       <div className="main-wrapper">
         <main>
           <ToastContainer

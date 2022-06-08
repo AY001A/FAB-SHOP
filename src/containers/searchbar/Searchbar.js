@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "./style.scss";
 import { FiSearch } from "react-icons/fi";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -7,43 +7,84 @@ import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useGetProducts } from '../../hook/useProducts'
-import { Link } from "react-router-dom";
+import Suggestion from "../../components/modal/Suggestion";
+
 
 const Searchbar = () => {
   const navigate = useNavigate();
   const isMobile = useIsMobileScreen();
   const [text, setText] = useState('')
   const [suggestions, setSuggestions] = useState([])
+  const [ showModal, setShowModal] = useState(false)
 
+  const modalRef = useRef()
+  
+  function setShowx(e){
+    var x = document.querySelector('#xbutton');
+    if(e.target==x.firstChild){
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        setSuggestions([])
+        setText('')
+        x.style.display = "none";
 
+      }
+    }
+  }
   const { status, data } = useGetProducts(1,200);
   // console.log(data?.data?.data);
 
-  
+  const openModal = () => {
+    setShowModal(prev => !prev);
+  }
   
 
  const onChangeHandler = (text) => {
+ if(text==" "){
+ }
+ else{
+  
   const products = data;
    let matches = []
    if (text.length > 0) {
-     matches = products.data.data.filter(p => {
-       const regex = new RegExp(`${text}`, 'gi');
-       return p.Name.match(regex)
+     matches = products.data.data.filter(function(p, i) {
+       if(i<10){
+          const regex = new RegExp(`${text}`, 'gi');
+          return p.Name.match(regex)
+        }else{
+          return
+        }
      })
    }
+
+   var x = document.querySelector('#xbutton');
+   x.style.display = "block";
+   if(text.length==0){
+    var x = document.querySelector('#xbutton');
+    x.style.display = "none";
+     //alert("nothing")
+  }
+
    console.log("matches", matches);
-   setSuggestions(matches)
    setText(text)
+   setSuggestions(matches)
+ }
  }
 
- const handleClick = () => {
+ const handleClick = (e) => {
   setSuggestions([])
   setText('')
+  setShowx(e);
+  var x = document.querySelector('#xbutton');
+    x.style.display = "none";
  }
+
+
 
 
   return (
-    <div className="inputDiv">
+    <div className="inputDiv" ref={modalRef} onClick={handleClick}>
       <form >
         <div classname='inputGroup'>
         <InputGroup
@@ -77,11 +118,17 @@ const Searchbar = () => {
       </form>
        <div style={{position: "absolute"}}>
 
-      {suggestions && suggestions.map((suggestion, i) => (
-        <div className='suggestionContainer bg-light py-1 px-2'>
-            <Link className='suggestions' key={i} to={`/products/${suggestion.Id}/${suggestion.Name}`} onClick={handleClick}>{suggestion.Name}</Link>
+      <div className='bg-light' >
+        <div className='d-flex just justify-content-end me-3 '>
+          <div style={{display: "none", }} id="xbutton" onClick={handleClick}>
+            <button  className='bg-light btn-close btn-close-danger clearButton' ></button>
           </div>
-      ))}
+        </div>
+        
+          {suggestions && suggestions.map((suggestion, i) => (
+            <Suggestion suggestion={suggestion} i={i} />
+          ))}
+      </div>
       </div>
     </div>
     

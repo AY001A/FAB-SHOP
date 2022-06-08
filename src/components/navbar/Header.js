@@ -15,7 +15,9 @@ import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
 import { useState } from "react";
 import Cart from "../cart/Cart";
 
-const Header = () => {
+const Header = ({handleDismiss}) => {
+
+  // const [dismiss, setDismiss] = useState(handleDismiss)
   const [showSidebar, setShowSidebar] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
@@ -34,7 +36,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky-top">
+      <header className="sticky-top" >
         {/* Top banner */}
         <div className="top-banner border-bottom">
           {profile.isAuthenticated ? (
