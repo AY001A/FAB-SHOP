@@ -2,9 +2,7 @@ import React, { useState, useRef } from "react";
 import "./style.scss";
 import { FiSearch } from "react-icons/fi";
 import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
 import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
-import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useGetProducts } from '../../hook/useProducts'
 import Suggestion from "../../components/modal/Suggestion";
@@ -15,13 +13,12 @@ const Searchbar = () => {
   const isMobile = useIsMobileScreen();
   const [text, setText] = useState('')
   const [suggestions, setSuggestions] = useState([])
-  const [ showModal, setShowModal] = useState(false)
 
   const modalRef = useRef()
   
   function setShowx(e){
     var x = document.querySelector('#xbutton');
-    if(e.target==x.firstChild){
+    if(e.target===x.firstChild){
       if (x.style.display === "none") {
         x.style.display = "block";
       } else {
@@ -35,13 +32,12 @@ const Searchbar = () => {
   const { status, data } = useGetProducts(1,200);
   // console.log(data?.data?.data);
 
-  const openModal = () => {
-    setShowModal(prev => !prev);
-  }
-  
+  // const closeModal= () => {
+  //   document.querySelector(".modal").style.display = "none"
+  // }
 
  const onChangeHandler = (text) => {
- if(text==" "){
+ if(text===" "){
  }
  else{
   
@@ -58,13 +54,27 @@ const Searchbar = () => {
      })
    }
 
-   var x = document.querySelector('#xbutton');
-   x.style.display = "block";
-   if(text.length==0){
-    var x = document.querySelector('#xbutton');
-    x.style.display = "none";
-     //alert("nothing")
-  }
+   document.addEventListener( 
+    "click",
+    function(event) {
+      if (
+        !event.target.closest(".modal")
+      ) {
+        setSuggestions([])
+        setText('')
+      setShowx();
+      }
+    },
+    false
+  )
+
+  //  let x = document.querySelector('#xbutton');
+  //  x.style.display = "block";
+  //  if(text.length===0){
+  //   let x = document.querySelector('#xbutton');
+  //   x.style.display = "none";
+  //    //alert("nothing")
+  // }
 
    console.log("matches", matches);
    setText(text)
@@ -76,9 +86,12 @@ const Searchbar = () => {
   setSuggestions([])
   setText('')
   setShowx(e);
-  var x = document.querySelector('#xbutton');
-    x.style.display = "none";
+  
  }
+
+ 
+
+ 
 
 
 
@@ -116,23 +129,22 @@ const Searchbar = () => {
         </div>
         
       </form>
-       <div style={{position: "absolute"}}>
 
-      <div className='bg-light' >
-        <div className='d-flex just justify-content-end me-3 '>
-          <div style={{display: "none", }} id="xbutton" onClick={handleClick}>
-            <button  className='bg-light btn-close btn-close-danger clearButton' ></button>
-          </div>
+       <div style={{position: "absolute"}}>
+        <div className='bg-light' >
+          {/* <div className='d-flex just justify-content-end me-3 '>
+            <div style={{display: "none", }} id="xbutton" onClick={handleClick}>
+              <button  className='bg-light btn-close btn-close-danger clearButton' ></button>
+            </div>
+          </div> */}
+          
+            {suggestions && suggestions.map((suggestion, i) => (
+              <Suggestion suggestion={suggestion} i={i} className="modal"/>
+            ))}
         </div>
-        
-          {suggestions && suggestions.map((suggestion, i) => (
-            <Suggestion suggestion={suggestion} i={i} />
-          ))}
       </div>
-      </div>
+
     </div>
-    
-    
   );
 };
 

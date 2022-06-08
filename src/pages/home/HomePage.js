@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.scss";
 import ServiceCard from "../../components/cards/service-card/ServiceCard";
@@ -16,7 +16,7 @@ const HomePage = ({handleClick}) => {
   const navigate = useNavigate();
   const modalRef = useRef()
 
-  const { status, data, error } = useGetProducts(1, 20);
+  const { status, data } = useGetProducts(1, 20);
 
   return (
     <div ref={modalRef} onClick={handleClick}>
