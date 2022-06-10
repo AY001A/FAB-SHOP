@@ -11,17 +11,20 @@ import { useGetProducts } from "../../hook/useProducts";
 import TestimonialCard from "./../testimonialsCard/TestimonialCard";
 import { serviceHomepageList } from "../../api/services";
 import { Spinner } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const HomePage = ({handleClick}) => {
   const navigate = useNavigate();
   const modalRef = useRef()
 
-  const { status, data } = useGetProducts(1, 20);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { status, data, error } = useGetProducts(1, 20);
+  // const {} = useGetCartItems();
 
   return (
     <div ref={modalRef} onClick={handleClick}>
       <HeaderSlider>
-        <section className="carousel_header services_ad">
+        {/* <section className="carousel_header services_ad">
           <div className="carousel_info ">
             <p>World class professionals at your doorstep </p>
 
@@ -34,7 +37,7 @@ const HomePage = ({handleClick}) => {
               </button>
             </Link>
           </div>
-        </section>
+        </section> */}
 
         <section className="carousel_header services_ad">
           <div className="carousel_info">
@@ -45,7 +48,7 @@ const HomePage = ({handleClick}) => {
                 className="btn btn-primary"
                 onClick={() => navigate("/services")}
               >
-                <strong>Shop Now</strong>
+                <strong>Hire Now</strong>
               </button>
             </Link>
           </div>
@@ -146,7 +149,7 @@ const HomePage = ({handleClick}) => {
         <div className="section-banner">
           <p>Top Services</p> <Link to={"/services"}>see more</Link>
         </div>
-        <div className="service-cards-wrapper p-sm-5">
+        <div className="service-cards-wrapper p-sm-5 ">
           {serviceHomepageList
             .filter((serv) => serv.CategoryId === 9)
             .map((val) => (
@@ -156,7 +159,7 @@ const HomePage = ({handleClick}) => {
                 desc={val.Description}
                 url_path={`services/${val.Id}/${val.Name}`}
                 key={val.Id}
-                // className="mx-1"
+                className="mx-3"
               />
             ))}
         </div>
@@ -169,8 +172,8 @@ const HomePage = ({handleClick}) => {
         <div className="top-products p-sm-5">
           {/* <p>No product available</p> */}
           {status === "loading" && (
-            <div className="text-center">
-              <Spinner animation="border" className="text-primary" />
+            <div className="text-center w-100 m-5 p-4 ">
+              <Spinner className="text-primary" animation="border" />
             </div>
           )}
 
@@ -185,7 +188,7 @@ const HomePage = ({handleClick}) => {
                 image={prod.ImagesUrls[0]}
                 price={prod.Price}
                 key={prod.Id}
-                className="pro_card"
+                className="pro_card mx-2"
               />
             ))
           )}

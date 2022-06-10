@@ -37,6 +37,8 @@ export const productById = async (id) => {
   return res.data;
 };
 
+// export const cartItems = async
+
 export const mock_top_deals = [
   {
     Id: 13,

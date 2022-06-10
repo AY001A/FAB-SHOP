@@ -39,3 +39,11 @@ export function useSearchProduct() {
     },
   });
 }
+
+export function useGetCartItems() {
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+
+  if (!isAuthenticated) return;
+
+  return;
+}

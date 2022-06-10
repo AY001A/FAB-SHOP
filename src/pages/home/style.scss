@@ -424,3 +424,18 @@
     grid-template-columns: repeat(5, 1fr);
   }
 }
+
+.service-cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  // justify-content: space-around;
+  margin: 0 16px;
+  margin-bottom: 32px;
+
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 24px;
+
+
+  }
+}

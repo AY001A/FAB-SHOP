@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "react-query";
-import { addToCart, createCart, placeOrder } from "../api/order";
+import { addToCart, createCart, getOrdersById, placeOrder } from "../api/order";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -29,9 +29,9 @@ export function usePlaceOrder() {
     },
   });
 }
-//   export function useGetProductById(id) {
-//     return useQuery(["product", id], () => productById(id));
-//   }
+export function useGetOrdersByOwnerId(id) {
+  return useQuery(["orders", id], () => getOrdersById(id));
+}
 
 //   export function useGetUnpaginatedProducts() {
 //     return useQuery("productList", () => productsUnpaginated());

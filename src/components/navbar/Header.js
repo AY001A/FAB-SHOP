@@ -1,5 +1,5 @@
 import "./style.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Logo from "../../assets/icons/cucumislogo.svg";
@@ -14,6 +14,7 @@ import { NavDropdown, Offcanvas } from "react-bootstrap";
 import useIsMobileScreen from "../../utils/hooks/useIsMobileScreen";
 import { useState } from "react";
 import Cart from "../cart/Cart";
+import { refreshCart } from "../../services/slices/cartSlice";
 
 const Header = ({handleDismiss}) => {
 
@@ -28,11 +29,18 @@ const Header = ({handleDismiss}) => {
   const cachedUser = localStorage.getItem("fabUser");
   let firstName;
 
+  const navigate = useNavigate();
+
   const profile = cachedUser ? JSON.parse(cachedUser) : user;
 
   if (profile.isAuthenticated) {
     firstName = profile.user.data.data.fabAccountDetails.FirstName;
   }
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(refreshCart());
+  };
 
   return (
     <>
@@ -47,9 +55,6 @@ const Header = ({handleDismiss}) => {
               <Link to="/register">Register</Link>
             </span>
           )}
-          {/* <div className="top-banner-contact">
-            <div>Contact us</div>
-          </div> */}
         </div>
 
         {/* Navbar */}
@@ -65,63 +70,67 @@ const Header = ({handleDismiss}) => {
           <IconContext.Provider value={{ size: "24px" }}>
             <div className="col-4 col-sm-3 nav-icons ">
               <Link
-                to={"/"}
+                to={profile.isAuthenticated ? "/profile" : "/login"}
                 className="account_btn "
                 style={{ textDecoration: "none" }}
               >
                 <FiUser color="black" />
-                <NavDropdown
-                  title={
-                    profile.isAuthenticated ? `Hi, ${firstName}` : "Account"
-                  }
-                  className="d-flex align-items-center account_dropdown d-none d-sm-block"
-                >
-                  {/* <p className="">Account</p>
-                  <FaAngleDown color="black" size={14} /> */}
-
-                  {profile.isAuthenticated ? (
-                    <>
-                      <NavDropdown.Item
-                        href="#action/3.2"
-                        className="mt-4"
+              </Link>
+              <NavDropdown
+                title={profile.isAuthenticated ? `Hi, ${firstName}` : "Account"}
+                className=" d-flex align-items-center  account_dropdown d-none d-sm-block"
+              >
+                {profile.isAuthenticated ? (
+                  <>
+                    <Link to={"/profile"} className={"text-decoration-none"}>
+                      <li
+                        className="mt-2 text-center p-2  navdropli"
                         style={{ fontSize: "14px" }}
                       >
                         My Account
-                      </NavDropdown.Item>
-                      <NavDropdown.Item
-                        href="#action/3.2"
-                        className="mt-2 text-center"
+                      </li>
+                    </Link>
+                    <Link to={"/orders"} className={"text-decoration-none"}>
+                      <li
+                        className=" text-center p-2  navdropli"
                         style={{ fontSize: "14px" }}
                       >
                         My Orders
-                      </NavDropdown.Item>
+                      </li>
+                    </Link>
 
-                      <button
-                        className="btn btn-outline-primary border-0 btn-sm dropdown_btn mt-4"
-                        onClick={() => dispatch(logout())}
+                    <Link to={"/"} className={"text-decoration-none"}>
+                      <li
+                        className=" text-center p-2  navdropli"
+                        onClick={() => handleLogout()}
                       >
                         Logout
+                      </li>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link to={"/login"}>
+                      <button
+                        className="btn btn-primary btn-sm dropdown_btn mt-4"
+                        // onClick={() => navigate("/login")}
+                      >
+                        Login
                       </button>
-                    </>
-                  ) : (
-                    <>
-                      <Link to={"/login"}>
-                        <button className="btn btn-primary btn-sm dropdown_btn mt-4">
-                          Login
-                        </button>
-                      </Link>
-                      <Link to={"/register"}>
-                        <button
-                          className="btn  dropdown_btn  btn-sm"
-                          style={{ backgroundColor: "#FEF7D8" }}
-                        >
-                          Register
-                        </button>
-                      </Link>
-                    </>
-                  )}
-                </NavDropdown>
-              </Link>
+                    </Link>
+                    <Link to={"/register"}>
+                      <button
+                        className="btn  dropdown_btn  btn-sm"
+                        style={{ backgroundColor: "#FEF7D8" }}
+                      >
+                        Register
+                      </button>
+                    </Link>
+                  </>
+                )}
+              </NavDropdown>
+              {/* </Link> */}
+
               <Link
                 to={"cart"}
                 className="cart_btn"

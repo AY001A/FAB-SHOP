@@ -3,14 +3,17 @@ import authService from "../../api/auth";
 
 import { useNavigate } from "react-router-dom";
 
-const initialState = {
-  isAuthenticated: false,
-  user: null,
-  error: false,
-  errorMessage: [],
-  isLoading: false,
-  registrationError: [],
-};
+const local_cart = window.localStorage.getItem("fabUser");
+const initialState = local_cart
+  ? JSON.parse(local_cart)
+  : {
+      isAuthenticated: false,
+      user: null,
+      error: false,
+      errorMessage: [],
+      isLoading: false,
+      registrationError: [],
+    };
 
 export const register = createAsyncThunk(
   "auth/register",
@@ -28,7 +31,9 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
-    return await authService.login(user);
+    const res = await authService.login(user);
+    window.localStorage.setItem("session", res?.data?.data?.fabAccessToken);
+    return res;
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -128,6 +133,8 @@ export const authSlice = createSlice({
         state.user = null;
         state.isAuthenticated = false;
         state.isLoading = false;
+        localStorage.removeItem("fabUser");
+        localStorage.removeItem("cucumislush-cart");
       })
 
       .addCase(resetPassword.pending, (state) => {
