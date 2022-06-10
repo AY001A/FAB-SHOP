@@ -98,7 +98,7 @@ const Searchbar = () => {
 
   return (
     <div className="inputDiv" ref={modalRef} onClick={handleClick}>
-      <form >
+      <form autoComplete="off" >
         <div classname='inputGroup'>
         <InputGroup
           
