@@ -14,6 +14,13 @@ import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 
 import SearchPage from "./pages/search/SearchPage";
 
+import ServiceSuccess from "./pages/checkout/ServiceSuccess";
+
+import PolicyPage from "./pages/policyPage/PolicyPage";
+
+import ProfilePage from "./pages/profile/ProfilePage";
+
+
 const OrderPage = lazy(() => import("./pages/orderPage/OrderPage"));
 const CustomerSupport = lazy(() =>
   import("./pages/CustomerSupport/CustomerSupport")
@@ -61,6 +68,7 @@ function App() {
             path="forget-password/success"
             element={<ForgetPasswordSuccess />}
           />
+          <Route path="policy" element={<PolicyPage />} />
 
           {/* Cart page  */}
 
@@ -91,6 +99,8 @@ function App() {
           <Route path="products/:productId/:title" element={<ProductPage />} />
 
           {/* Account Page */}
+          <Route path="account" element={<AccountPage />} />
+
           {/* <Route path="profile" element={<ProfilePage />} /> */}
           <Route path="profile" element={<AccountPage />} />
           <Route path="orders" element={<OrderPage />} />
