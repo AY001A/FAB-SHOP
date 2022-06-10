@@ -12,8 +12,9 @@ import { useDispatch } from "react-redux";
 const AppLayout = () => {
   const dispatch = useDispatch();
   return (
-    <div className="wrapper">
-      <Header />
+    
+    <div className="wrapper" >
+      <Header  />
       <div className="main-wrapper">
         <main>
           <ToastContainer

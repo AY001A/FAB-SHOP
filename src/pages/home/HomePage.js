@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.scss";
 import ServiceCard from "../../components/cards/service-card/ServiceCard";
 import ProductCard from "../../components/cards/product-card/ProductCard";
-import { services } from "../services/services";
 import Slider from "../../components/slider/Slider";
 
 import { HeaderSlider } from "../../components/carousel";
@@ -14,15 +13,16 @@ import { serviceHomepageList } from "../../api/services";
 import { Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-const HomePage = () => {
+const HomePage = ({handleClick}) => {
   const navigate = useNavigate();
+  const modalRef = useRef()
 
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const { status, data, error } = useGetProducts(1, 20);
   // const {} = useGetCartItems();
 
   return (
-    <>
+    <div ref={modalRef} onClick={handleClick}>
       <HeaderSlider>
         {/* <section className="carousel_header services_ad">
           <div className="carousel_info ">
@@ -203,7 +203,7 @@ const HomePage = () => {
       <section className="testimonials px-2">
         <TestimonialCard />
       </section>
-    </>
+    </div>
   );
 };
 
