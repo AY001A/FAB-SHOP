@@ -84,7 +84,7 @@ const DeliveryPageForm = () => {
           },
           onError() {
             setSubmitting(false);
-            toast.warn("oops! something went wrong, try again.");
+            toast.warn("oops! something went wrong try again");
           },
         }
       );

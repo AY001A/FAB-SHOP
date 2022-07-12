@@ -135,7 +135,7 @@ const Footer = () => {
             <h5 className="footerLinkHeader mb-3">Support</h5>
             <ul className="list-unstyled">
               <li className="mb-2">
-                <Link to={"/"} className="footerLinks">
+                <Link to={"/help"} className="footerLinks">
                   Help center
                 </Link>
               </li>
