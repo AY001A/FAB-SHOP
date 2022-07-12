@@ -1,74 +1,84 @@
-*{
-    font-family: 'Public Sans';
-    font-style: normal;
+.helpText{
+    margin-top: 70px;
+    margin-left: 30px;
 }
 
-.logo-style
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 100px;
-    margin-top: 100px;
-    padding-right: 40px;
-}
-.title
-{
-    font-weight: 700;
-    padding-left: 230px;
-    margin-top: -90px;
-    font-size: 25px;
-    color: #000000;
+.complaint:active {
+    color: #e8bd00;
 }
 
-.title2
-{
-    font-weight: 700;
-    padding-left: 230px;
-    font-size: 25px;
-    color: #000000;
-}
 
-.support
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+// *{
+//     font-family: 'Public Sans';
+//     font-style: normal;
+// }
 
-.textarea
-{
-    margin-top: -20px;
-}
+// .logo-style
+// {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     margin-bottom: 100px;
+//     margin-top: 100px;
+//     padding-right: 40px;
+// }
+// .title
+// {
+//     font-weight: 700;
+//     padding-left: 230px;
+//     margin-top: -90px;
+//     font-size: 25px;
+//     color: #000000;
+// }
 
-.dear-customer
-{
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 28px;
+// .title2
+// {
+//     font-weight: 700;
+//     padding-left: 230px;
+//     font-size: 25px;
+//     color: #000000;
+// }
 
-    color: #000000;
-    margin-top: 7px;
-}
+// .support
+// {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
 
-.space
-{
-    height: 440px;
-}
+// .textarea
+// {
+//     margin-top: -20px;
+// }
 
-.button
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    margin-top: 12px;
-}
+// .dear-customer
+// {
+//     font-weight: 500;
+//     font-size: 15px;
+//     line-height: 28px;
 
-.vectorImg
-{
-    height: 20px;
-    width: 18px;
-    padding-right: 4px;
-}
+//     color: #000000;
+//     margin-top: 7px;
+// }
+
+// .space
+// {
+//     height: 440px;
+// }
+
+// .button
+// {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-end;
+//     align-items: flex-end;
+//     margin-top: 12px;
+// }
+
+// .vectorImg
+// {
+//     height: 20px;
+//     width: 18px;
+//     padding-right: 4px;
+// }

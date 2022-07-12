@@ -111,7 +111,7 @@ function App() {
           </Route>
           {/* <Route path="/checkout" element={<CheckoutSuccess />} /> */}
 
-          <Route path="/customSupport" element={<CustomerSupport />} />
+          <Route path="/help" element={<CustomerSupport />} />
 
           <Route path="*" element={<NotFound />} />
         </Route>
