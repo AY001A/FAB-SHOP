@@ -17,9 +17,11 @@ import SearchPage from "./pages/search/SearchPage";
 import ServiceSuccess from "./pages/checkout/ServiceSuccess";
 
 import PolicyPage from "./pages/policyPage/PolicyPage";
+import Helppage from "./pages/help/Helppage";
+import AboutUs from "./pages/aboutUs/AboutUs";
+import ContactUs from "./pages/contactUs/ContactUs";
 
 import ProfilePage from "./pages/profile/ProfilePage";
-
 
 const OrderPage = lazy(() => import("./pages/orderPage/OrderPage"));
 const CustomerSupport = lazy(() =>
@@ -69,6 +71,11 @@ function App() {
             element={<ForgetPasswordSuccess />}
           />
           <Route path="policy" element={<PolicyPage />} />
+          <Route path="help" element={<Helppage />} />
+          <Route path="contactus" element={<ContactUs />} />
+
+          <Route path="aboutus" element={<AboutUs />} />
+
 
           {/* Cart page  */}
 
@@ -111,7 +118,7 @@ function App() {
           </Route>
           {/* <Route path="/checkout" element={<CheckoutSuccess />} /> */}
 
-          <Route path="/customSupport" element={<CustomerSupport />} />
+          <Route path="/help" element={<CustomerSupport />} />
 
           <Route path="*" element={<NotFound />} />
         </Route>

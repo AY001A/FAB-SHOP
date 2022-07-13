@@ -182,15 +182,16 @@ const Header = ({ handleDismiss }) => {
             </Link>
           </Nav>
 
-          <div className='top-banner-contact'>
-            <Nav as='ul'>
-              <Link to='/'>
+
+          <div className="top-banner-contact">
+            <Nav as="ul">
+              <Link to="/help">
                 <li>Help</li>
               </Link>
-              <Link to='/Products'>
+              <Link to="/aboutus">
                 <li>About us</li>
               </Link>
-              <Link to='/Services'>
+              <Link to="/contactus">
                 <li>Contact us</li>
               </Link>
             </Nav>

@@ -88,8 +88,9 @@ const Searchbar = () => {
   }
 
   return (
-    <div className='inputDiv' ref={modalRef}>
-      <form>
+
+    <div className="inputDiv" ref={modalRef} onClick={handleClick}>
+      <form autoComplete="off" >
         <div classname='inputGroup'>
           <InputGroup className='justify-content-between absolute searbarInputGroup border border-top-left-radius: 10px;'>
             <div className='searchbar-input  '>

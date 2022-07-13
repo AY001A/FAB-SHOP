@@ -56,7 +56,7 @@ const ProductCategoryPage = () => {
             />
           ))}
         {status === "error" && (
-          <p className="text-center">Oops!!! something went wrong...</p>
+          <p className="text-center">Oops!!! something went wrong</p>
         )}
       </div>
     </div>
