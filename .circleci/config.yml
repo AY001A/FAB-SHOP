@@ -46,11 +46,7 @@ jobs:
       - run:
           name: Push Docker image
           command: docker push pihemcloud/conclase:cucumislushfrontend
-  deploy:
-    docker:
-      - image: cimg/node:17.8.0
-    steps:
-      - run: ssh -oStrictHostKeyChecking=no -v $DEV_USER@$DEV_IP "./conclase-deploy.sh"
+ 
 
 workflows:
   version: 2
@@ -59,6 +55,4 @@ workflows:
       - build:
           context:
             - conclase
-      - deploy:
-          requires:
-            - build
+     
