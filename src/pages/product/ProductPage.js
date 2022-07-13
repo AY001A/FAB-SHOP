@@ -23,8 +23,6 @@ const ProductPage = ({ product }) => {
 
   const prod = data?.data
 
-  console.log('prod', prod.ProductStore)
-
   const handleAddtocart = product => {
     const inCart = Items.filter(id => id.ProductId === product.Id)
 
