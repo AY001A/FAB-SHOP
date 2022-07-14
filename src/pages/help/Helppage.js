@@ -7,26 +7,15 @@ import "./help.scss";
 const Helppage = () => {
   return (
     <div>
-      
       <div className="container">
         <div className="row">
-          <div className="col-12 logo-style d-flex justify-content-center align-items-center mt-5">
-            <div className='me-2'>
+          <div className="col-lg-12 logo-style">
             <img src={CustSupIcon} className="" alt="Support Icon" />
-
-            </div>
-            
-            <div>
-              <h4 className="title">Help</h4>
-              <h4 className="title2">Center</h4>
-
-            </div>
-            
+            <h4 className="title">Help</h4>
+            <h4 className="title2">Center</h4>
           </div>
         </div>
-      </div>
-
-      
+      </div>     
         <div className="row">
           <div className="col d-none d-sm-flex support d-flex justify-content-around mt-4">
             <div class="form-check">
@@ -84,7 +73,7 @@ const Helppage = () => {
         </div>
       
 
-      {/* <div className="container">
+ 
         <div className="row">
           <div className="col-lg-12 dear-customer">
             Dear Customer, how may we help you?
@@ -117,7 +106,7 @@ const Helppage = () => {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
